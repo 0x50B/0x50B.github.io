@@ -1,5 +1,2 @@
-Here you can say lots of fun things about your site.
-
-Maybe say a some things about yourself.
-
-Or maybe what you plan to blog about.
+Hello, I am a X++ developer since 2010.
+This blog mainly covers some findings about X++ development.
