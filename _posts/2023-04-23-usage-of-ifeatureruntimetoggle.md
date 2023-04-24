@@ -23,4 +23,4 @@ upon, deciding wether said AOT object should be visible/accessible.
 This is particular useful if you want to implement your own feature management as an ISV,
 or if you want to have company specific features. With only parameters you would not be able to
 hide e.g. menu items in the navigation menu, or even feature specific fields without additional effort.
-Even the serch box will filter out untoggled menu items, which otherwise would not be possible.
+Even the search box will filter out untoggled menu items, which otherwise would not be possible.
