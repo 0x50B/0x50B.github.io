@@ -88,7 +88,7 @@ final class ContextHelper implements System.IDisposable
 }
 ```
 
-The ContextHelper class serves as a singleton class that stores information for the current execution scope (using the pattern) in the form of a contract class or a plain record. This helps transport information down the call stack.
+The ContextHelper class serves as a singleton class that stores information for the current execution scope ("using" block) in the form of a contract class or a plain record. This helps transport information down the call stack.
 
 For example, when a user submits a timesheet, standard code overrides the cost price. To allow zero cost price hours, you need to extend the TSTimesheetTrans.setCostPrice method.
 
