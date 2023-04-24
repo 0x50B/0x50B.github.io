@@ -1,2 +1,1 @@
-Hello, I am a X++ developer since 2010.
-This blog mainly covers some findings about X++ development.
+This blog primarily presents insights on X++ development and serves as a personal reference notebook.
