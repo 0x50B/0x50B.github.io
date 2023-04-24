@@ -1,12 +1,10 @@
 ## Chain of Command - contextual helper class
 
-Sometimes, when extending standard code of Microsoft, there is a lack of contextual information available.
-While we can extend the standard code by augumenting with chain of command, sometimes there is just no way of transporting needed information down the "call stack".
+At times, when extending Microsoft's standard code, you may encounter a lack of available contextual information. While extending standard code using the chain of command is possible, there may not always be a way to transport required information down the call stack.
 
-For instance, you have a method that is extensible with chain of command, but in between this method call there is a private/not extensible object/method by Microsoft.
-Now the usual way is to request an extension point for said object/method, but most of the times Microsoft just declines or the extension is appointed to be available sometime in a later (too late) version.
+Suppose you have a method that is extensible using the chain of command, but there is a private or non-extensible Microsoft object or method in between. Usually, you would request an extension point for that object or method, but Microsoft may decline the request or make the extension available in a later (and too late) version.
 
-This is where a "ContextHelper" class is of help.
+In such cases, the "ContextHelper" class can be helpful.
 
 ```axapta
 final class ContextHelper implements System.IDisposable
@@ -90,9 +88,9 @@ final class ContextHelper implements System.IDisposable
 }
 ```
 
-The ContextHelper class acts as a singleton class that can store information for the current execution scope (using pattern), in form of a contract class or just a plain record, to transport "down the call stack".
+The ContextHelper class serves as a singleton class that stores information for the current execution scope (using the pattern) in the form of a contract class or a plain record. This helps transport information down the call stack.
 
-For instance, when the user wants to submit his timesheet, there is standard code that overrides the cost price. If you want to allow zero cost price hours, you have to extend the TSTimesheetTrans.setCostPrice method.
+For example, when a user submits a timesheet, standard code overrides the cost price. To allow zero cost price hours, you need to extend the TSTimesheetTrans.setCostPrice method.
 
 ```axapta
 internal final class TSTimesheetLineValidateSubmitContract
@@ -137,8 +135,7 @@ final class TSTimesheetLine_Extension
 }
 ```
 
-So we add the contract class in the validateSubmit method of the TSTimsheetLine class to the context helper singelton.
-This way the cost price is kept at zero when validating the timesheet.
+Add the contract class to the ContextHelper singleton in the validateSubmit method of the TSTimsheetLine class. This ensures that the cost price remains zero when validating the timesheet.
 
 
 ```axapta
@@ -166,8 +163,6 @@ final class TSTimesheetTransTable_Extension
 }
 ```
 
-The ContextHelper class is a session singleton based class, so there will never be inferences with other sessions.
-Also through the scoping of using, you can make sure that the execution of your logic is targeted for the intended use case.
-As seen above, the cost price will only be set to zero when the user submits the timesheet to the workflow, and never when called from somewhere else.
+The ContextHelper class is a session-based singleton class, ensuring no interference with other sessions. By utilizing scoping, you can ensure that your logic executes only for the intended use case. In the example above, the cost price will only be set to zero when the user submits the timesheet to the workflow and not when called from elsewhere.
 
-There are ofcourse downsides to this and should only be used as a last course of action. 
+However, be aware of the downsides, and consider using the ContextHelper class only as a last resort.
