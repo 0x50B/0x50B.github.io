@@ -32,9 +32,8 @@ On menus, menu items and table fields there is a metadata property called [Featu
 You can use this property to specify your feature class that the feature management framework calls
 upon, deciding wether said AOT object should be visible/accessible.
 
-## Why use this instead of parameters?
+## Why should you use this?
 
-This is particular useful if you want to implement your own feature management as an ISV,
-or if you want to have company specific features. With only parameters you would not be able to
-hide e.g. menu items in the navigation menu, or even feature specific fields without additional effort.
-Even the search box will filter out untoggled menu items, which otherwise would not be possible.
+This is particular useful if you want to implement your own feature management as an ISV, or if you want to have company specific features.
+With leveraging the frameworks capabilites to hide these UI elements automatically, you do not have to write any additional code in e.g. a forms extension class.
+Even the search box will filter out untoggled menu items, which otherwise would not be possible afaik.
