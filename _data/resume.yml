@@ -17,13 +17,13 @@ contact:
   #phone: (123) 456-7890
   #email: bla
 sections:
-  experience:   true
+  experience:   false
   education:    true
-  projects:     true
+  projects:     false
   skills:       true
   recognition:  false
   associations: false
-  interests:    true
+  interests:    false
   links:        false
   social_links: false
 social:
