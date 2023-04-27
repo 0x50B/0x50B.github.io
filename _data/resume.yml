@@ -17,7 +17,7 @@ contact:
   #phone: (123) 456-7890
   email: contact@raphaelbucher.ch
 sections:
-  experience:   false
+  experience:   true
   education:    true
   projects:     false
   skills:       true
