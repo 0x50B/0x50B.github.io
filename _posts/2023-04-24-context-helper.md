@@ -2,26 +2,9 @@
 
 At times, when extending Microsoft's standard code, you may encounter a lack of available contextual information. While extending standard code using the chain of command is possible, there may not always be a way to transport required information down the call stack.
 
+![context helper](/img/contexthelper.png)
+
 Suppose you have a method that is extensible using the chain of command, but there is a private or non-extensible Microsoft object or method in between. Usually, you would request an extension point for that object or method, but Microsoft may decline the request or make the extension available in a later (and too late) version.
-
-```plantuml!
-node "ContextHelper" {
-
-    package "TSTimesheetTrans" {
-        [public void setCostPrice]
-    }
-
-    package "TSTimesheetLine" {
-        [public boolean validateSubmit] -> [private void updateTrans]
-    }
-
-    [Contract]
-}
-
-[private void updateTrans] -right-> [public void setCostPrice]
-[public boolean validateSubmit] -up- [Contract]
-[Contract] -down- [public void setCostPrice]
-```
 
 In such cases, the "ContextHelper" class can be helpful.
 
