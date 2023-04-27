@@ -1,0 +1,38 @@
+theme: default
+header:
+  name: Raphael Bucher
+  suffix: BSc CS
+  display_contact_info: true
+  current_title: Senior Software Engineer
+  intro: >
+    I am a proficient software developer with strong expertise in X++ and C# development, 
+    adept at crafting efficient and innovative solutions for complex programming challenges. 
+    My experience includes working with SQL and SSRS, enabling me to effectively design, 
+    implement, and manage databases to optimize system performance. 
+    Skilled in system interface development, I have successfully integrated various applications and streamlined 
+    processes for enhanced user experience. Additionally, I have extensive experience working with REST, 
+    HTML, JavaScript, and React, which allows me to create robust and responsive web 
+    applications tailored to clients' specific requirements.
+contact:
+  #address: XXX
+  #phone: (123) 456-7890
+  email: resume@raphaelbucher.ch
+sections:
+  experience:   true
+  education:    true
+  projects:     true
+  skills:       true
+  recognition:  true
+  associations: false
+  interests:    true
+  links:        true
+  social_links: false
+social:
+  Website:    http://raphaelbucher.ch
+  GitHub:     https://github.com/0x50B
+  #Twitter:    https://twitter.com/
+  #Dribbble:  https://dribbble.com/
+  #FaceBook:  https://facebook.com/
+  LinkedIn:   https://linkedin.com/in/rabucher91
+  #Instagram: https://instagram.com/
+  #Medium:    https://medium.com/
