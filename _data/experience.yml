@@ -1,7 +1,7 @@
 - company: "BE terna AG"
   summary: "Modern Business Software solutions for different industries and challenges based on Microsoft, Infor or Qlik platform."
   logo: "/img/companylogos/beterna.svg"
-  url: "be-terna.com"
+  url: "https://www.be-terna.com"
   positions:
   - title: "Senior Solution Engineer"
     startdate: 2021-01-01
@@ -16,7 +16,6 @@
 - company: "Opus Solution AG"
   summary: "OPUS Solution AG implements business solutions for medium-sized and large companies based on the modern and flexible business software Microsoft Dynamics AX."
   logo: "/img/companylogos/op_logo.png"
-  url: "opus-solution.ch"
   positions:
   - title: "Application Engineer"
     startdate: 2010-08-01
