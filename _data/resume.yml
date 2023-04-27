@@ -15,7 +15,7 @@ header:
 contact:
   #address: XXX
   #phone: (123) 456-7890
-  email: resume@raphaelbucher.ch
+  #email: bla
 sections:
   experience:   true
   education:    true
