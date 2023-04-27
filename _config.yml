@@ -35,6 +35,7 @@ header_pages:
 plugins:
   - jekyll-feed
   - jekyll-sitemap
+  - jekyll-spaceship
 
 titles_from_headings:
   strip_title: true
