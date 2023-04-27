@@ -21,10 +21,10 @@ sections:
   education:    true
   projects:     true
   skills:       true
-  recognition:  true
+  recognition:  false
   associations: false
   interests:    true
-  links:        true
+  links:        false
   social_links: false
 social:
   Website:    http://raphaelbucher.ch
