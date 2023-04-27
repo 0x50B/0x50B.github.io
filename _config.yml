@@ -28,7 +28,7 @@ kramdown:
     
 header_pages:
   - resume.html
-  - archive.html
+  - archive.md
     
 plugins:
   - jekyll-feed
