@@ -1,0 +1,27 @@
+- skill: Microsoft Dynamics AX 3.0/4.0/2009/2012, D365 Finance and Operations, Supply Chain Management
+  description: "10+ years of experience in X++ programming to build custom Dynamics / D365 FSCM processes, interfaces and customizations"
+- skill: C#/.NET Development
+  description: "10+ years of experience in C# development versions 4.0 - 7.0"
+- skill: Database Design, Development and Reporting
+  description: "10+ years of experience in database/schema design, SQL development, troubleshooting locking and blocking issues, data analysis, custom reporting with SSRS."
+- skill: Web programming
+  description: "2+ years of experience in programming web and mobile solutions with HTML and JS, React and Typescript"
+
+- skill: Tools and Technologies
+  list:
+    - Microsoft Azure Services
+    - Chrome DevTools
+    - git
+    - JSON
+    - Linux
+    - OData, REST, SOAP
+    - Postman
+    - PowerShell, CMD
+    - Powerplatform
+    - SQL Server Management Studio (SSMS)
+    - SQL Server Reporting Services (SSRS)
+    - Visual Studio
+    - VS Code
+    - VSTS
+    - Windows
+    - XML
