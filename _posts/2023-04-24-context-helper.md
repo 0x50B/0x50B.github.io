@@ -4,7 +4,7 @@ At times, when extending Microsoft's standard code, you may encounter a lack of 
 
 Suppose you have a method that is extensible using the chain of command, but there is a private or non-extensible Microsoft object or method in between. Usually, you would request an extension point for that object or method, but Microsoft may decline the request or make the extension available in a later (and too late) version.
 
-@startuml
+```plantuml!
 node "ContextHelper" {
 
     package "TSTimesheetTrans" {
@@ -21,7 +21,7 @@ node "ContextHelper" {
 [private void updateTrans] -right-> [public void setCostPrice]
 [public boolean validateSubmit] -up- [Contract]
 [Contract] -down- [public void setCostPrice]
-@enduml
+```
 
 In such cases, the "ContextHelper" class can be helpful.
 
