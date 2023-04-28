@@ -12,10 +12,10 @@ As [described](https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/fin-op
 internal final class BankCurrencyRevalGlobalEnableFeature implements IFeatureMetadata
 ```
 
-The usage of IFeatureMetadata is well documented, you will even find tutorials on how to implement you own feature.
+The implementation of IFeatureMetadata is well-documented, and you can even find tutorials on creating your own custom features using it.
 
 ## IFeatureRuntimeToggle
-But what if you do not want to develop a feature for the standard feature management framework, but still want to leverage the frameworks capabilities to hide certain UI elements automatically, depending on your own logic? Thats possible with using the IFeatureRuntimeToggle as following:
+However, if you don't want to create a feature for the standard feature management framework but still wish to utilize the framework's ability to automatically hide specific UI elements based on your custom logic, you can achieve this by using the IFeatureRuntimeToggle as follows:
 
 ```axapta
 [ExportAttribute(identifierStr(Microsoft.Dynamics.ApplicationPlatform.FeatureExposure.IFeatureRuntimeToggle))]
@@ -28,12 +28,10 @@ internal final class MyRuntimeToggleFeature implements IFeatureRuntimeToggle
 }
 ```
 
-On menus, menu items and table fields there is a metadata property called [Feature Class](https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/fin-ops/get-started/feature-management/feature-management-overview#how-can-feature-enablement-be-checked-in-metadata).
-You can use this property to specify your feature class that the feature management framework calls
-upon, deciding wether said AOT object should be visible/accessible.
+For menus, menu items, and table fields, there's a metadata property called [Feature Class](https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/fin-ops/get-started/feature-management/feature-management-overview#how-can-feature-enablement-be-checked-in-metadata). You can use this property to define your feature class, which the feature management framework will consult when determining the visibility and accessibility of the specified AOT object.
 
 ## Why should you use this?
 
-This is particular useful if you want to implement your own feature management as an ISV, or if you want to have company specific features.
-With leveraging the frameworks capabilites to hide these UI elements automatically, you do not have to write any additional code in e.g. a forms extension class.
-Even the search box will filter out untoggled menu items, which otherwise would not be possible afaik.
+This approach is especially beneficial for implementing your own feature management as an ISV or for creating company-specific features. 
+By utilizing the framework's capabilities to automatically hide UI elements, you can avoid writing extra code in, for example, a form extension class. 
+Additionally, the search box will exclude untoggled menu items, which, to the best of my knowledge, would not be possible otherwise.
