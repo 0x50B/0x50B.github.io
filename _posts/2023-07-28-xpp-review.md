@@ -4,7 +4,7 @@ X++ programming has evolved over the years, especially with the introduction of 
 ## Downtime
 In the present day, X++ in D365 operates entirely in CIL, causing a noticeable slowdown in programming speed. Every change now requires compilation first. To mitigate the downtime, there are certain mechanisms in place, such as recompiling only the model affected by the change or performing partial compilations for specific model objects.
 
-However, despite these efforts, the downtime caused by compilation during development remains a significant issue. Unlike before, there's no hotswap of compiled DLLs, resulting in service shutdowns before replacing Model DLLs. This can add precious seconds to minutes of downtime, which can be frustrating for developers.
+However, despite these efforts, the downtime caused by compilation during development remains a significant issue. There's no hotswap of compiled DLLs, resulting in service shutdowns before replacing Model DLLs. This can add precious seconds to minutes of downtime, which can be frustrating for developers.
 
 It's worth noting that leveraging unit tests can dramatically reduce downtime, as they execute faster than waiting for the UI to be available after each compilation.
 
@@ -24,6 +24,8 @@ Additionally, debugging chain of command classes poses issues, as there is no ac
 
 ## Conclusion
 As a seasoned X++ developer with 13 years of experience, I must admit that the language's limitations and debugging challenges have been quite the journey. Despite the pain, I find myself drawn to the unique capabilities of X++, especially its ORM capabilities using select statements on data objects.
+
+Also, expecting new developer to learn this language and it's limitation, is kind of a deterrence for fresh programmers. Why would one want to learn this programming language, when there are better and more convenient languages?
 
 However, I can't help but dream of a new language, let's call it X#, which combines the latest features of C# with the strengths of X++. Such a language would undoubtedly bring a new level of convenience and efficiency to X++ development while preserving its special qualities.
 
