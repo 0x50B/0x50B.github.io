@@ -12,7 +12,7 @@ It's worth noting that leveraging unit tests can dramatically reduce downtime, a
 X++ is showing its age when compared to modern programming languages. It seems stuck in the 2000s, lacking some of the convenient features that developers have come to expect. For example:
 
 - It doesn't support the convenient [foreach](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/iteration-statements#the-foreach-statement) loop found in C#.
-- Ternary shortcuts or [null coalescing operations](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/null-coalescing-operator)s, like x ? x : y -> x ?? y, are not available in X++.
+- Ternary shortcuts or [null coalescing operations](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/null-coalescing-operator), like x ? x : y -> x ?? y, are not available in X++.
 - [Generic type parameters](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/generic-type-parameters), essential for code flexibility, are missing.
 - The powerful [async/await](https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/async-scenarios) capabilities, which streamline asynchronous programming, are absent.
 - These limitations make it challenging for developers, especially those familiar with newer languages, to work efficiently with X++.
