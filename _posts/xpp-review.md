@@ -13,11 +13,12 @@ Still, the downtime a compilation causes during development is too high. No hots
 The service downtime adds some precious seconds to minutes, thats just annoying to bear with as a developer.
 
 ## Language
-The language 'elements' of X++ are old, compared to all the other languages. Its like X++ has been stuck in 2000.
+The language 'elements' of X++ are old, compared to other modern programming languages. Its like X++ has been stuck in 2000.
 For instance, you are not able to loop list/array elements other than with an arbitary for loop or a dedicated object iterator/enumerator.
 X++ resembles C# alot, but lacks all the new stuff that makes a developers life easier. 
 Just some examples:
 
-- foreach not supported
-- no ternary shortcuts (x ? x : y -> x ?? y)
-- 
+- [foreach](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/iteration-statements#the-foreach-statement) not supported
+- no [ternary shortcuts](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/null-coalescing-operator) (x ? x : y -> x ?? y)
+- no [generic type parameters](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/generic-type-parameters)
+- no 
