@@ -15,7 +15,7 @@ X++ is showing its age when compared to modern programming languages. It seems s
 - Ternary shortcuts or [null coalescing operations](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/null-coalescing-operator), like x ? x : y -> x ?? y, are not available in X++.
 - [Generic type parameters](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/generic-type-parameters), essential for code flexibility, are missing.
 - The powerful [async/await](https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/async-scenarios) capabilities, which streamline asynchronous programming, are absent.
-- These limitations make it challenging for developers, especially those familiar with newer languages, to work efficiently with X++.
+These limitations make it challenging for developers, especially those familiar with newer languages, to work efficiently with X++.
 
 ## Debugging
 Currently, Visual Studio 2019 is the primary IDE for X++ development. However, it is a 32-bit software, and when combined with the large debugging symbols required for X++ code, it can lead to frustrating crashes. Although you can now configure the modules to be loaded during debugging, the experience is still far from ideal and often results in constant crashes. To alleviate this, developers often have to delete all breakpoints and restart Visual Studio during ongoing debugging sessions.
