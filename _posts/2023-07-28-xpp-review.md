@@ -15,6 +15,7 @@ X++ is showing its age when compared to modern programming languages. It seems s
 - Ternary shortcuts or [null coalescing operations](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/null-coalescing-operator), like x ? x : y -> x ?? y, are not available in X++.
 - [Generic type parameters](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/generic-type-parameters), essential for code flexibility, are missing.
 - The powerful [async/await](https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/async-scenarios) capabilities, which streamline asynchronous programming, are absent.
+
 These limitations make it challenging for developers, especially those familiar with newer languages, to work efficiently with X++.
 
 ## Debugging
