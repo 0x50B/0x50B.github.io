@@ -1,6 +1,5 @@
 ---
 category: X++
-tags: ['x++', 'C#']
 ---
 ## Current State of X++ Programming
 X++ programming has evolved over the years, especially with the introduction of Dynamics 365 (D365). In the past, X++ was more of a "scripting" language, lacking compilation to an intermediate language. This allowed for super-fast programming, where you could write code and directly execute it without prior compilation. However, with AX2012, a change was already hinted at, as the server code needed to be compiled to CIL (Common Intermediate Language) before execution. Even though hotfix-style changes were possible, it wasn't considered a good practice.
