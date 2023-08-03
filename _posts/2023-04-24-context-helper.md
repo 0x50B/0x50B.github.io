@@ -1,3 +1,7 @@
+---
+categories: X++
+tags: X++
+---
 ## Chain of Command - contextual helper class
 
 At times, when extending Microsoft's standard code, you may encounter a lack of available contextual information. While extending standard code using the chain of command is possible, there may not always be a way to transport required information down the call stack.
