@@ -1,3 +1,7 @@
+---
+categories: X++
+tags: X++
+---
 ## Usage of IFeatureRuntimeToggle to enable custom feature toggling
 
 The [feature management](https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/fin-ops/get-started/feature-management/feature-management-overview) framework was introduced some time ago. Developing custom features using this framework is possible.
