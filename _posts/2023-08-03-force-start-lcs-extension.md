@@ -1,4 +1,4 @@
-## Force start LCS machine on LCS
+## Force start LCS machine
 In X++ development for D365 F&O/SCM, cloud-hosted environments are often preferred over on-premise setups. 
 As a developer, I usually have access to the Azure Portal with a contributor role, allowing me to conveniently start and stop the machines I work with through the interface.
 
@@ -14,8 +14,9 @@ For example, LCS might show the machine as 'deployed' even when it's stopped. To
 Subsequently, we can start the machine via the 'start' option, which adds another 3 minutes to the process.
 
 To address this inconvenience, I have created an extension for Chromium-based browsers (such as Chrome and Edge) called:
-### [Force Start LCS Machine](https://chrome.google.com/webstore/detail/force-start-lcs-machine/knmfphnfkikpkafbonegkdmaciekgcpm/related)
-
+<p align="center">
+  <a href="https://chrome.google.com/webstore/detail/force-start-lcs-machine/knmfphnfkikpkafbonegkdmaciekgcpm/related" style="display: inline-block; vertical-align: middle; font-size: 50px; background-color: yellow; padding: 10px; border-radius: 5px;">Force start LCS machine</a>
+</p>
 When activated, this extension introduces a new button that attempts to 'force start' the machine, overriding any previously remembered state on LCS.
 
 This useful extension saves time and ensures smoother workflow management for cloud-hosted LCS machines, making it a valuable tool for X++ developers or consultants working in such environments.
