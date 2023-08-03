@@ -15,7 +15,7 @@ Subsequently, we can start the machine via the 'start' option, which adds anothe
 
 To address this inconvenience, I have created an extension for Chromium-based browsers (such as Chrome and Edge) called:
 <p align="center">
-  <a href="https://chrome.google.com/webstore/detail/force-start-lcs-machine/knmfphnfkikpkafbonegkdmaciekgcpm/related" style="display: inline-block; vertical-align: middle; font-size: 50px; background-color: yellow; padding: 10px; border-radius: 5px;">Force start LCS machine</a>
+  <a href="https://chrome.google.com/webstore/detail/force-start-lcs-machine/knmfphnfkikpkafbonegkdmaciekgcpm/related" style="display: inline-block; vertical-align: middle; font-size: 30px; padding: 10px; border-radius: 5px;">Force start LCS machine</a>
 </p>
 When activated, this extension introduces a new button that attempts to 'force start' the machine, overriding any previously remembered state on LCS.
 
