@@ -1,3 +1,7 @@
+---
+categories: Environment
+tags: Environment
+---
 ## Force start LCS machine
 In X++ development for D365 F&O/SCM, cloud-hosted environments are often preferred over on-premise setups. 
 As a developer, I usually have access to the Azure Portal with a contributor role, allowing me to conveniently start and stop the machines I work with through the interface.
