@@ -17,6 +17,8 @@ To address this inconvenience, I have created an extension for Chromium-based br
 <p align="center">
   <a href="https://chrome.google.com/webstore/detail/force-start-lcs-machine/knmfphnfkikpkafbonegkdmaciekgcpm/related" style="display: inline-block; vertical-align: middle; font-size: 30px; padding: 10px; border-radius: 5px;" target="_blank">Force start LCS machine</a>
 </p>
+![force start preview](/img/posts/force-start-preview.jpg)
+
 When activated, this extension introduces a new button that attempts to 'force start' the machine, overriding any previously remembered state on LCS.
 
 This useful extension saves time and ensures smoother workflow management for cloud-hosted LCS machines, making it a valuable tool for X++ developers or consultants working in such environments.
