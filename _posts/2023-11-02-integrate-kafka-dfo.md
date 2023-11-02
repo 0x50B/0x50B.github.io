@@ -1,6 +1,10 @@
 ---
-categories: X++, C#
-tags: X++, C#
+categories: 
+- X++
+- C#
+tags:
+- X++
+- C#
 ---
 ## Integrate Apache Kafka Client into Microsoft Dynamics 365 Finance & Operations, Supply Chain Management
 "Apache Kafka is an open-source distributed event streaming platform used by thousands of companies for high-performance data pipelines, streaming analytics, data integration, and mission-critical applications." [Apache Kafka](https://kafka.apache.org/).
