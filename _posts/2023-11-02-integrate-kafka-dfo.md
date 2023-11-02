@@ -3,7 +3,7 @@ categories: X++, C#
 tags: X++, C#
 ---
 ## Integrate Apache Kafka Client into Microsoft Dynamics 365 Finance & Operations, Supply Chain Management
-"Apache Kafka is an open-source distributed event streaming platform used by thousands of companies for high-performance data pipelines, streaming analytics, data integration, and mission-critical applications." [Apache Kafka](https://kafka.apache.org/)
+"Apache Kafka is an open-source distributed event streaming platform used by thousands of companies for high-performance data pipelines, streaming analytics, data integration, and mission-critical applications." [Apache Kafka](https://kafka.apache.org/).
 Kafka is similar to Azure Service Bus Queue, which I am sure you will find enough examples on how to integrate with D365. In this post I will show you one possible way on how to integrate Kafka into D365 F&O/SCM.
 
 ## Confluent Kafka C# .NET Client
@@ -45,9 +45,7 @@ namespace KafkaClient
 ```
 
 ### Consumer (C#)
-To be able to consume message from kafka topic(s), you will need to implement the consumer logic. This is how I did it. The consumer will be configured from a X++ sysoperation service class, that passes parameters to the consumer, like the duration the consumer will listen for new messages until any resources will be freed again and the batch operation restarts.
-Also, if needed, a topics offset can be set to the beginning, so you will be able to read all messages from the very beginning. Once a message is read, the message will be commited and thus the offset will be set to this message, so any restart of the message consumer will not result in fetching the same messages again.
-KafkaMessageProcessorInterface_BEC is a X++ class invoke from C#, that handles the incoming messages based on the topics name and the payload of the message. Refer to this if you want to know how to call X++ code from C#: [Write business logic by using C# and X++ source code](https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/dev-tools/write-business-logic) 
+To be able to consume message from kafka topic(s), you will need to implement the consumer logic. This is how I did it. The consumer will be configured from a X++ sysoperation service class, that passes parameters to the consumer, like the duration the consumer will listen for new messages until any resources will be freed again and the batch operation restarts. Also, if needed, a topics offset can be set to the beginning, so you will be able to read all messages from the very beginning. Once a message is read, the message will be commited and thus the offset will be set to this message, so any restart of the consumer will not result in fetching the same messages again. KafkaMessageProcessorInterface_BEC is a X++ class that is invoked from C#, that handles the incoming messages based on the topics name and the payload of the message. Refer to this if you want to know how to call X++ code from C#: [Write business logic by using C# and X++ source code](https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/dev-tools/write-business-logic) 
 ```csharp
 namespace KafkaClient
 {
