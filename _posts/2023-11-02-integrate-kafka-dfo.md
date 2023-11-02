@@ -299,3 +299,4 @@ public final class BusinessEventsKafkaAdapter_BEC extends BusinessEventsEndpoint
 }
 ```
 
+Feel free to ask any questions.
