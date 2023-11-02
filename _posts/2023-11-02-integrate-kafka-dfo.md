@@ -6,7 +6,7 @@ tags:
 - X++
 - C#
 ---
-## Integrate Apache Kafka Client into Microsoft Dynamics 365 Finance & Operations, Supply Chain Management
+## Integrate Apache Kafka Client into Microsoft Dynamics 365 Finance and Operations, Supply Chain Management
 "Apache Kafka is an open-source distributed event streaming platform used by thousands of companies for high-performance data pipelines, streaming analytics, data integration, and mission-critical applications." [Apache Kafka](https://kafka.apache.org/).
 Kafka is similar to Azure Service Bus Queue, which I am sure you will find enough examples on how to integrate with D365. In this post I will show you one possible way on how to integrate Kafka into D365 F&O/SCM.
 
