@@ -143,42 +143,22 @@ namespace KafkaClient
     using System;
     using System.Text;
     using Confluent.Kafka;
-    using System.Threading.Tasks;
-    using System.IO;
 
     public class CustomStringDeserializer : IDeserializer<string>
     {
         private readonly int headerSize = sizeof(int) + sizeof(byte);
+        private readonly byte magicByte = 0;
 
         public string Deserialize(ReadOnlySpan<byte> data, bool isNull, SerializationContext context)
         {
             if (isNull) return null;
 
-            byte[] byteArray = data.ToArray();
-
-            if (byteArray.Length < 5)
+            if (data.Length > 0 && data[0] == magicByte)
             {
-                throw new InvalidDataException($"Expecting data framing of length 5 bytes or more but total data size is {byteArray.Length} bytes");
+                data = data.Slice(headerSize);
             }
-
-            if (byteArray[0] != 0)
-            {
-                throw new InvalidDataException($"Expecting message {context.Component} with Confluent Schema Registry framing. Magic byte was {byteArray[0]}, expecting {0}");
-            }
-
-            // Check if there's a magic byte (in this example, it's 0)
-            if (byteArray.Length > 0 && byteArray[0] == 0)
-            {
-                // Remove the magic byte and decode the rest as UTF-8
-                using (var stream = new MemoryStream(byteArray, headerSize, byteArray.Length - headerSize))
-                using (var sr = new StreamReader(stream, Encoding.UTF8))
-                { 
-                    return sr.ReadToEnd();                    
-                }
-            }
-            return null;
+            return Encoding.UTF8.GetString(data.ToArray());
         }
-
     }
 }
 ```
