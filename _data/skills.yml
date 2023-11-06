@@ -10,6 +10,8 @@
 - skill: Tools and Technologies
   list:
     - Microsoft Azure Services
+    - Azure Service Bus
+    - Apache Kafka
     - Chrome DevTools
     - git
     - JSON
