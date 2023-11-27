@@ -51,7 +51,7 @@ namespace KafkaClient
 ### Root Store / SSL CA certificate check
 This was the biggest issue I was facing when trying to integrate Kafka into DFO. I was testing my integration the whole time on my DEV machine, everything was working there as expected. What I missed when I deployed my development to a Tier2+ machine (UAT), that these sandbox environments are completley missing a root store where the root CA certificates are stored. The confluent Kafka client uses this root store to check the SSL connection, and since this root store is not available, it will result in an error message:
 
-sasl_ssl://pkc-1wvvj.westeurope.azure.confluent.cloud:9092/bootstrap: SSL handshake failed: error:0A000086:SSL routines::certificate verify failed: broker certificate could not be verified, verify that ssl.ca.location is correctly configured or root CA certificates are installed (add broker's CA certificate to the Windows Root certificate store) (after 15ms in state SSL_HANDSHAKE)
+sasl_ssl://url:port/bootstrap: SSL handshake failed: error:0A000086:SSL routines::certificate verify failed: broker certificate could not be verified, verify that ssl.ca.location is correctly configured or root CA certificates are installed (add broker's CA certificate to the Windows Root certificate store) (after 15ms in state SSL_HANDSHAKE)
 
 After some research, I found that the Confluent Kafka Client actually supports SSL PEM certificate strings. So the way I solved this, was before a producer/consumer actually established the connection with the broker, i made an extra call to the broker to download its certificate chain and looped these until I found the self signed one (which respresents the CA root certifificate of the certificate chain).
 
