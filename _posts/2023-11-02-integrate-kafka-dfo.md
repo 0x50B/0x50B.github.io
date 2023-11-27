@@ -8,7 +8,7 @@ tags:
 ---
 ## Integrate Apache Kafka Client into Microsoft Dynamics 365 Finance and Operations, Supply Chain Management
 "Apache Kafka is an open-source distributed event streaming platform used by thousands of companies for high-performance data pipelines, streaming analytics, data integration, and mission-critical applications." [Apache Kafka](https://kafka.apache.org/).
-Kafka is similar to Azure Service Bus Queue, which I am sure you will find enough examples on how to integrate with D365. In this post I will show you one possible way on how to integrate Kafka into D365 F&O/SCM.
+In this post I will show you one possible way on how to integrate Kafka into D365 F&O/SCM.
 
 ## Confluent Kafka C# .NET Client
 You will need to either create a new C# Project to build a DLL which you can reference, or just create plain reference the Kafka DLL provided in this [.NET Client Installation tutorial](https://docs.confluent.io/kafka-clients/dotnet/current/overview.html#dotnet-installation).
