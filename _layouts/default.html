@@ -11,7 +11,7 @@
 
     <main class="page-content" aria-label="Content">
       <div class="wrapper">
-        {{ content }}
+        {% include anchor_headings.html html=content anchorBody='#' anchorClass='anchor' h_max=4 h_min=2 %}
       </div>
     </main>
 
