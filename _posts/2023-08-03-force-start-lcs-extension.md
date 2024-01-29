@@ -19,7 +19,7 @@ Subsequently, we can start the machine via the 'start' option, which adds anothe
 
 To address this inconvenience, I have created an extension for Chromium-based browsers (such as Chrome and Edge) called:
 <p>
-  <a href="https://chrome.google.com/webstore/detail/force-start-lcs-machine/knmfphnfkikpkafbonegkdmaciekgcpm/related" style="font-size: 30px; padding: 10px; border-radius: 5px;" target="_blank"><img height="30px" style="margin-right: 10px;" src="/img/posts/force-start-logo.jpg"/>Force start LCS machine</a>
+  <a href="https://chromewebstore.google.com/detail/force-start-lcs-machine/knmfphnfkikpkafbonegkdmaciekgcpm" style="font-size: 30px; padding: 10px; border-radius: 5px;" target="_blank"><img height="30px" style="margin-right: 10px;" src="/img/posts/force-start-logo.jpg"/>Force start LCS machine</a>
 </p>
 ![force start preview](/img/posts/force-start-preview.jpg)
 
