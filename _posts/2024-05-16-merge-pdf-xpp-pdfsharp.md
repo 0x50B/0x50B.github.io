@@ -90,14 +90,6 @@ internal final class PDFMerger_BEC implements System.IDisposable
                 continue;
             }
 
-            var downloadUrl = docuValue.Path;
-            if (!downloadUrl || docuValue.Type == DocuValueType::Others)
-            {
-                str accessToken = DocumentManagement::createAccessToken(docuRef);
-
-                downloadUrl = URLBuilderUtilities::GetDownloadUrl(docuValue.FileId, accessToken);
-            }
-
             var docContents = storageProvider.getFile(docuValue.createLocation());                
             using (var readDocument = PdfReader::Open(docContents.Content, PdfDocumentOpenMode::Import))
             {
