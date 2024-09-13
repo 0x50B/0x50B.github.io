@@ -10,11 +10,11 @@ tags: [X++]
 
 In Dynamics 365 development, deep links are often used to direct users to specific records within the system. However, deep links can be fragile, especially when the underlying data changes or when they include complex URL parameters. To address this, we can implement a `LinkHandler` class that processes URL parameters, searches for the specified record, and automatically redirects the user to the appropriate form.
 
-In this post, I’ll walk through an example of how to replace deep links with a `LinkHandler_BEC` class.
+In this post, I’ll walk through an example of how to replace deep links with a `LinkHandler` class.
 
 ## The Concept Behind LinkHandler
 
-The `LinkHandler_BEC` class serves as a more dynamic and maintainable alternative to deep links. It takes URL parameters—such as a table name and a search key—and attempts to locate the corresponding record. Once the record is found, it redirects the user to the relevant form.
+The `LinkHandler` class serves as a more dynamic and maintainable alternative to deep links. It takes URL parameters—such as a table name and a search key—and attempts to locate the corresponding record. Once the record is found, it redirects the user to the relevant form.
 
 This method is more flexible than traditional deep links because it decouples the URL structure from specific record identifiers, making the system more resilient to changes.
 
@@ -27,37 +27,37 @@ This method is more flexible than traditional deep links because it decouples th
 
 ### Building the URL for the LinkHandler
 
-To use the `LinkHandler_BEC` class, you’ll need to construct the URL with the appropriate query parameters. Below is the template format and a real usage example.
+To use the `LinkHandler` class, you’ll need to construct the URL with the appropriate query parameters. Below is the template format and a real usage example. Note that an appropriate MenuItemAction should be created and secured through a priviliege.
 
 #### URL Template
-&mi=action:LinkHandler_BEC&tableName=[TableName]&searchKey=[Field1:Value1];[Field2:Value2];[...]
+&mi=action:LinkHandler&tableName=[TableName]&searchKey=[Field1:Value1];[Field2:Value2];[...]
 - `tableName`: The name of the table you want to search.
 - `searchKey`: A semicolon-separated list of field-value pairs used to locate the record.
 
 #### Real Usage Example
-&mi=action:LinkHandler_BEC&tableName=ProjTable&searchKey=ProjId:PRJ-000032
+&mi=action:LinkHandler&tableName=ProjTable&searchKey=ProjId:PRJ-000032
 
-In this example, the `LinkHandler_BEC` searches the `ProjTable` for a record where the `ProjId` is `PRJ-000032`.
+In this example, the `LinkHandler` searches the `ProjTable` for a record where the `ProjId` is `PRJ-000032`.
 
-## Code Example: `LinkHandler_BEC`
+## Code Example: `LinkHandler`
 
-Below is the X++ implementation of the `LinkHandler_BEC` class.
+Below is the X++ implementation of the `LinkHandler` class.
 
 ```xpp
-internal final class LinkHandler_BEC
+internal final class LinkHandler
 {
     private TableName tableName;
     private container searchKey;
     private Common common;
 
-    public static LinkHandler_BEC construct()
+    public static LinkHandler construct()
     {
-        return new LinkHandler_BEC();
+        return new LinkHandler();
     }
 
     public static void main(Args _args)
     {
-        var linkHandler = LinkHandler_BEC::construct();
+        var linkHandler = LinkHandler::construct();
         linkHandler.initFromUrl();
         linkHandler.redirect();
     }
@@ -188,11 +188,11 @@ internal final class LinkHandler_BEC
 
 ### Optimizing URL Parameters with Standardization
 
-While the current `LinkHandler_BEC` URL structure works, we can take inspiration from the OData protocol to make the URL parameters more standardized and readable. By following a convention similar to OData query syntax, we can make the URLs more intuitive and easier to parse.
+While the current `LinkHandler` URL structure works, we can take inspiration from the OData protocol to make the URL parameters more standardized and readable. By following a convention similar to OData query syntax, we can make the URLs more intuitive and easier to parse.
 
 #### OData-Inspired URL Structure
 
-In OData, query parameters are standardized, allowing for more flexibility and clarity when querying data. For instance, we can use parameter names like `$filter` to specify conditions in a consistent way. Here's how we could apply this approach to our `LinkHandler_BEC` class:
+In OData, query parameters are standardized, allowing for more flexibility and clarity when querying data. For instance, we can use parameter names like `$filter` to specify conditions in a consistent way. Here's how we could apply this approach to our `LinkHandler` class:
 
 #### Optimized URL Template
 &$table=TableName&$filter=Field1 eq 'Value1' and Field2 eq 'Value2'
@@ -203,7 +203,7 @@ In OData, query parameters are standardized, allowing for more flexibility and c
 #### Real Usage Example
 &$table=ProjTable&$filter=ProjId eq 'PRJ-000032'
 
-In this example, we search the `ProjTable` for a record where `ProjId` equals `GCH-000032`. The use of `$filter` allows for potential expansion in the future, such as supporting other operators (`ne` for "not equal," `gt` for "greater than," etc.).
+In this example, we search the `ProjTable` for a record where `ProjId` equals `PRJ-000032`. The use of `$filter` allows for potential expansion in the future, such as supporting other operators (`ne` for "not equal," `gt` for "greater than," etc.).
 
 #### Benefits of Standardization
 
