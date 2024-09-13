@@ -51,7 +51,7 @@ First, ensure that your system allows script execution by running the following 
 powershell Set-ExecutionPolicy RemoteSigned
 ```
 
-Then, run the script below. This script checks if it’s running with admin privileges, reads all the configurations, and creates symbolic links for the required metadata.
+Then, run the script below. This script checks if it’s running with admin privileges, reads all the configurations, and creates symbolic links for the required metadata under `C:\dev\symlinks`.
 
 ```powershell
 # Check if the script is running with elevated (admin) privileges
