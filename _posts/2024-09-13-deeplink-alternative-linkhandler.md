@@ -25,6 +25,20 @@ This method is more flexible than traditional deep links because it decouples th
 - **Automatic Redirection**: Once the record is found, the handler redirects the user to the appropriate UI form.
 - **Security Compliance**: Before redirection, the handler ensures that the user has the necessary permissions to view the record.
 
+### Building the URL for the LinkHandler
+
+To use the `LinkHandler_BEC` class, you’ll need to construct the URL with the appropriate query parameters. Below is the template format and a real usage example.
+
+#### URL Template
+&mi=action:LinkHandler_BEC&tableName=[TableName]&searchKey=[Field1:Value1];[Field2:Value2];[...]
+- `tableName`: The name of the table you want to search.
+- `searchKey`: A semicolon-separated list of field-value pairs used to locate the record.
+
+#### Real Usage Example
+&mi=action:LinkHandler_BEC&tableName=ProjTable&searchKey=ProjId:PRJ-000032
+
+In this example, the `LinkHandler_BEC` searches the `ProjTable` for a record where the `ProjId` is `PRJ-000032`.
+
 ## Code Example: `LinkHandler_BEC`
 
 Below is the X++ implementation of the `LinkHandler_BEC` class.
@@ -171,3 +185,31 @@ internal final class LinkHandler_BEC
     }
 }
 ```
+
+### Optimizing URL Parameters with Standardization
+
+While the current `LinkHandler_BEC` URL structure works, we can take inspiration from the OData protocol to make the URL parameters more standardized and readable. By following a convention similar to OData query syntax, we can make the URLs more intuitive and easier to parse.
+
+#### OData-Inspired URL Structure
+
+In OData, query parameters are standardized, allowing for more flexibility and clarity when querying data. For instance, we can use parameter names like `$filter` to specify conditions in a consistent way. Here's how we could apply this approach to our `LinkHandler_BEC` class:
+
+#### Optimized URL Template
+&$table=TableName&$filter=Field1 eq 'Value1' and Field2 eq 'Value2'
+
+- `$table`: Specifies the table to search.
+- `$filter`: Defines the conditions for locating the record, similar to OData filters. Using `eq` (equals) allows for better clarity and alignment with standard query syntax.
+
+#### Real Usage Example
+&$table=ProjTable&$filter=ProjId eq 'PRJ-000032'
+
+In this example, we search the `ProjTable` for a record where `ProjId` equals `GCH-000032`. The use of `$filter` allows for potential expansion in the future, such as supporting other operators (`ne` for "not equal," `gt` for "greater than," etc.).
+
+#### Benefits of Standardization
+
+1. **Clarity**: The URL becomes more readable and easier to understand for both developers and administrators.
+2. **Flexibility**: By using a standardized format, we can expand the logic to support more complex queries in the future without breaking existing URLs.
+3. **Maintainability**: Standardized URLs are easier to maintain as they follow a known convention, reducing the risk of errors.
+
+Standardizing the URL parameters not only aligns with best practices but also makes the solution scalable and easier to integrate with other parts of the system.
+But since this was more of a proof of concept, I decided to just use an easier approach to implement the URL parameter handling.
