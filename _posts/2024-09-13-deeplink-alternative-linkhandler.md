@@ -30,12 +30,12 @@ This method is more flexible than traditional deep links because it decouples th
 To use the `LinkHandler` class, you’ll need to construct the URL with the appropriate query parameters. Below is the template format and a real usage example. Note that an appropriate MenuItemAction should be created and secured through a priviliege.
 
 #### URL Template
-&mi=action:LinkHandler&tableName=[TableName]&searchKey=[Field1:Value1];[Field2:Value2];[...]
+`&mi=action:LinkHandler&tableName=[TableName]&searchKey=[Field1:Value1];[Field2:Value2];[...]`
 - `tableName`: The name of the table you want to search.
 - `searchKey`: A semicolon-separated list of field-value pairs used to locate the record.
 
 #### Real Usage Example
-&mi=action:LinkHandler&tableName=ProjTable&searchKey=ProjId:PRJ-000032
+`&mi=action:LinkHandler&tableName=ProjTable&searchKey=ProjId:PRJ-000032`
 
 In this example, the `LinkHandler` searches the `ProjTable` for a record where the `ProjId` is `PRJ-000032`.
 
@@ -195,13 +195,13 @@ While the current `LinkHandler` URL structure works, we can take inspiration fro
 In OData, query parameters are standardized, allowing for more flexibility and clarity when querying data. For instance, we can use parameter names like `$filter` to specify conditions in a consistent way. Here's how we could apply this approach to our `LinkHandler` class:
 
 #### Optimized URL Template
-&$table=TableName&$filter=Field1 eq 'Value1' and Field2 eq 'Value2'
+`&$table=TableName&$filter=Field1 eq 'Value1' and Field2 eq 'Value2'`
 
 - `$table`: Specifies the table to search.
 - `$filter`: Defines the conditions for locating the record, similar to OData filters. Using `eq` (equals) allows for better clarity and alignment with standard query syntax.
 
 #### Real Usage Example
-&$table=ProjTable&$filter=ProjId eq 'PRJ-000032'
+`&$table=ProjTable&$filter=ProjId eq 'PRJ-000032'`
 
 In this example, we search the `ProjTable` for a record where `ProjId` equals `PRJ-000032`. The use of `$filter` allows for potential expansion in the future, such as supporting other operators (`ne` for "not equal," `gt` for "greater than," etc.).
 
