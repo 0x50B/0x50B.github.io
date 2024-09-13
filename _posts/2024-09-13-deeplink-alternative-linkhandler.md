@@ -2,7 +2,8 @@
 layout: post
 title: "Replacing Deep Links with a LinkHandler Class in Dynamics 365"
 date: 2024-09-13
-categories: [Dynamics 365, X++, Best Practices]
+categories: [X++]
+tags: [X++]
 ---
 
 # Replacing Deep Links with a LinkHandler Class in Dynamics 365
