@@ -7,7 +7,7 @@ tags: X++
 
 ![context helper](/img/posts/contexthelper.png)
 
-When extending Microsoft's standard code in Dynamics 365, passing contextual data down the call stack can sometimes be a challenge. While Chain of Command (CoC) makes it possible to extend standard logic, there are cases where private or non-extensible methods interrupt the flow. Previously, the **ContextHelper** class provided a way to manage this (see previous blog post {{ site.baseurl }}{% link _posts/2023-04-24-context-helper.md %}, but now a more robust framework has been developed to replace it.
+When extending Microsoft's standard code in Dynamics 365, passing contextual data down the call stack can sometimes be a challenge. While Chain of Command (CoC) makes it possible to extend standard logic, there are cases where private or non-extensible methods interrupt the flow. Previously, the **ContextHelper** class provided a way to manage this (see previous blog post {% post_url _posts/2023-04-24-context-helper.md %}, but now a more robust framework has been developed to replace it.
 
 ### Introducing the New Context Helper Framework
 
