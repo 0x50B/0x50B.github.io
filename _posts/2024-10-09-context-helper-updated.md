@@ -169,17 +169,12 @@ Define a contract class that will hold the custom context (e.g., whether to allo
 [ContextContractFactoryAttribute_BET(classStr(Test01ContextContract_BET))]
 final class TSTimesheetLineValidateSubmitContract_BET extends IContextContract_BET
 {
-    public boolean allowZeroCostPrice;
+    private boolean allowZeroCostPrice;
 
     public boolean parmAllowZeroCostPrice(boolean _allowZeroCostPrice = allowZeroCostPrice)
     {
         allowZeroCostPrice = _allowZeroCostPrice;
         return allowZeroCostPrice;
-    }
-
-    public static TSTimesheetLineValidateSubmitContract_BET construct()
-    {
-        return new TSTimesheetLineValidateSubmitContract_BET();
     }
 }
 ```
