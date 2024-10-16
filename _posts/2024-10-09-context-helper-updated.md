@@ -166,7 +166,7 @@ Let’s now apply the new framework to the same timesheet cost price scenario. Y
 Define a contract class that will hold the custom context (e.g., whether to allow zero cost price):
 
 ```xpp
-[ContextContractFactoryAttribute_BET(classStr(Test01ContextContract_BET))]
+[ContextContractFactoryAttribute_BET(classStr(TSTimesheetLineValidateSubmitContract_BET))]
 final class TSTimesheetLineValidateSubmitContract_BET extends IContextContract_BET
 {
     private boolean allowZeroCostPrice;
