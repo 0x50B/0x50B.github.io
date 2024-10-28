@@ -4,7 +4,7 @@ tags: X++
 ---
 # Streamline Your Debugging: Simplifying Reattaching to `w3wp.exe` in Visual Studio for D365 Finance and Operation
 
-If you’re working with Dynamics 365 Finance & Operations (D365 F&O) in Visual Studio, you’ve likely encountered the frequent annoyance of reattaching to the correct `w3wp.exe` process. Every time you start debugging, you get prompted to select from multiple `w3wp` sub-processes, often with no clear indication of which one is actually handling the F&O instance. This is time-consuming and frustrating, especially when you’re only interested in the main F&O Application Object Server (AOS) instance.
+If you’re working with Dynamics 365 Finance & Operations (D365 F&O) in Visual Studio, you’ve likely encountered the frequent annoyance of reattaching to the correct `w3wp.exe` process. Every time you start debugging X++ code, you get prompted to select from multiple `w3wp` sub-processes, often with no clear indication of which one is actually handling the F&O instance. This is time-consuming and frustrating, especially when you’re only interested in the main F&O Application Object Server (AOS) instance.
 
 A simple fix can make your debugging experience much smoother by disabling unnecessary sites in IIS. Here’s how to set it up so that only the AOSService process runs, eliminating the need to guess which `w3wp.exe` instance to reattach.
 
