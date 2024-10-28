@@ -54,9 +54,6 @@ To avoid being prompted, you can stop the retail-related sites under IIS Manager
 - **Less Frustration**: Without needing to scroll through a list of processes, you can focus on debugging and avoid trial and error.
 - **Streamlined Workflow**: This setup keeps your development environment lean, especially if you’re working in a non-retail environment.
 
-### Quick Tip: Use IIS Reset Sparingly
-While recycling IIS is necessary to apply these changes, keep in mind that it can momentarily disrupt any running sessions. Be mindful if you’re working in a shared environment or if other team members rely on these services.
-
 ---
 
 By disabling the unused retail sites, you can streamline your Visual Studio debugging experience and keep your focus where it should be: on the code. Happy debugging!
