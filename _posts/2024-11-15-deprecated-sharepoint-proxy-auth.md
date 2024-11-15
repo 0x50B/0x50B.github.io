@@ -30,7 +30,7 @@ Decompilation of Microsoft.Dynamics.Platform.Integration.SharePoint.dll / ShareP
 
 ## One Time registration process
 According to Microsoft, you should execute this script to allow application access to SharePoint after 10.0.40 for non interactive sessions.
-[Microsoft Documentation: Registering an App in Entra ID](https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/organization-administration/configure-document-management#one-time-registration-process)
+[Microsoft Learn: Configure document management | One-time registration process](https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/organization-administration/configure-document-management#one-time-registration-process)
 
 ```ps
 Import-Module Microsoft.Graph
