@@ -28,6 +28,25 @@ Decompilation of Microsoft.Dynamics.Platform.Integration.SharePoint.dll / ShareP
    ```
    will no longer return a proxy with an access token. Although the access token might still appear when debugging (via the `LegacyTokenAuthenticator`), this class is now internal, making it inaccessible for external use.
 
+## One Time registration process
+According to Microsoft, you should execute this script to allow application access to SharePoint after 10.0.40 for non interactive sessions.
+[Microsoft Documentation: Registering an App in Entra ID](https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/organization-administration/configure-document-management#one-time-registration-process)
+
+```ps
+Import-Module Microsoft.Graph
+   
+# The parameter for TenantId needs to be changed
+Connect-MgGraph -TenantId microsoft.onmicrosoft.com -Scopes 'Application.ReadWrite.All'
+    
+# These AppIds do not change as they are the first party application IDs
+$erpServicePrincipal = Get-MgServicePrincipal -Filter "AppId eq '00000015-0000-0000-c000-000000000000'"
+$sharePointServicePrincipal = Get-MgServicePrincipal -Filter "AppId eq '00000003-0000-0ff1-ce00-000000000000'"
+$spAppRole = $sharePointServicePrincipal.AppRoles | where {$_.Value -eq 'Sites.ReadWrite.All'}
+    
+# Assign the SharePoint 'Sites.ReadWrite.All' permission to the Microsoft Dynamics 365 finance and operations application
+New-MgServicePrincipalAppRoleAssignedTo -ServicePrincipalId $erpServicePrincipal.Id -PrincipalId $erpServicePrincipal.Id -ResourceId $sharePointServicePrincipal.Id -AppRoleId $spAppRole.Id
+```
+
 ## What Can Be Used Instead?
 
 ### **Temporary Solution: SharePointTokenFactory**
