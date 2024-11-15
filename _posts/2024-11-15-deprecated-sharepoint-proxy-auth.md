@@ -8,6 +8,8 @@ With the release of Dynamics 365 Finance version 10.0.40, significant changes ha
 
 ## Key Changes in SharePoint Authentication
 
+![context helper](/img/posts/ISharePointProxy.png)
+
 1. **Deprecation of Existing SharePoint Authentication**  
    The authentication mechanism previously used for integrating with SharePoint is being removed. As of version 10.0.40, the new SharePoint user authentication feature is available but optional. However, it will become mandatory starting with version 10.0.42.
 
@@ -54,6 +56,4 @@ The upcoming updates underscore the importance of aligning with Microsoft’s ev
 - [Microsoft Documentation: Registering an App in Entra ID](https://learn.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app)  
 - [Dynamics 365 Finance and Operations Release Notes](https://learn.microsoft.com/en-us/dynamics365/release-plans/)  
 
-Be sure to test any changes in a sandbox environment before deploying them to production to ensure a smooth transition.
-
-**Got questions or need further clarification?** Drop a comment below or reach out to your Microsoft support representative.
+**Got questions or need further clarification?** Drop a comment below
