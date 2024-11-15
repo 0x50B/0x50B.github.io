@@ -56,6 +56,6 @@ The upcoming updates underscore the importance of aligning with Microsoft’s ev
 ## Useful Resources
 
 - [Microsoft Documentation: Registering an App in Entra ID](https://learn.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app)  
-- [Dynamics 365 Finance and Operations Release Notes](https://learn.microsoft.com/en-us/dynamics365/release-plans/)  
+- [Dynamics 365 Finance and Operations Release Notes](https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/fin-ops/get-started/removed-deprecated-features-platform-updates#sharepoint-integration-authentication-using-a-microsoft-managed-high-trust-connection)
 
 **Got questions or need further clarification?** Drop a comment below
