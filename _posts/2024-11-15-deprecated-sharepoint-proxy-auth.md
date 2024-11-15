@@ -9,6 +9,7 @@ With the release of Dynamics 365 Finance version 10.0.40, significant changes ha
 ## Key Changes in SharePoint Authentication
 
 ![context helper](/img/posts/ISharePointProxy.png)
+Decompilation of Microsoft.Dynamics.Platform.Integration.SharePoint.dll / SharePointHelper
 
 1. **Deprecation of Existing SharePoint Authentication**  
    The authentication mechanism previously used for integrating with SharePoint is being removed. As of version 10.0.40, the new SharePoint user authentication feature is available but optional. However, it will become mandatory starting with version 10.0.42.
