@@ -32,6 +32,8 @@ With the release of Dynamics 365 Finance version 10.0.40, significant changes ha
 ### **Temporary Solution: SharePointTokenFactory**
 For those encountering `401 Unauthorized` errors in SharePoint API calls, the following method can be used to obtain an access token:
    ```xpp
+   using Microsoft.Dynamics.Platform.Integration.SharePoint;
+
    SharePointTokenFactory::GetToken(userId, domain);
    ```
 This approach provides a bearer token that can authenticate SharePoint API requests. However, be cautious: while this method is currently not marked as deprecated, there’s no guarantee it will remain available in future updates. It is strongly recommended to monitor updates from Microsoft for any changes.
