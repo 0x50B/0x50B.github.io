@@ -1,4 +1,5 @@
 ---
+title: 'Navigating Dynamics 365 F&O with System Entity Navigation'
 categories: X++
 tags: X++
 ---
