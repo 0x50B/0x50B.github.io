@@ -6,7 +6,7 @@ tags: X++
 
 # Navigating Dynamics 365 Finance and Operation with System Entity Navigation
 
-In Dynamics 365 Finance and Operations (D365 F&O), creating deep links to specific records can enhance user experience by providing direct access to relevant data. Traditionally, this has been achieved using various methods, including custom `LinkHandler` classes. However, Microsoft offers a built-in feature known as **System Entity Navigation** that simplifies this process.
+In Dynamics 365 Finance and Operations (D365 F&O), creating deep links to specific records can enhance user experience by providing direct access to relevant data. Traditionally, this has been achieved using various methods, including [Deep Link generation](https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/user-interface/create-deep-links). However, Microsoft offers a built-in feature known as **System Entity Navigation** that simplifies this process.
 
 ## Understanding System Entity Navigation
 
