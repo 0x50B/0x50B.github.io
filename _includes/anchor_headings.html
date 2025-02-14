@@ -90,7 +90,7 @@
     {% assign _workspace = node | split: _closingTag %}
     {% capture _hAttrToStrip %}{{ _workspace[0] | split: '>' | first }}>{% endcapture %}
     {% assign header = _workspace[0] | replace: _hAttrToStrip, '' %}
-    {% assign escaped_header = header | strip_html | strip | safe %}
+    {% assign escaped_header = header | strip %}
 
     {% assign _classWorkspace = _workspace[0] | split: 'class="' %}
     {% assign _classWorkspace = _classWorkspace[1] | split: '"' %}
@@ -171,4 +171,4 @@
 
     {% capture edited_headings %}{{ edited_headings }}{{ new_heading }}{% endcapture %}
   {% endfor %}
-{% endcapture %}{% assign headingsWorkspace = '' %}{{ edited_headings | strip | safe }}
+{% endcapture %}{% assign headingsWorkspace = '' %}{{ edited_headings | strip }}
