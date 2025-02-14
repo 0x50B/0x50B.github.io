@@ -20,7 +20,7 @@ Without this ability, newly inserted records will have system-generated values, 
 ### How to Overwrite System Fields in X++
 The following X++ example demonstrates how to override system fields when inserting data into the `HcmWorkerActionCommentHistoryEntity` entity:
 
-```xpp
+```axapta
 public class HcmWorkerActionCommentHistoryEntity extends common
 {
     public boolean insertEntityDataSource(DataEntityRuntimeContext _entityCtx, DataEntityDataSourceRuntimeContext _dataSourceCtx)
