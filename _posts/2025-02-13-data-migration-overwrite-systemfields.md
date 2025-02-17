@@ -5,7 +5,7 @@ description: "Learn how to overwrite system fields in Dynamics 365 F&O, enabling
 tags: [X++, Data Migration]
 ---
 
-## Overwriting System Fields in Dynamics 365 F&O
+## Overwriting System Fields in Dynamics 365 FO
 
 In some data migration scenarios, it is necessary to maintain the original record metadata, such as `CreatedDateTime`, instead of relying on system-generated timestamps. By default, system fields are protected from direct modification, but there is a way to override this behavior in X++ using the `overwriteSystemfields(true)` method.
 
