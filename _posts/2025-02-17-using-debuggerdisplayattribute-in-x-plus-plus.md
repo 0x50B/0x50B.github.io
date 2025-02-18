@@ -30,7 +30,7 @@ public final class DebuggerDisplayTest_BEC
 
 ### How It Works
 
-1. The `[System.Diagnostics.DebuggerDisplayAttribute("{toString()}")]` line instructs the debugger to display the result of `toString()` when an instance of `SysDaInExpression` is inspected.
+1. The `[System.Diagnostics.DebuggerDisplayAttribute("{toString()}")]` line instructs the debugger to display the result of `toString()` when an instance of `DebuggerDisplayTest_BEC` is inspected.
 2. The `toString()` method provides a human-readable string representation of the expression, making debugging much more intuitive.
 3. When debugging, instead of seeing just the class name, you’ll see an output like `("Field1" in Container)`, making it clear what the object represents.
 
