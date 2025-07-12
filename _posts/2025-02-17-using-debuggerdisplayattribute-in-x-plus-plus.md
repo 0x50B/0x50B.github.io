@@ -1,5 +1,5 @@
 ---
-title: "Using DebuggerDisplayAttribute in X++ to Enhance Debugging"
+title: "Using DebuggerDisplayAttribute in X++ to enhance debugging"
 date: 2025-02-17
 description: "Learn how to use the DebuggerDisplayAttribute in X++ to improve the debugging experience by customizing object representations."
 tags: [X++, Debugging]
