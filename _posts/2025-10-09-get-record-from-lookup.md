@@ -106,7 +106,7 @@ sysTableLookup_BEC.parmSysTableLookupHandler_BEC(tableLookupHandler_BEC);
 sysTableLookup_BEC.setObjectMethodToInvoke(this, methodStr(Form_BEC_Extension, sysTableLookupHandler_onLookupRecordSelected_BEC));
 
 // or for your own forms, if you want to use eventhandlers:
-onLookupCompleted.onLookupRecordSelected += eventHandler(this.sysTableLookupHandler_BEC_onLookupRecordSelected_BEC)
+tableLookupHandler_BEC.onLookupRecordSelected += eventHandler(this.sysTableLookupHandler_onLookupRecordSelected_BEC);
 
 sysTableLookup_BEC.parmQuery(query_BEC);
 sysTableLookup_BEC.addLookupfield(fieldNum(Table, Field1), true);
