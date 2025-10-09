@@ -116,7 +116,7 @@ sysTableLookup_BEC.performFormLookup();
 
 In your form extension class
 ```xpp
-public void sysTableLookupHandler_BEC_onLookupRecordSelected_BEC(Common _common)
+public void sysTableLookupHandler_onLookupRecordSelected_BEC(Common _common)
 {
     if (_common.TableId != tableNum(Table))
     {
