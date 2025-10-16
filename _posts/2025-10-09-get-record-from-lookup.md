@@ -1,7 +1,7 @@
 ---
 title: "Get selected record from SysTableLookup"
 date: 2025-10-02
-tags: [X++, Interpreter]
+tags: [X++]
 ---
 
 ## How to get the record from a lookup dialog in X++
