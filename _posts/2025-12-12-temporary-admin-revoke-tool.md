@@ -13,13 +13,13 @@ To streamline this, I created a utility class `SysTemporaryAdminRevoke_BET`. Thi
 
 The logic relies on temporarily modifying the `SecurityUserRole` table within a running session. Here is the flow:
 
-1.  **Launch:** You run the class.
+1.  **Launch:** You run the class. (append to URL: mi=SysClassRunner&cls=SysTemporaryAdminRevoke_BET)
 2.  **Configuration:** A dialog asks if you want to mimic a specific user (optional).
 3.  **Revocation:**
     * If a user ID is provided, your current roles are swapped with that user's roles.
     * The **System Administrator** role is removed from your user.
 4.  **Pause:** A dialog box (`SysBoxForm`) appears. **As long as this box is open, your admin rights are suspended.**
-5.  **Testing:** While the box is open, you can spawn new workspace tabs or forms to test the application with the restricted rights.
+5.  **Testing:** While the box is open, you can spawn new sessions (browser tabs) to test the application with the restricted rights.
 6.  **Restoration:** Closing the dialog box automatically restores your System Administrator role and reverts any role swaps.
 
 ## The Code
