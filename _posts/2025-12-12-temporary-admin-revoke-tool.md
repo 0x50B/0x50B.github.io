@@ -2,7 +2,7 @@
 layout: post
 title:  "Temporary Admin Revoke Tool for Security Testing"
 date:   2025-12-12 14:00:00 +0100
-categories: xpp security testing
+tags: [X++]
 ---
 
 Testing security roles and permissions in Dynamics 365 Finance & Operations can often be a tedious process for developers and administrators. Since we usually operate with the **System Administrator** role, verifying that a specific button is disabled or a form is read-only for a standard user requires either logging in as a test user or asking a colleague to verify.
