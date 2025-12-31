@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Programmatic Trace Parsing in X++: Automating Performance Analysis"
+title: "Programmatic Trace Parsing in X++"
 tags: [X++, TraceParser, Performance]
 ---
 
