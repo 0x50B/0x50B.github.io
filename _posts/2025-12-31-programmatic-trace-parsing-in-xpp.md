@@ -311,7 +311,7 @@ XPP->|-|-|-|-|Dynamics.AX.Application.Global::infologLine
 XPP->|-|-|-|Dynamics.AX.Application.FeatureFactoryAttribute_BET::new
 XPP->|-|-|Dynamics.AX.Application.FeatureStateProvider_BET::createFeatureInstance
 XPP->|-|Dynamics.AX.Application.FeatureTable_BET::feature
-SQL->|-|SELECT TOP 1 T1.FEATURECLASS,T1.ACTIVE,T1.MODIFIEDDATETIME,T1.MODIFIEDBY,T1.CREATEDDATETIME,T1.CREATEDBY,T1.RECVERSION,T1.PARTITION,T1.RECID FROM FEATURETABLE_BET T1 WHERE ((PARTITION=5637144576) AND (DATAAREAID=N'rchx'))
+SQL->|-|SELECT TOP 1 T1.FEATURECLASS,T1.ACTIVE,T1.MODIFIEDDATETIME,T1.MODIFIEDBY,T1.CREATEDDATETIME,T1.CREATEDBY,T1.RECVERSION,T1.PARTITION,T1.RECID FROM FEATURETABLE_BET T1 WHERE ((PARTITION=5637144576) AND (DATAAREAID=N'dat'))
 SQL->|-|{call SysSetConnectionContextInfo ('raphael.bucher',4408,'CLIENT - read-only',0)}
 XPP->|Dynamics.AX.Application.DataScriptTraceParserTest_BET::performDatabaseOperations
 XPP->|Dynamics.AX.Application.xInfo::yield
