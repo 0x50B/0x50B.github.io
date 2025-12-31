@@ -296,6 +296,29 @@ internal final class DataScriptTraceParserTest_BET
 }
 ```
 
+This is the output. As you can see, we get the full X++ call stack, including the SQL traces between the method calls.
+As noted previously, in this form (info messages) it's not really useful.
+```
+XPP->|-|-|Dynamics.AX.Application.xInfo::yield
+XPP->|-|Dynamics.AX.Application.DataScriptTraceParser_BET::awaitTraceParser
+XPP->|Dynamics.AX.Application.DataScriptTraceParser_BET::stopTrace
+XPP->|-|-|-|-|Dynamics.AX.Application.xInfo::add
+XPP->|-|-|-|-|-|-|-|Dynamics.AX.Application.xInfo::line
+XPP->|-|-|-|-|-|-|Dynamics.AX.Application.Info::line
+XPP->|-|-|-|-|-|Dynamics.AX.Application.xGlobal::infologLine
+XPP->|-|-|-|-|Dynamics.AX.Application.Global::infologLine
+--- redacted ---
+XPP->|-|-|-|Dynamics.AX.Application.FeatureFactoryAttribute_BET::new
+XPP->|-|-|Dynamics.AX.Application.FeatureStateProvider_BET::createFeatureInstance
+XPP->|-|Dynamics.AX.Application.FeatureTable_BET::feature
+SQL->|-|SELECT TOP 1 T1.FEATURECLASS,T1.ACTIVE,T1.MODIFIEDDATETIME,T1.MODIFIEDBY,T1.CREATEDDATETIME,T1.CREATEDBY,T1.RECVERSION,T1.PARTITION,T1.RECID FROM FEATURETABLE_BET T1 WHERE ((PARTITION=5637144576) AND (DATAAREAID=N'rchx'))
+SQL->|-|{call SysSetConnectionContextInfo ('raphael.bucher',4408,'CLIENT - read-only',0)}
+XPP->|Dynamics.AX.Application.DataScriptTraceParserTest_BET::performDatabaseOperations
+XPP->|Dynamics.AX.Application.xInfo::yield
+
+Captured 297 X++ events.
+```
+
 ### Summary
 
 This approach allows for highly specific, code-driven performance analysis. You could extend this to:
