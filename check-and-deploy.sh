@@ -25,19 +25,12 @@ echo "Remote: $REMOTE"
 if [ "$LOCAL" != "$REMOTE" ]; then
   echo "New commit detected ($LOCAL -> $REMOTE). Pulling and deploying..."
   
-  # 3. Discard any local modifications to prevent pull conflicts
+  # 3. Discard local changes and reset to the remote origin/main HEAD (robust against force-pushes)
   $DOCKER_BIN run --rm \
     --user $UID_GID \
     -v "$SRC_DIR:/git" \
     -w "/git" \
-    alpine/git reset --hard HEAD
-
-  # 4. Pull latest changes from remote using alpine/git
-  $DOCKER_BIN run --rm \
-    --user $UID_GID \
-    -v "$SRC_DIR:/git" \
-    -w "/git" \
-    alpine/git pull origin main
+    alpine/git reset --hard origin/main
 
   # 4. Self-update deploy.sh from nas-deploy.sh
   cp "$SRC_DIR/nas-deploy.sh" "$SRC_DIR/deploy.sh"
