@@ -25,7 +25,14 @@ echo "Remote: $REMOTE"
 if [ "$LOCAL" != "$REMOTE" ]; then
   echo "New commit detected ($LOCAL -> $REMOTE). Pulling and deploying..."
   
-  # 3. Pull latest changes from remote using alpine/git
+  # 3. Discard any local modifications to prevent pull conflicts
+  $DOCKER_BIN run --rm \
+    --user $UID_GID \
+    -v "$SRC_DIR:/git" \
+    -w "/git" \
+    alpine/git reset --hard HEAD
+
+  # 4. Pull latest changes from remote using alpine/git
   $DOCKER_BIN run --rm \
     --user $UID_GID \
     -v "$SRC_DIR:/git" \
