@@ -13,16 +13,8 @@ echo "============================================="
 echo "Starting Jekyll Build and Deploy on Synology"
 echo "============================================="
 
-# 1. Update source code from Git using alpine/git container (pulling over HTTPS)
-echo "1. Pulling latest code from GitHub..."
-$DOCKER_BIN run --rm \
-  --user $UID_GID \
-  -v "$SRC_DIR:/git" \
-  -w "/git" \
-  alpine/git pull origin main
-
-# 2. Build the Jekyll site using Docker
-echo "2. Building Jekyll site via Docker container..."
+# 1. Build the Jekyll site using Docker
+echo "1. Building Jekyll site via Docker container..."
 # We mount a persistent Docker volume 'jekyll-bundle-cache' to avoid noexec issues
 # and cache gem installations. We use custom entrypoint to set local bundle path.
 $DOCKER_BIN run --rm \
@@ -34,8 +26,8 @@ $DOCKER_BIN run --rm \
   jekyll/jekyll:4 \
   -c "bundle config set --local path '/bundle' && bundle install && bundle exec jekyll build"
 
-# 3. Sync built site to Web Station path
-echo "3. Syncing built site to Web Station folder..."
+# 2. Sync built site to Web Station path
+echo "2. Syncing built site to Web Station folder..."
 mkdir -p "$WEB_DIR"
 # Using rsync to copy changed files and delete removed files in the target directory
 rsync -avz --delete "$SRC_DIR/_site/" "$WEB_DIR/"

@@ -23,7 +23,21 @@ echo "Local:  $LOCAL"
 echo "Remote: $REMOTE"
 
 if [ "$LOCAL" != "$REMOTE" ]; then
-  echo "New commit detected. Deploying..."
+  echo "New commit detected ($LOCAL -> $REMOTE). Pulling and deploying..."
+  
+  # 3. Pull latest changes from remote using alpine/git
+  $DOCKER_BIN run --rm \
+    --user $UID_GID \
+    -v "$SRC_DIR:/git" \
+    -w "/git" \
+    alpine/git pull origin main
+
+  # 4. Self-update deploy.sh from nas-deploy.sh
+  cp "$SRC_DIR/nas-deploy.sh" "$SRC_DIR/deploy.sh"
+  chmod +x "$SRC_DIR/deploy.sh"
+  sed -i 's/\r$//' "$SRC_DIR/deploy.sh"
+
+  # 5. Run deploy.sh
   bash "$SRC_DIR/deploy.sh"
 else
   echo "No changes detected. Site is up to date."
