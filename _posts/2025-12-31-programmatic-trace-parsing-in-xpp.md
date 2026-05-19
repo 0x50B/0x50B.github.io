@@ -2,6 +2,7 @@
 layout: post
 title: "Programmatic Trace Parsing in X++"
 tags: [X++, TraceParser, Performance]
+last_modified_at: 2026-01-04
 ---
 
 Debugging performance issues or verifying complex execution flows often requires the Trace Parser tool. However, manually recording traces, exporting ETL files, and opening them in the external Trace Parser application can be tedious—especially if you want to automate checks or log execution paths directly within code.
