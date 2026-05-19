@@ -27,6 +27,7 @@ header_pages:
 plugins:
   - jekyll-feed
   - jekyll-sitemap
+  - jekyll-last-modified-at
 
 titles_from_headings:
   strip_title: true
