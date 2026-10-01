@@ -19,6 +19,16 @@
       document.write(returnText);
   }
 
+  // Keep "{years}" skill durations current between site builds (completed calendar years)
+  document.addEventListener("DOMContentLoaded", function() {
+    var now = new Date();
+    var today = now.getFullYear() * 10000 + (now.getMonth() + 1) * 100 + now.getDate();
+    document.querySelectorAll(".skill-years[data-since]").forEach(function(element) {
+      var years = Math.floor((today - parseInt(element.dataset.since.replace(/-/g, ""), 10)) / 10000);
+      element.textContent = years + "+ " + (years === 1 ? "year" : "years");
+    });
+  });
+
   // Remove the bottom-bar when X is clicked
   document.addEventListener("click", function(e) {
     if (e.target.className.indexOf("bottom-bar__close") !== -1) {
@@ -100,8 +110,15 @@
         <h4 class="resume-item-details">{{ skill.skill }}</h4>
         <div class="resume-item-copy">
           {%- if skill.description -%}
+            {%- assign skillDescription = skill.description -%}
+            {%- if skill.since -%}
+              {%- assign sinceDate = skill.since | date: "%Y%m%d" | plus: 0 -%}
+              {%- assign skillYears = site.time | date: "%Y%m%d" | plus: 0 | minus: sinceDate | divided_by: 10000 -%}
+              {%- capture skillYearsHtml -%}<span class="skill-years" data-since="{{ skill.since | date: "%F" }}">{{ skillYears }}+ {% if skillYears == 1 %}year{% else %}years{% endif %}</span>{%- endcapture -%}
+              {%- assign skillDescription = skillDescription | replace: "{years}", skillYearsHtml -%}
+            {%- endif -%}
             <div class="skill-description">
-              {{ skill.description }}
+              {{ skillDescription }}
             </div>
           {%- endif -%}
           {%- if skill.list -%}

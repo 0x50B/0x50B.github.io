@@ -5,13 +5,15 @@ header:
   display_contact_info: true
   current_title: Senior Software Engineer
   intro: >
-    I am a proficient software developer with strong expertise in X++ and C# development, 
-    adept at crafting efficient and innovative solutions for complex programming challenges. 
-    My experience includes working with SQL and SSRS, enabling me to effectively design, 
-    implement, and manage databases to optimize system performance. 
-    Skilled in system interface development, I have successfully integrated various applications and streamlined 
-    processes for enhanced user experience. Moreover, I have extensive experience working with Microsoft Dynamics AX / D365 Finance and Operations, 
-    as well as D365 Supply Chain Management, allowing me to deliver comprehensive and tailored solutions that address the specific needs of businesses in various industries.
+    Since 2010, I have been building solutions on Microsoft Dynamics AX and Dynamics 365 Finance and Operations
+    and Supply Chain Management for companies across various industries.
+    My core expertise is X++ and C#/.NET development: custom business processes, extensions and system integrations,
+    backed by solid SQL Server and SSRS skills for database design, performance troubleshooting and reporting.
+    When standard extension points are not enough, I analyze existing code and compiled libraries to find the root cause
+    and design a solution that works.
+    I use agentic coding with AI coding agents in my development work and build the tooling around them,
+    such as MCP servers that give agents reliable access to D365 metadata, builds and Visual Studio,
+    to deliver faster without giving up quality or control.
 contact:
   address: Lucerne, Switzerland
   #phone: (123) 456-7890
