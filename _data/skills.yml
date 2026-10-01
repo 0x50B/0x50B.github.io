@@ -3,7 +3,7 @@
   description: "{years} of experience in X++ programming to build custom Dynamics / D365 FSCM processes, interfaces and customizations"
 - skill: C#/.NET Development
   since: "2010-08-01"
-  description: "{years} of experience in C# development versions 4.0 - 7.0"
+  description: "{years} of experience in C# development versions 4.0 - 10.0"
 - skill: Database Design, Development and Reporting
   since: "2010-08-01"
   description: "{years} of experience in database/schema design, SQL development, troubleshooting locking and blocking issues, data analysis, custom reporting with SSRS."
