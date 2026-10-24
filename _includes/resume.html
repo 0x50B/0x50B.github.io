@@ -2,21 +2,19 @@
 
 <script>
   // Hack to get a better name when printing the file to PDF
-  document.title = "{{resume.header.name}}{{if resume.header.suffix}}, {{resume.header.suffix}}{{endif}} - {{resume.header.current_title}} - Resume";
+  document.title = "{{ resume.header.name }}{% if resume.header.suffix %}, {{ resume.header.suffix }}{% endif %} - {{ resume.header.current_title }} - Resume";
 
-  function JobDateDiff (start, end) {
-      var daysDiff = (new Date(end).getTime() -  new Date(start).getTime()) / 86400000 //ms in a day;
+  function formatJobDateDiff(start, end) {
+      var daysDiff = (new Date(end).getTime() - new Date(start).getTime()) / 86400000;
 
       var years = Math.floor(daysDiff / 365.25);
       var months = Math.ceil(daysDiff % 365.25 / 30.4375);
       if (months == 12) { months = 0; years++; }
 
       var returnText = "";
-      if (years > 0) { returnText += `${years} yrs ` }
-      if (months > 0) { returnText += `${months} mos ` }
-      returnText = returnText.trim();
-
-      document.write(returnText);
+      if (years > 0) { returnText += years + " yrs "; }
+      if (months > 0) { returnText += months + " mos "; }
+      return returnText.trim();
   }
 
   // Keep "{years}" skill durations current between site builds (completed calendar years)
@@ -26,6 +24,9 @@
     document.querySelectorAll(".skill-years[data-since]").forEach(function(element) {
       var years = Math.floor((today - parseInt(element.dataset.since.replace(/-/g, ""), 10)) / 10000);
       element.textContent = years + "+ " + (years === 1 ? "year" : "years");
+    });
+    document.querySelectorAll("[data-start-date]").forEach(function(element) {
+      element.textContent = formatJobDateDiff(element.dataset.startDate, element.dataset.endDate);
     });
   });
 
@@ -46,7 +47,7 @@
 <header class="page-header">
   <!-- Avatar -->
   {%- if site.gravatar_hash -%}
-    <img src="https://www.gravatar.com/avatar/{{ site.gravatar_hash }}?size=100" alt="my photo" class="avatar no-print" itemprop="image">
+    <img src="https://www.gravatar.com/avatar/{{ site.gravatar_hash }}?size=240" alt="my photo" class="avatar no-print" itemprop="image">
   {%- endif -%}
   <!-- Name and Suffix -->
   <div class="header-title">
@@ -97,7 +98,7 @@
       <a href="mailto:{{ resume.contact.email }}" class="contact-button no-print" itemprop="email">Contact me</a>
     </div>
   {%- else -%}
-    </ br>
+    <br />
   {%- endif -%}
 </header>
 
@@ -164,7 +165,7 @@
             <span> &ndash; </span>
             <span>{{ joblastpos.enddate | date: "%b, %Y" | default: "Present" }}</span>
             <span> &bull; </span>
-            <span><script>JobDateDiff("{{ jobStartDate }}","{{ jobEndDate }}")</script></span>
+            <span class="job-duration" data-start-date="{{ jobStartDate }}" data-end-date="{{ jobEndDate }}"></span>
           </div>
         {%- endif -%}
 
@@ -187,7 +188,7 @@
                 <span> &ndash; </span>
                 <span>{{ position.enddate | date: "%b, %Y" | default: "Present" }}</span>
                 <span> &bull; </span>
-                <span><script>JobDateDiff("{{ posStartDate }}","{{ posEndDate }}")</script></span>
+                <span class="job-duration" data-start-date="{{ posStartDate }}" data-end-date="{{ posEndDate }}"></span>
               </div>
             </div>
             <div class="resume-item-copy">

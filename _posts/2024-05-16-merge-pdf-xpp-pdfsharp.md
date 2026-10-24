@@ -1,6 +1,7 @@
 ---
 categories: X++
 tags: X++
+description: "Merge DocuRef PDF attachments in X++ with PdfSharp, using the .NET Framework 4.7.2 build that Finance and Operations can reference."
 ---
 ## How to merge PDFs in X++ with PdfSharp
 First, get the PdfSharp library. At the time of writing, X++ only supports libraries up to .NET Framework 4.7.2 (I really hope Microsoft targets a newer .NET version soon), so use the version linked here:

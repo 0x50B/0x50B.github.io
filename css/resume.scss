@@ -224,6 +224,75 @@ ul, ol {
     margin: 0.3in 0.4in 0.3in 0.4in;
 }
 
+@mixin resume-dark {
+    color: #e8e8e8;
+
+    .page-header {
+        .header-name,
+        .header-suffix,
+        .job-title,
+        .executive-summary,
+        .header-contact-info {
+            color: #f2f2f2;
+        }
+
+        .title-bar {
+            border-top-color: #555555;
+            border-bottom-color: #3a3a3a;
+        }
+
+        .contact-button {
+            background-color: #2a2a2a;
+            color: #eeeeee;
+
+            &:hover {
+                background-color: #eeeeee;
+                color: #111111;
+            }
+        }
+    }
+
+    .content-section {
+        .section-header {
+            border-top-color: #555555;
+            border-bottom-color: #3a3a3a;
+
+            h2 {
+                color: #f2f2f2;
+            }
+        }
+
+        .resume-item {
+            .resume-item-title,
+            .resume-item-details,
+            .resume-item-copy,
+            .company-duration,
+            .job-summary,
+            .position-summary {
+                color: #e8e8e8;
+            }
+
+            .resume-item-title,
+            .resume-item-copy,
+            .resume-item-list {
+                a {
+                    color: #d7d7d7;
+                }
+            }
+        }
+    }
+}
+
+[data-theme="dark"] .page-content {
+    @include resume-dark;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .page-content {
+        @include resume-dark;
+    }
+}
+
 @media print {
     .no-print {
         display: none !important;

@@ -1,6 +1,7 @@
 ---
 categories: Environment
 tags: Environment
+description: "A Chromium extension that force-starts a cloud-hosted LCS machine when Lifecycle Services still shows a stale deployed state."
 ---
 ## Force start cloud-hosted LCS machine - Chromium extension
 For X++ development on D365 F&O/SCM, cloud-hosted environments are often preferred over on-premises setups.

@@ -1,7 +1,6 @@
 ---
 layout: default
 ---
-<link href="/css/override.css" rel="stylesheet" type="text/css">
 <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
@@ -11,17 +10,23 @@ layout: default
         {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
         {{ page.date | date: date_format }}
       </time>
+      <span class="reading-time"> · {% include reading_time.html text=content %}</span>
       {% assign author = page.author | default: site.author %}
       {%- if author -%}
         • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">{{ author }}</span></span>
       {%- endif -%}
-      {%- assign pub_date = page.date | date: "%Y-%m-%d" -%}
-      {%- assign mod_date = page.last_modified_at | date: "%Y-%m-%d" -%}
-      {%- if page.last_modified_at and pub_date != mod_date -%}
-        {{ " • " }}Last Update <time class="dt-modified" datetime="{{ page.last_modified_at | date_to_xmlschema }}" itemprop="dateModified">{{ page.last_modified_at | date: date_format }}</time>
-      {%- elsif page.last_updated -%}
-        {{ " • " }}Last Update <time class="dt-modified" datetime="{{ page.last_updated | date_to_xmlschema }}" itemprop="dateModified">{{ page.last_updated | date: date_format }}</time>
-      {%- endif -%}</p>
+      {%- assign explicit_update = page.last_updated | default: page.last_modified -%}
+      {%- if explicit_update -%}
+        {{ " • " }}Last Update <time class="dt-modified" datetime="{{ explicit_update | date_to_xmlschema }}" itemprop="dateModified">{{ explicit_update | date: date_format }}</time>
+      {%- endif -%}
+    </p>
+    {%- if page.tags and page.tags != empty -%}
+      <p class="post-tags">
+        {%- for tag in page.tags -%}
+          {%- include tag_badge.html tag=tag -%}
+        {%- endfor -%}
+      </p>
+    {%- endif -%}
   </header>
 
   <div class="share-links">
@@ -29,18 +34,24 @@ layout: default
   </div>
 
   <div class="post-content e-content" itemprop="articleBody">
-    {{ content }}
+    {% include toc.html html=content %}
+    {% include anchor_headings.html html=content anchorBody="#" anchorClass="anchor" h_min=2 h_max=4 %}
     {% include navlinks.html %}
   </div>
 
   <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
 </article>
 
-<script src="https://utteranc.es/client.js"
-    repo="0x50B/0x50B.github.io"
-    issue-term="pathname"
-    theme="preferred-color-scheme"
-    crossorigin="anonymous"
-    async>
+<script>
+  (function () {
+    var theme = document.documentElement.dataset.theme === "dark" ? "github-dark" : "github-light";
+    var script = document.createElement("script");
+    script.src = "https://utteranc.es/client.js";
+    script.setAttribute("repo", "0x50B/0x50B.github.io");
+    script.setAttribute("issue-term", "pathname");
+    script.setAttribute("theme", theme);
+    script.setAttribute("crossorigin", "anonymous");
+    script.async = true;
+    document.currentScript.parentNode.insertBefore(script, document.currentScript.nextSibling);
+  })();
 </script>
-<script type="text/javascript" src="/js/copy-code-button.js"></script>

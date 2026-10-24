@@ -2,8 +2,24 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    (function () {
+      var mode = "auto";
+      try { mode = localStorage.getItem("theme") || "auto"; } catch (e) {}
+      if (mode !== "dark" && mode !== "light") mode = "auto";
+      var theme = mode === "auto"
+        ? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
+        : mode;
+      var root = document.documentElement;
+      root.dataset.theme = theme;
+      root.dataset.themeMode = mode;
+      root.style.colorScheme = theme;
+      root.style.backgroundColor = theme === "dark" ? "#1b1b1b" : "#fdfdfd";
+    })();
+  </script>
   {%- seo -%}
   <link rel="stylesheet" href="{{ "/assets/main.css" | relative_url }}">
+  <link rel="stylesheet" href="{{ "/css/override.css" | relative_url }}">
   {%- feed_meta -%}
   
   <!-- Google tag (gtag.js) -->
@@ -17,34 +33,19 @@
   </script>
 
   <!-- highlight.js support -->
-  <link rel="stylesheet" href="/js/highlightjs/styles/github.css">
-  <link rel="stylesheet" href="/js/highlightjs/styles/ssms.css" />
-  <link rel="stylesheet" href="/js/highlightjs/styles/xpp.css" />
+  <link rel="stylesheet" href="{{ "/js/highlightjs/styles/xpp.css" | relative_url }}">
 
-  <script type="text/javascript" src="/js/highlightjs/highlight.min.js"></script>
-
-  <script type="text/javascript" src="/js/highlightjs/languages/plaintext.min.js"></script>
-  <script type="text/javascript" src="/js/highlightjs/languages/powershell.min.js"></script>
-  <script type="text/javascript" src="/js/highlightjs/languages/tsql.min.js"></script>
-  <script type="text/javascript" src="/js/highlightjs/languages/csharp.min.js"></script>
+  <script defer src="{{ "/js/highlightjs/highlight.min.js" | relative_url }}"></script>
+  <script defer src="{{ "/js/highlightjs/languages/plaintext.min.js" | relative_url }}"></script>
+  <script defer src="{{ "/js/highlightjs/languages/powershell.min.js" | relative_url }}"></script>
+  <script defer src="{{ "/js/highlightjs/languages/tsql.min.js" | relative_url }}"></script>
+  <script defer src="{{ "/js/highlightjs/languages/csharp.min.js" | relative_url }}"></script>
   <!-- xpp.min.js must load after highlight.min.js so it replaces the bundled X++ stub.
        "axapta" and "x++" remain aliases of "xpp". -->
-  <script type="text/javascript" src="/js/highlightjs/languages/xpp.min.js"></script>
-
-  <script type="text/javascript">
-    // Keep "+" and "#" in fence names such as x++ / c# / c++.
-    hljs.configure({
-      languageDetectRe: /\blang(?:uage)?-([a-z0-9_+#-]+)/i
-    });
-    hljs.highlightAll();
-  </script>
+  <script defer src="{{ "/js/highlightjs/languages/xpp.min.js" | relative_url }}"></script>
+  <script defer src="{{ "/js/highlightjs/languages/javascript.min.js" | relative_url }}"></script>
+  <script defer src="{{ "/js/highlightjs/languages/dos.min.js" | relative_url }}"></script>
+  <script defer src="{{ "/js/highlight-init.js" | relative_url }}"></script>
+  <script defer src="{{ "/js/copy-code-button.js" | relative_url }}"></script>
   <!-- end highlight.js support -->
-  
-  <!-- dark theme using DarkReader -->
-  <script src="//unpkg.com/darkreader@4.9.40/darkreader.js"></script>
-  <script type="text/javascript">
-    DarkReader.setFetchMethod(window.fetch); // Fix to remedy CORS errors in chrome console
-    //DarkReader.enable();
-    DarkReader.auto( {brightness: 100, contrast: 90, sepia: 10} );
-  </script>
 </head>

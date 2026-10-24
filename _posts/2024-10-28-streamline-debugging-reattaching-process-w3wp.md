@@ -1,6 +1,7 @@
 ---
 categories: X++
 tags: X++
+description: "Stop the extra IIS sites so only the AOS w3wp.exe process remains and Visual Studio can reattach without asking which process to use."
 ---
 # Streamline Your Debugging: Simplifying Reattaching to `w3wp.exe` in Visual Studio for D365 Finance and Operations
 

@@ -1,6 +1,7 @@
 ---
 categories: X++
 tags: X++
+description: "A 2024 context helper built from a contract registry and factory, so Chain of Command extensions can pass context without a static singleton."
 ---
 
 ## Chain of Command - Contextual Helper Framework (Updated for 2024)

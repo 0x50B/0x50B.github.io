@@ -1,0 +1,76 @@
+---
+layout: default
+---
+<article class="post archive-page">
+  <header class="post-header">
+    <h1 class="post-title">{{ page.title | escape }}</h1>
+  </header>
+
+  <div class="post-content">
+    {{ content }}
+
+    <div class="archive-tools">
+      <label class="archive-search-label" for="archive-search">Search posts</label>
+      <input id="archive-search" class="archive-search" type="search" placeholder="Search by title, tag, or text" autocomplete="off" spellcheck="false">
+      <div class="tag-pills" id="tag-pills" role="toolbar" aria-label="Filter by tag">
+        <button type="button" class="tag-pill is-active" data-tag="" aria-pressed="true">All <span class="tag-count">{{ site.posts.size }}</span></button>
+        {%- assign sorted_tags = site.tags | sort -%}
+        {%- for tag in sorted_tags -%}
+          {%- assign tag_name = tag[0] -%}
+          {%- capture tag_slug -%}{%- include tag_slug.html tag=tag_name -%}{%- endcapture -%}
+          {%- assign tag_slug = tag_slug | strip -%}
+          <button type="button" class="tag-pill" id="tag-{{ tag_slug }}" data-tag="{{ tag_slug }}" aria-pressed="false">{{ tag_name | escape }} <span class="tag-count">{{ tag[1].size }}</span></button>
+        {%- endfor -%}
+      </div>
+      <p class="archive-status" id="archive-status" aria-live="polite"></p>
+    </div>
+
+    {%- assign posts_by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" -%}
+    {%- for year in posts_by_year -%}
+      <section class="archive-year" data-year="{{ year.name }}">
+        <h2 class="archive-year-heading">{{ year.name }}</h2>
+        <ul class="archive-list">
+          {%- for post in year.items -%}
+            {%- assign tag_slugs = '' -%}
+            {%- for tag in post.tags -%}
+              {%- capture one_slug -%}{%- include tag_slug.html tag=tag -%}{%- endcapture -%}
+              {%- assign one_slug = one_slug | strip -%}
+              {%- if tag_slugs == '' -%}
+                {%- assign tag_slugs = one_slug -%}
+              {%- else -%}
+                {%- assign tag_slugs = tag_slugs | append: ' ' | append: one_slug -%}
+              {%- endif -%}
+            {%- endfor -%}
+            <li class="archive-post" data-url="{{ post.url | relative_url }}" data-tags="{{ tag_slugs }}">
+              {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+              <p class="post-meta">
+                <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: date_format }}</time>
+                <span aria-hidden="true"> · </span>
+                <span class="reading-time">{% include reading_time.html text=post.content %}</span>
+              </p>
+              <h3>
+                <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+              </h3>
+              <p class="post-summary">
+                {%- if post.description -%}
+                  {{ post.description | escape }}
+                {%- else -%}
+                  {%- assign summary = post.excerpt | strip_html | normalize_whitespace | strip -%}
+                  {{ summary | truncate: 220 }}
+                {%- endif -%}
+              </p>
+              {%- if post.tags and post.tags != empty -%}
+                <p class="post-tags">
+                  {%- for tag in post.tags -%}
+                    {%- include tag_badge.html tag=tag -%}
+                  {%- endfor -%}
+                </p>
+              {%- endif -%}
+            </li>
+          {%- endfor -%}
+        </ul>
+      </section>
+    {%- endfor -%}
+  </div>
+</article>
+<script defer src="{{ '/js/archive.js' | relative_url }}"></script>

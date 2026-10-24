@@ -4,6 +4,7 @@ title: "Replacing Deep Links with a LinkHandler Class in Dynamics 365"
 date: 2024-09-13
 categories: [X++]
 tags: [X++]
+description: "Replace fragile Dynamics 365 deep links with a LinkHandler that finds a record from URL parameters and opens the right form."
 ---
 
 # Replacing Deep Links with a LinkHandler Class in Dynamics 365

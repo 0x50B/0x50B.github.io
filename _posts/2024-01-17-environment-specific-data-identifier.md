@@ -1,6 +1,7 @@
 ---
 categories: X++
 tags: X++
+description: "Store the LCS environment id and raise an event on startup when a restored database no longer belongs to this environment."
 ---
 ## Point-in-time restore and environment-specific data
 Every system has data that belongs to that environment. Connection details are a typical example: they point from the current environment to another one.

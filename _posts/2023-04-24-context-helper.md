@@ -1,6 +1,7 @@
 ---
 categories: X++
 tags: X++
+description: "Pass contract and record context across Chain of Command with a disposable ContextHelper when the call stack has no extension point."
 ---
 ## Chain of Command - contextual helper class
 

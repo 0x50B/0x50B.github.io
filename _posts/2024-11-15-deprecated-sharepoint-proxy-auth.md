@@ -1,6 +1,7 @@
 ---
 categories: X++
 tags: X++
+description: "SharePoint authentication changes in Dynamics 365 Finance 10.0.40, and what breaks when SharePointHelper::createProxy is removed."
 ---
 # Changes in SharePoint Authentication with Dynamics 365 Finance Update 10.0.40
 
