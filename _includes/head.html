@@ -19,15 +19,24 @@
   <!-- highlight.js support -->
   <link rel="stylesheet" href="/js/highlightjs/styles/github.css">
   <link rel="stylesheet" href="/js/highlightjs/styles/ssms.css" />
+  <link rel="stylesheet" href="/js/highlightjs/styles/xpp.css" />
 
   <script type="text/javascript" src="/js/highlightjs/highlight.min.js"></script>
 
   <script type="text/javascript" src="/js/highlightjs/languages/plaintext.min.js"></script>
   <script type="text/javascript" src="/js/highlightjs/languages/powershell.min.js"></script>
   <script type="text/javascript" src="/js/highlightjs/languages/tsql.min.js"></script>
+  <script type="text/javascript" src="/js/highlightjs/languages/csharp.min.js"></script>
+  <!-- axapta.min.js must load after highlight.min.js so it replaces the bundled X++ stub -->
   <script type="text/javascript" src="/js/highlightjs/languages/axapta.min.js"></script>
 
-  <script type="text/javascript"> hljs.highlightAll(); </script>
+  <script type="text/javascript">
+    // Keep "+" and "#" in fence names such as x++ / c# / c++.
+    hljs.configure({
+      languageDetectRe: /\blang(?:uage)?-([a-z0-9_+#-]+)/i
+    });
+    hljs.highlightAll();
+  </script>
   <!-- end highlight.js support -->
   
   <!-- dark theme using DarkReader -->
