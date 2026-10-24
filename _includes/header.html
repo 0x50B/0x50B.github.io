@@ -5,12 +5,6 @@
     {%- assign page_paths = site.header_pages | default: default_paths -%}
     <a class="site-title" rel="author" href="{{ "/" | relative_url }}">{{ site.title | escape }}</a>
 
-    <div class="theme-toggle" role="group" aria-label="Color theme">
-      <button type="button" class="theme-toggle-btn" data-theme-value="light" aria-pressed="false">Light</button>
-      <button type="button" class="theme-toggle-btn" data-theme-value="auto" aria-pressed="false">Auto</button>
-      <button type="button" class="theme-toggle-btn" data-theme-value="dark" aria-pressed="false">Dark</button>
-    </div>
-
     {%- if page_paths -%}
       <nav class="site-nav">
         <input type="checkbox" id="nav-trigger" class="nav-trigger" />
@@ -34,44 +28,3 @@
     {%- endif -%}
   </div>
 </header>
-<script>
-  (function () {
-    var root = document.documentElement;
-    var buttons = document.querySelectorAll(".theme-toggle-btn");
-    var media = window.matchMedia("(prefers-color-scheme: dark)");
-
-    function systemTheme() {
-      return media.matches ? "dark" : "light";
-    }
-
-    function apply(mode) {
-      var theme = mode === "auto" ? systemTheme() : mode;
-      root.dataset.theme = theme;
-      root.dataset.themeMode = mode;
-      root.style.colorScheme = theme;
-      root.style.backgroundColor = theme === "dark" ? "#1b1b1b" : "#fdfdfd";
-      try { localStorage.setItem("theme", mode); } catch (e) {}
-      buttons.forEach(function (button) {
-        var active = button.getAttribute("data-theme-value") === mode;
-        button.setAttribute("aria-pressed", active ? "true" : "false");
-        button.classList.toggle("is-active", active);
-      });
-    }
-
-    var stored = root.dataset.themeMode || "auto";
-    if (stored !== "dark" && stored !== "light" && stored !== "auto") stored = "auto";
-    apply(stored);
-
-    buttons.forEach(function (button) {
-      button.addEventListener("click", function () {
-        apply(button.getAttribute("data-theme-value"));
-      });
-    });
-
-    if (media.addEventListener) {
-      media.addEventListener("change", function () {
-        if ((root.dataset.themeMode || "auto") === "auto") apply("auto");
-      });
-    }
-  })();
-</script>
