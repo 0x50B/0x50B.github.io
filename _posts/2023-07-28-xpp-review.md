@@ -1,6 +1,7 @@
 ---
 categories: X++
 tags: X++
+description: "Where X++ stands in Dynamics 365: longer compiles, missing language features, and a debugger that still crashes too often."
 ---
 ## Current State of X++ Programming
 X++ has changed a lot over the years, especially with Dynamics 365 (D365). It used to be closer to a scripting language: it was not compiled to an intermediate language. That made development super fast. You wrote code and ran it immediately, with no compile step. AX 2012 already hinted at what was coming, because server code had to be compiled to CIL (Common Intermediate Language) before it could run. Hotfix-style changes were still possible, but they were not good practice.

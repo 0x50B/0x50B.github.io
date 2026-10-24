@@ -3,6 +3,7 @@ title: "Shortcomings of the Unified Development Environment in Dynamics 365"
 date: 2024-09-11
 categories: [Power Platform, Dynamics 365, X++]
 tags: [Power Platform, Dynamics 365, X++]
+description: "Work around label paths, missing package folders, and Trace Parser setup in the Dynamics 365 unified development environment."
 ---
 
 # Shortcomings of the Unified Development Environment in Dynamics 365

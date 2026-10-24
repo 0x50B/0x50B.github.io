@@ -31,8 +31,8 @@
     </div>
 
     {%- if site.git -%}
-    <div class="site-version" style="margin-top: 15px; font-size: 0.85em; color: #828282; border-top: 1px solid #e8e8e8; padding-top: 10px; text-align: right;">
-      version: <a href="https://github.com/0x50B/0x50B.github.io/commit/{{ site.git.long_hash }}" target="_blank" rel="noopener noreferrer" style="font-family: monospace; color: #828282; text-decoration: underline;">{{ site.git.hash }}</a> ({{ site.git.date }})
+    <div class="site-version">
+      version: <a href="https://github.com/0x50B/0x50B.github.io/commit/{{ site.git.long_hash }}" target="_blank" rel="noopener noreferrer">{{ site.git.hash }}</a> ({{ site.git.date }})
     </div>
     {%- endif -%}
 

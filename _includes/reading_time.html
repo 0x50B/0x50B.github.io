@@ -1,0 +1,4 @@
+{%- assign rt_words = include.text | strip_html | number_of_words -%}
+{%- assign rt_minutes = rt_words | plus: 199 | divided_by: 200 -%}
+{%- if rt_minutes < 1 -%}{%- assign rt_minutes = 1 -%}{%- endif -%}
+~{{ rt_minutes }} min read

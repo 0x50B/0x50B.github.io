@@ -3,6 +3,7 @@ layout: post
 title: "Finishing the F&O Visual Studio Extension Setup Behind Admin By Request"
 date: 2026-10-01 09:00:00 +0200
 tags: [Dynamics 365, Visual Studio, Power Platform, PowerShell]
+description: "Why the Finance and Operations Visual Studio extension fails under Admin By Request, and a PowerShell script that finishes its setup."
 ---
 
 On a Unified Developer Environment (UDE) VM, local admin rights are often handed out by a privilege-management tool such as **Admin By Request (ABR)**. In that setup the Finance and Operations Visual Studio extension can install cleanly and then refuse to do anything. As soon as you use it, for example by opening the Application Explorer, Windows shows a UAC prompt for **UrlProtocolHandler**. After you enter your credentials, Visual Studio shows this error:

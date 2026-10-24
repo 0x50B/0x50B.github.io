@@ -2,6 +2,7 @@
 title: "Get selected record from SysTableLookup"
 date: 2025-10-02
 tags: [X++]
+description: "Extend SysTableLookup so X++ receives the record selected in a lookup dialog, not only the value written back to the control."
 ---
 
 ## How to get the record from a lookup dialog in X++

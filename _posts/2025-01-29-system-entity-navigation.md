@@ -2,6 +2,7 @@
 title: 'Navigating Dynamics 365 F&O with System Entity Navigation'
 categories: X++
 tags: X++
+description: "Open a Dynamics 365 F&O record with System Entity Navigation by building the record GUID from TableId and RecId."
 ---
 
 # Navigating Dynamics 365 Finance and Operations with System Entity Navigation

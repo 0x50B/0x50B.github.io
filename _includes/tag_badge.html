@@ -1,0 +1,2 @@
+{%- capture tag_slug -%}{%- include tag_slug.html tag=include.tag -%}{%- endcapture -%}
+<a class="tag-badge" href="{{ '/archive.html' | relative_url }}#tag-{{ tag_slug | strip }}">{{ include.tag | escape }}</a>

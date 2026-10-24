@@ -3,6 +3,7 @@ layout: post
 title:  "Temporary Admin Revoke Tool for Security Testing"
 date:   2025-12-12 14:00:00 +0100
 tags: [X++]
+description: "Temporarily drop your System Administrator role, or borrow another user's roles, and test Dynamics 365 security in the same session."
 ---
 
 Testing security roles and permissions in Dynamics 365 Finance & Operations is tedious when you are signed in as **System Administrator**. Checking that a button is disabled, or that a form is read-only, for a normal user means logging in as a test user or asking a colleague to look.

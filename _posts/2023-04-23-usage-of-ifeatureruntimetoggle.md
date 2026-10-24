@@ -1,6 +1,7 @@
 ---
 categories: X++
 tags: X++
+description: "Use IFeatureRuntimeToggle to hide menus and fields with your own logic, without adding an entry to Feature Management."
 ---
 ## Usage of IFeatureRuntimeToggle to enable custom feature toggling
 

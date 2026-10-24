@@ -1,0 +1,34 @@
+{%- assign toc_source = include.html | default: content -%}
+{%- assign toc_nodes = toc_source | split: '<h' -%}
+{%- assign toc_count = 0 -%}
+{%- capture toc_items -%}
+  {%- for node in toc_nodes -%}
+    {%- assign level_char = node | strip | slice: 0, 1 -%}
+    {%- if level_char == '2' or level_char == '3' -%}
+      {%- assign id_split = node | split: 'id="' -%}
+      {%- assign html_id = '' -%}
+      {%- if id_split.size > 1 -%}
+        {%- assign html_id = id_split[1] | split: '"' | first -%}
+      {%- endif -%}
+      {%- assign heading_parts = node | split: '>' -%}
+      {%- assign heading_inner = heading_parts[1] | split: '</h' | first -%}
+      {%- assign heading_text = heading_inner | strip_html | strip -%}
+      {%- if html_id != '' and heading_text != '' -%}
+        {%- assign toc_count = toc_count | plus: 1 -%}
+        <li class="toc-h{{ level_char }}"><a href="#{{ html_id }}">{{ heading_text | escape }}</a></li>
+      {%- endif -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endcapture -%}
+{%- unless page.toc == false -%}
+  {%- if page.toc or toc_count >= 3 -%}
+    <nav class="post-toc" aria-label="Table of contents">
+      <details open>
+        <summary>Contents</summary>
+        <ol>
+          {{ toc_items }}
+        </ol>
+      </details>
+    </nav>
+  {%- endif -%}
+{%- endunless -%}

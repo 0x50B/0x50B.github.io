@@ -2,6 +2,7 @@
 layout: post
 title: "Programmatic Trace Parsing in X++"
 tags: [X++, TraceParser, Performance]
+description: "Record and parse a Dynamics 365 trace from X++, including SQL text with bind variables, using the built-in Trace Parser libraries."
 ---
 
 Tracking down a performance problem, or checking a complicated execution path, usually means the Trace Parser. Recording a trace by hand, exporting the ETL file, and opening it in the external Trace Parser gets tedious, especially if you want the check to run from code.

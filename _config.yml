@@ -3,9 +3,11 @@ author: "Raphael Bucher"
 description: "Blog about DFO X++/C# programming"
 
 url: "https://raphaelbucher.ch"
+timezone: Europe/Zurich
 
 # Email / Social media user names used by the minima theme:
 linkedin_username: "rabucher91"
+github_username: "0x50B"
 
 #########################################################################################
 ######### Nothing below needs to be changed (unless you know what you're doing) #########
@@ -27,12 +29,20 @@ header_pages:
 plugins:
   - jekyll-feed
   - jekyll-sitemap
-  - jekyll-last-modified-at
   - jekyll-titles-from-headings
 
 titles_from_headings:
   strip_title: true
   collections: true
+
+exclude:
+  - check-and-deploy.sh
+  - nas-deploy.sh
+  - deploy.ps1
+  - scripts/
+  - Gemfile
+  - Gemfile.lock
+  - README.md
 
 defaults:
   - scope:
