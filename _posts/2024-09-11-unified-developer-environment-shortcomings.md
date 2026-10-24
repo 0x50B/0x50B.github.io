@@ -11,11 +11,11 @@ With the general availability of the [Unified Development Environment](https://d
 
 ## 1. Label Path Issues When Building Custom Modules
 
-One of the main issues developers face is related to how labels are generated when building custom modules. If you’ve configured a custom metadata path under the **"Custom Metadata Path"** option in the configuration mask, you might notice that labels are still generated under the wrong path, namly `AppData\Local\Microsoft\Dynamics365\RuntimeSymLinks\config`.
+One of the main issues developers face is related to how labels are generated when building custom modules. If you’ve configured a custom metadata path under the **"Custom Metadata Path"** option in the configuration mask, you might notice that labels are still generated under the wrong path, namely `AppData\Local\Microsoft\Dynamics365\RuntimeSymLinks\config`.
 
 ### The Problem
 
-Even after specifying the metadata path for your customizations in the configuration mask, they are generated under the `RuntimeSymlinks` folder. As a result, when deploying the module, the application will fail to display your custom labels since they are not found under your custom metadata path `Resource` folder. Instead, you’ll see the literal label ID string, such as `@XXX1234`.
+Even after specifying the metadata path for your customizations in the configuration mask, they are generated under the `RuntimeSymLinks` folder. As a result, when deploying the module, the application will fail to display your custom labels, because they are not in the `Resources` folder under your custom metadata path. Instead, you’ll see the literal label ID string, such as `@XXX1234`.
 
 ### The Workaround
 
@@ -33,7 +33,7 @@ To ensure that your custom labels are deployed correctly, you have two options:
 
 ## 2. Missing Folder Structure for Standard Application Code
 
-In the new environment, there is no folder structured like the traditional **PackagesLocalDirectory**, which contained both the standard application code and your customizations. However, this kind of structure is essential if you’re using third-party tools such as:
+In the new environment, there is no folder structure like the traditional **PackagesLocalDirectory**, which contained both the standard application code and your customizations. That structure is essential if you’re using third-party tools such as:
 
 - **Best Practice Checkers**
 - **Custom Label Generators**
@@ -142,7 +142,7 @@ foreach ($configFile in $configFiles) {
 
 ## 3. Using the Trace Parser
 
-If you’re using the **Trace Parser**, your server should be pointed to this:
+If you’re using the **Trace Parser**, point the server at this:
 
 `(localdb)\.`
 

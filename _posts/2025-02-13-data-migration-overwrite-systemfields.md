@@ -5,20 +5,20 @@ description: "Learn how to overwrite system fields in Dynamics 365 F&O, enabling
 tags: [X++, Data Migration]
 ---
 
-## Overwriting System Fields in Dynamics 365 FO
+## Overwriting System Fields in Dynamics 365 F&O
 
-In some data migration scenarios, it is necessary to maintain the original record metadata, such as `CreatedDateTime`, instead of relying on system-generated timestamps. By default, system fields are protected from direct modification, but there is a way to override this behavior in X++ using the `overwriteSystemfields(true)` method.
+In some data migrations you need to keep the original record metadata, such as `CreatedDateTime`, instead of the timestamps the system would generate. System fields are protected from direct changes, but X++ can override that with `overwriteSystemfields(true)`.
 
 ### Why Overwrite System Fields?
-When importing historical data from legacy systems, it’s often important to preserve:
+When you import historical data from a legacy system, it is often important to preserve:
 - **Original creation timestamps** (`CreatedDateTime`)
 - **Modified timestamps** (`ModifiedDateTime`)
-- **User IDs** who created or modified records
+- **User IDs** of the people who created or modified the records
 
-Without this ability, newly inserted records will have system-generated values, which could lead to inconsistencies in reporting or auditing.
+Without that, newly inserted records get system-generated values, and reporting or auditing can end up inconsistent.
 
 ### How to Overwrite System Fields in X++
-The following X++ example demonstrates how to override system fields when inserting data into the `HcmWorkerActionCommentHistoryEntity` entity:
+The following X++ example sets system fields while inserting into the `HcmWorkerActionCommentHistoryEntity` entity:
 
 ```axapta
 public class HcmWorkerActionCommentHistoryEntity extends common
@@ -55,17 +55,17 @@ public class HcmWorkerActionCommentHistoryEntity extends common
 ```
 
 ### Explanation
-1. **Check the correct data source**: The method verifies whether the current data source is `HcmWorkerActionComment` before proceeding.
-2. **Enable system field overwriting**: `overwriteSystemfields(true);` allows system fields to be manually set.
-3. **Assign the original timestamp**: The `CreatedDateTime` field is explicitly set to `this.CommentCreationTime`.
-4. **Insert the record manually**: Using `doInsert();` ensures that the record is committed with the specified values.
+1. **Check the data source**: The method continues only when the current data source is `HcmWorkerActionComment`.
+2. **Allow system fields to be overwritten**: `overwriteSystemfields(true);` makes those fields writable.
+3. **Assign the original timestamp**: `CreatedDateTime` is set to `this.CommentCreationTime`.
+4. **Insert the record directly**: `doInsert();` writes the record with those values.
 
 ### Considerations
-- Overwriting system fields should be **strictly controlled** and used only in migration or special scenarios.
-- Ensure that the assigned values are valid and align with business rules.
-- This approach **bypasses system defaults**, so be mindful of compliance and audit requirements.
+- Keep overwriting system fields **tightly controlled**, and use it only for migrations or other special cases.
+- Make sure the values you assign are valid and match the business rules.
+- This **bypasses system defaults**, so think about compliance and audit requirements before you use it.
 
 ### Conclusion
-By leveraging the `overwriteSystemfields(true)` method, you can maintain historical data integrity during migrations. This technique ensures that original timestamps and metadata remain intact, improving data accuracy and compliance in Dynamics 365 Finance & Operations.
+`overwriteSystemfields(true)` lets you keep historical timestamps and metadata intact during a migration, so the data in Dynamics 365 Finance & Operations still reflects when the records were really created and changed.
 
 Have you used this approach in your projects? Let me know in the comments!

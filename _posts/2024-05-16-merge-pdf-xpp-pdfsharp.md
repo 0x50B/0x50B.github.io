@@ -2,14 +2,14 @@
 categories: X++
 tags: X++
 ---
-## How to merge PDFs in X++ with the help of PdfSharp
-First, you need to get the PdfSharp library. As of the time of writing, X++ only supports libraries up to .NET 4.7.2 (I really hope Microsoft will soon target a higher/newer .NET version), so make sure you pick this version linked:
+## How to merge PDFs in X++ with PdfSharp
+First, get the PdfSharp library. At the time of writing, X++ only supports libraries up to .NET Framework 4.7.2 (I really hope Microsoft targets a newer .NET version soon), so use the version linked here:
 [PdfSharp 1.50.5147 nuget](https://www.nuget.org/packages/PdfSharp/1.50.5147)
 
-If you need a starting point on how to integrate a .NET library into X++:
+If you need a starting point for referencing a .NET library from X++:
 [.NET Interop from X++](https://learn.microsoft.com/en-us/previous-versions/dynamicsax-2012/developer/net-interop-from-x)
 
-Without further ado, this is the class that takes your DocuRef records you want to merge to a single PDF. With the help of PdfSharp you can merge the PDF attachments of any record into a single PDF.
+The class below takes the `DocuRef` records you want to merge into a single PDF. With PdfSharp, you can merge the PDF attachments of any record into one file.
 ```axapta
 using PdfSharp.Pdf;
 using PdfSharp.Pdf.IO;
@@ -121,7 +121,7 @@ internal final class PDFMerger_BEC implements System.IDisposable
 }
 ```
 
-And here is a snipped on how to use the PDFMerger_BEC class:
+And here is a snippet that uses `PDFMerger_BEC`:
 ```axapta
 internal final class PDFTest_BEC
 {

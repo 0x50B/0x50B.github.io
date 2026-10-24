@@ -2,11 +2,11 @@
 categories: X++
 tags: X++
 ---
-# Streamline Your Debugging: Simplifying Reattaching to `w3wp.exe` in Visual Studio for D365 Finance and Operation
+# Streamline Your Debugging: Simplifying Reattaching to `w3wp.exe` in Visual Studio for D365 Finance and Operations
 
-If you’re working with Dynamics 365 Finance & Operations (D365 F&O) in Visual Studio, you’ve likely encountered the frequent annoyance of reattaching to the correct `w3wp.exe` process. Every time you start debugging X++ code, you get prompted to select from multiple `w3wp` sub-processes, often with no clear indication of which one is actually handling the F&O instance. This is time-consuming and frustrating, especially when you’re only interested in the main F&O Application Object Server (AOS) instance.
+If you’re working with Dynamics 365 Finance & Operations (D365 F&O) in Visual Studio, you’ve likely run into the annoyance of reattaching to the right `w3wp.exe` process. Every time you start debugging X++ code, Visual Studio asks you to pick from several `w3wp` processes, often with no clear hint which one is serving the F&O instance. That is slow and frustrating when you only care about the main F&O Application Object Server (AOS) instance.
 
-A simple fix can make your debugging experience much smoother by disabling unnecessary sites in IIS. Here’s how to set it up so that only the AOSService process runs, eliminating the need to guess which `w3wp.exe` instance to reattach.
+You can avoid the prompt by disabling the IIS sites you do not need. The steps below leave only the AOSService process running, so there is only one `w3wp.exe` to reattach to.
 
 ---
 
@@ -17,13 +17,13 @@ When you run D365 F&O on your local machine, several IIS sites might be up by de
 - **RetailServer**: A retail component if your environment includes it.
 - **RetailCloudPos**: Another retail component related to Point of Sale.
 
-For many developers who aren’t working with retail functionality, only the **AOSService** process is needed for debugging. Yet Visual Studio will prompt you to choose among all these `w3wp` processes every time, adding unnecessary friction to the debugging process.
+For many developers who aren’t working with retail, only the **AOSService** process matters for debugging. Visual Studio still asks you to choose among every `w3wp` process, which adds needless friction.
 
 ## Disabling Unnecessary IIS Sites
 
-![context helper](/img/posts/iis-disabled-sites.png)
+![IIS with the retail sites stopped](/img/posts/iis-disabled-sites.png)
 
-To avoid being prompted, you can stop the retail-related sites under IIS Manager and keep only the AOSService site running. This way, only one `w3wp.exe` process will spin up when the application is running, and Visual Studio will no longer ask which process to attach to.
+Stop the retail sites in IIS Manager and leave AOSService running. Only one `w3wp.exe` process then starts with the application, and Visual Studio no longer asks which process to attach to.
 
 ### Steps to Disable Unnecessary Sites
 
@@ -37,23 +37,23 @@ To avoid being prompted, you can stop the retail-related sites under IIS Manager
    - Right-click on **RetailServer** and **RetailCloudPos** and select “Stop” for each.
    - Confirm that **AOSService** remains running.
 
-4. **Recycle IIS**:
-   - Run the following command in Command Prompt (with administrator privileges) to recycle the IIS service:
+4. **Restart IIS**:
+   - Run the following command in an elevated Command Prompt to restart IIS:
      ```shell
      iisreset
      ```
 
 5. **Reattach to Debugging in Visual Studio**:
-   - Now, when you go to debug, Visual Studio will detect only the single AOSService process associated with D365 F&O. No more guessing required!
+   - When you start debugging, Visual Studio finds the single AOSService process for D365 F&O. No more guessing.
 
 ---
 
 ## Benefits of This Approach
 
-- **Saves Time**: You eliminate the need to select the correct process every time, allowing for faster debugging starts.
-- **Less Frustration**: Without needing to scroll through a list of processes, you can focus on debugging and avoid trial and error.
-- **Streamlined Workflow**: This setup keeps your development environment lean, especially if you’re working in a non-retail environment.
+- **Saves time**: You no longer pick the process by hand, so debugging starts faster.
+- **Less frustration**: There is no list of processes to scroll through, and no trial and error.
+- **Leaner environment**: Useful when you are not working on retail.
 
 ---
 
-By disabling the unused retail sites, you can streamline your Visual Studio debugging experience and keep your focus where it should be: on the code. Happy debugging!
+With the unused retail sites stopped, debugging in Visual Studio stays on the code. Happy debugging!

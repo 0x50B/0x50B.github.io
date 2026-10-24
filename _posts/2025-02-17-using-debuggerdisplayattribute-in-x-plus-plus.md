@@ -7,15 +7,15 @@ tags: [X++, Debugging]
 
 ## Debugging in X++ with DebuggerDisplayAttribute
 
-When debugging in Microsoft Dynamics 365 Finance & Operations (F&O), examining objects in the debugger can sometimes be overwhelming. By default, the debugger shows the full object type, which might not be the most informative representation. Fortunately, we can use the `DebuggerDisplayAttribute` to customize how an object is displayed during debugging.
+When debugging in Microsoft Dynamics 365 Finance & Operations (F&O), objects in the debugger can be hard to read. By default you only see the full type name, which often tells you very little. `DebuggerDisplayAttribute` lets you choose what is shown instead.
 
 ### What is DebuggerDisplayAttribute?
 
-`DebuggerDisplayAttribute` is a .NET attribute that allows developers to define a more meaningful string representation for objects when viewed in a debugger. While it's commonly used in C#, it can also be leveraged in X++ classes that extend .NET objects.
+`DebuggerDisplayAttribute` is a .NET attribute. It defines the string a debugger shows for an object. It is common in C#, and it works on X++ classes as well, because they run on the .NET runtime.
 
 ### Example in X++
 
-Consider the following example of a class implementing the `DebuggerDisplayAttribute`:
+Here is a class decorated with `DebuggerDisplayAttribute`:
 
 ```xpp
 [System.Diagnostics.DebuggerDisplayAttribute("{toString()}")]
@@ -30,18 +30,18 @@ public final class DebuggerDisplayTest_BEC
 
 ### How It Works
 
-1. The `[System.Diagnostics.DebuggerDisplayAttribute("{toString()}")]` line instructs the debugger to display the result of `toString()` when an instance of `DebuggerDisplayTest_BEC` is inspected.
-2. The `toString()` method provides a human-readable string representation of the expression, making debugging much more intuitive.
-3. When debugging, instead of seeing just the class name, you’ll see an output like `Hello World!` in this example, making it clear what the object represents.
+1. `[System.Diagnostics.DebuggerDisplayAttribute("{toString()}")]` tells the debugger to show the result of `toString()` when you inspect a `DebuggerDisplayTest_BEC` instance.
+2. `toString()` returns a readable description of the object.
+3. While debugging, you see `Hello World!` in this example instead of only the class name, so it is obvious what the object represents.
 
 ### Why Use DebuggerDisplayAttribute?
 
-- **Improved Readability**: Helps in quickly identifying objects and their state.
-- **Faster Debugging**: Reduces the need to expand object properties to understand their values.
-- **Better Maintenance**: Makes debugging more efficient for teams working with complex object hierarchies.
+- **Easier to read**: You can identify an object and its state at a glance.
+- **Faster debugging**: You do not have to expand properties just to see the interesting values.
+- **Easier to maintain**: Helpful when a team is debugging deep object graphs.
 
 ### Final Thoughts
 
-The `DebuggerDisplayAttribute` is a small but powerful feature that can greatly enhance your debugging experience in X++. If you work with complex object structures, this attribute allows you to see meaningful information at a glance, making troubleshooting and development smoother.
+`DebuggerDisplayAttribute` is a small change that makes X++ debugging much easier to follow. On a complex object, you see the useful information immediately.
 
-Have you used `DebuggerDisplayAttribute` in your X++ development? Let us know in the comments!
+Have you used `DebuggerDisplayAttribute` in your X++ development? Let me know in the comments.

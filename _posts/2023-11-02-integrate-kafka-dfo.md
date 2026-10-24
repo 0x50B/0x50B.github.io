@@ -8,14 +8,14 @@ tags:
 ---
 ## Integrate Apache Kafka Client into Microsoft Dynamics 365 Finance and Operations, Supply Chain Management
 "Apache Kafka is an open-source distributed event streaming platform used by thousands of companies for high-performance data pipelines, streaming analytics, data integration, and mission-critical applications." [Apache Kafka](https://kafka.apache.org/).
-In this post I will show you one possible way on how to integrate Kafka into D365 F&O/SCM.
+In this post, I show one way to integrate Kafka into D365 F&O/SCM.
 
-## Confluent Kafka C# .NET Client
-You will need to either create a new C# Project to build a DLL which you can reference, or just create plain reference the Kafka DLL provided in this [.NET Client Installation tutorial](https://docs.confluent.io/kafka-clients/dotnet/current/overview.html#dotnet-installation).
-I decided to create a new C# Project that builds into a library, which then is referenced by my X++ code.
+## Confluent Kafka C# .NET client
+Either create a C# project that builds a DLL you can reference, or reference the Kafka DLL from this [.NET client installation tutorial](https://docs.confluent.io/kafka-clients/dotnet/current/overview.html#dotnet-installation) directly.
+I created a C# project that builds a library, and referenced that library from X++.
 
 ### Config (C#)
-Depending on what type of authentication you use with your Kafka deployment, you will have to adjust the code below. In my scenario, a plain SASL authentication was used.
+Adjust the code below to match the authentication your Kafka deployment uses. In my case that was SASL/PLAIN.
 ```csharp
 namespace KafkaClient
 {
@@ -49,7 +49,7 @@ namespace KafkaClient
 ```
 
 ### Consumer (C#)
-To be able to consume message from kafka topic(s), you will need to implement the consumer logic. This is how I did it. The consumer will be configured from a X++ sysoperation service class, that passes parameters to the consumer, like the duration the consumer will listen for new messages until any resources will be freed again and the batch operation restarts. Also, if needed, a topics offset can be set to the beginning, so you will be able to read all messages from the very beginning. Once a message is read, the message will be commited and thus the offset will be set to this message, so any restart of the consumer will not result in fetching the same messages again. KafkaMessageProcessorInterface_BEC is a X++ class that is invoked from C#, that handles the incoming messages based on the topics name and the payload of the message. Refer to this if you want to know how to call X++ code from C#: [Write business logic by using C# and X++ source code](https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/dev-tools/write-business-logic) 
+To consume messages from one or more Kafka topics, you need a consumer. This is how I built it. An X++ SysOperation service class configures the consumer and passes in the parameters, including how long it should listen before it releases its resources and the batch job starts again. If you need to, you can also reset a topic's offset to the beginning and read every message from the start. After a message is read it is committed, so the offset moves past that message and a restarted consumer does not fetch it again. `KafkaMessageProcessorInterface_BEC` is an X++ class called from C#. It handles the incoming message based on the topic name and the payload. For the other direction, calling X++ from C#, see [Write business logic by using C# and X++ source code](https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/dev-tools/write-business-logic). 
 ```csharp
 namespace KafkaClient
 {
@@ -136,7 +136,7 @@ namespace KafkaClient
 ```
 
 ### Consumer: CustomStringDeserializer (C#)
-Since every message that is produced to a kafka topic will start with a preceding magic byte before the actual payload, you will need a custom string deserializer like this that filters out said magic byte first:
+Every message produced to a Kafka topic starts with a magic byte before the actual payload, so you need a custom string deserializer that strips that byte first:
 ```csharp
 namespace KafkaClient
 {
@@ -163,8 +163,8 @@ namespace KafkaClient
 }
 ```
 
-### Consumer SysOperationService Class
-This is the class used to trigger the consumation part from within X++. I have set the seconds before timeout to like 5 mins and the recurrence to 1 min, since you shouldn't block the system with any batch process that run endlessly.
+### Consumer SysOperation service class
+This class starts consumption from X++. I set the timeout to about five minutes and the recurrence to one minute. A batch job should not run forever and block the system.
 ```axapta
 public final class KafkaMessageProcessorService_BEC extends SysOperationServiceBase
 {
@@ -204,7 +204,7 @@ public final class KafkaMessageProcessorService_BEC extends SysOperationServiceB
 ```
 
 ### Producer (C#)
-The producer will reuse the same config class that can be passed from X++. With this class you will be able to produce your messages to any kafka topic.
+The producer reuses the same config class, which you can pass in from X++. With it, you can produce messages to any Kafka topic.
 ```csharp
 namespace KafkaClient
 {
@@ -235,9 +235,9 @@ namespace KafkaClient
 }
 ```
 
-### Producer: Business Event to Kafka 
-For the message producing part, I used the the existing business events framework integrated into DFO. For this, I created my own business event endpoint. How to create your own business events endpoints: [Business events developer documentation](https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/business-events/business-events-dev-doc)
-I will spare you with any Enum, Forms or Tables involved to create such a business endpoint, you can refer to the guide. So here is just the class I created:
+### Producer: business event to Kafka
+To produce messages, I used the business events framework that ships with D365 F&O and wrote my own business event endpoint. How to create one is covered in the [business events developer documentation](https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/business-events/business-events-dev-doc).
+I will skip the enums, forms, and tables. The guide covers those. Here is the class:
 ```axapta
 using KafkaClient;
 

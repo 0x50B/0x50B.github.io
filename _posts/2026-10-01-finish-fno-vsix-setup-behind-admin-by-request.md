@@ -5,26 +5,26 @@ date: 2026-10-01 09:00:00 +0200
 tags: [Dynamics 365, Visual Studio, Power Platform, PowerShell]
 ---
 
-On a Unified Developer Environment (UDE) VM where local admin rights are handed out by a privilege management tool like **Admin By Request (ABR)**, the Finance and Operations Visual Studio extension may install fine and then refuse to do anything. As soon as you interact with it (for example, opening the Application Explorer), Windows shows a UAC prompt for **UrlProtocolHandler**. After you enter your credentials, Visual Studio shows this error:
+On a Unified Developer Environment (UDE) VM, local admin rights are often handed out by a privilege-management tool such as **Admin By Request (ABR)**. In that setup the Finance and Operations Visual Studio extension can install cleanly and then refuse to do anything. As soon as you use it, for example by opening the Application Explorer, Windows shows a UAC prompt for **UrlProtocolHandler**. After you enter your credentials, Visual Studio shows this error:
 
 ```plaintext
 "Exception 'InvalidOperationException', 'No process is associated with this object.'"
 ```
 
-Starting Visual Studio as administrator does not help. The UAC prompt disappears, but the error still appears immediately. On a regular machine with standard UAC, the same extension binaries work without problems.
+Starting Visual Studio as administrator does not help. The UAC prompt disappears, but the error still appears immediately. On a machine with ordinary UAC, the same extension binaries work.
 
-This post explains what the extension does at that moment, why the elevation broker breaks it, and how to finish the setup yourself with a PowerShell script.
+This post explains what the extension is doing at that moment, why the elevation broker breaks it, and how to finish the setup yourself with a PowerShell script.
 
 ## What the extension does on first use
 
-I decompiled the extension (VSIX `DynamicsFnO.DeveloperTools`, version `7.0.8199.32`, installed under `Common7\IDE\Extensions\<random>\`). When the project system package loads, `VSProjectPackage.InitializeAsync()` first calls `DevelopmentConfigurationService.CheckVersionUpdateAsync()`. That method checks whether `<FrameworkDirectory>\Bin\InstalledVersion.json` exists and contains the build version of the installed extension. After a fresh install or an update it does not, so the extension runs its post-install setup:
+I decompiled the extension (VSIX `DynamicsFnO.DeveloperTools`, version `7.0.8199.32`, installed under `Common7\IDE\Extensions\<random>\`). When the project system package loads, `VSProjectPackage.InitializeAsync()` first calls `DevelopmentConfigurationService.CheckVersionUpdateAsync()`. That method checks whether `<FrameworkDirectory>\Bin\InstalledVersion.json` exists and contains the build version of the installed extension. After a fresh install or an update, it does not, so the extension runs its post-install setup:
 
 1. Register the `dynamics://` URL protocol handler.
 2. Install the MSBuild targets.
 3. Extract the design-time preview files.
 4. Write `InstalledVersion.json`.
 
-The first step is where it fails. `ProtocolHandlerInteractionService.RegisterProtocolHandler()` launches `UrlProtocolHandler.17.0.exe register` elevated:
+The first step is the one that fails. `ProtocolHandlerInteractionService.RegisterProtocolHandler()` launches `UrlProtocolHandler.17.0.exe register` elevated:
 
 ```csharp
 using (Process process = new Process())
@@ -43,23 +43,23 @@ using (Process process = new Process())
 }
 ```
 
-The protocol handler itself only writes `HKEY_CLASSES_ROOT\dynamics`. That registration makes `dynamics://` links open an element in Visual Studio. It needs admin rights, which is why the UAC prompt appears.
+The protocol handler itself only writes `HKEY_CLASSES_ROOT\dynamics`. That registration is what makes a `dynamics://` link open an element in Visual Studio. It needs admin rights, which is why the UAC prompt appears.
 
 ## Why the elevation broker breaks it
 
-With `UseShellExecute = true`, `Process.Start()` calls `ShellExecuteEx`. If the call succeeds but returns no process handle, `Process.Start()` returns `false` and the `Process` object has no associated process. The extension ignores the return value, and the following `WaitForExit()` throws `InvalidOperationException: No process is associated with this object.`
+With `UseShellExecute = true`, `Process.Start()` calls `ShellExecuteEx`. If that call succeeds but returns no process handle, `Process.Start()` returns `false` and the `Process` object has no associated process. The extension ignores the return value, and the following `WaitForExit()` throws `InvalidOperationException: No process is associated with this object.`
 
-Admin By Request handles the elevation itself, and in this case the caller got no process handle back. The elevated process may still run, but the extension cannot wait for it. The message box comes from the `catch` block in `VSProjectPackage.InitializeAsync()`, which formats the error as `"Exception '{0}', '{1}'"`.
+Admin By Request performs the elevation itself, and in this case the caller gets no process handle back. The elevated process may still run, but the extension cannot wait for it. The message box comes from the `catch` block in `VSProjectPackage.InitializeAsync()`, which formats the error as `"Exception '{0}', '{1}'"`.
 
-The impact is bigger than a missing protocol handler:
+The damage is larger than a missing protocol handler:
 
-* `InitializeAsync()` stops before it registers project factories, editor factories, menu command handlers and services. The extension is effectively dead.
+* `InitializeAsync()` stops before it registers project factories, editor factories, menu command handlers, and services. The extension is effectively dead.
 * The remaining setup steps never run, so `InstalledVersion.json` is never written.
 * On the next start, the version check fails again and the cycle repeats.
 
-The same `runas` + `WaitForExit()` pattern exists in the fallbacks of the MSBuild targets installer, the design-time preview installer and the version file writer. Those fallbacks are only used when Visual Studio is not elevated.
+The same `runas` + `WaitForExit()` pattern exists in the fallbacks of the MSBuild targets installer, the design-time preview installer, and the version-file writer. Those fallbacks run only when Visual Studio is not elevated.
 
-You can check whether a machine is affected without Visual Studio. This snippet makes the same call:
+You can check whether a machine is affected without opening Visual Studio. This snippet makes the same call:
 
 ```powershell
 $p = New-Object System.Diagnostics.Process
@@ -73,7 +73,7 @@ $p.WaitForExit()  # "No process is associated with this object."
 
 ## Finishing the setup manually
 
-The extension only runs this setup when the version check fails. Once `InstalledVersion.json` contains the correct build version, the extension skips the whole block and `InitializeAsync()` completes normally. So the fix is to do the four steps yourself, from an elevated PowerShell session, without depending on a process handle:
+The extension only runs this setup when the version check fails. Once `InstalledVersion.json` contains the correct build version, the extension skips the whole block and `InitializeAsync()` completes normally. The fix is to perform the four steps yourself, from an elevated PowerShell session, without depending on a process handle:
 
 | Step | Extension code | What the script does |
 |---|---|---|
@@ -82,9 +82,9 @@ The extension only runs this setup when the version check fails. Once `Installed
 | 3 | `DesignTimePreviewFilesInstaller` | Recreates `<FrameworkDirectory>\Bin\DesignTimePreview` from the embedded `DesignTimePreviewFiles.zip` |
 | 4 | `InstalledVersionControl.CreateInstalledVersionFile` | Writes `<FrameworkDirectory>\Bin\InstalledVersion.json`, last, so a failed run is retried |
 
-The build version the extension expects is a constant compiled into the Installer assembly, and it matches the assembly's file version. The script reads the file version and then checks that this exact string is present as a constant in the DLL. If a future build changes that relationship, the script stops instead of writing a wrong version. `FrameworkDirectory` comes from the metadata configuration that `HKCU\Software\Microsoft\Dynamics\AX7\Development\Configurations\CurrentMetadataConfig` points to. That configuration is created when you connect the environment through the Power Platform Tools.
+The build version the extension expects is a constant compiled into the Installer assembly, and it matches the assembly's file version. The script reads the file version and then checks that this exact string is present as a constant in the DLL. If a future build changes that relationship, the script stops instead of writing the wrong version. `FrameworkDirectory` comes from the metadata configuration that `HKCU\Software\Microsoft\Dynamics\AX7\Development\Configurations\CurrentMetadataConfig` points to. That configuration is created when you connect the environment through the Power Platform Tools.
 
-Before writing anything, the script also checks that it runs elevated, that no Visual Studio instance is open, that it finds exactly one extension folder, and that all embedded resources can be read.
+Before writing anything, the script also checks that it is elevated, that no Visual Studio instance is open, that it finds exactly one extension folder, and that every embedded resource can be read.
 
 ## The script
 
@@ -307,8 +307,8 @@ Write-Host 'Done. Start Visual Studio normally (not elevated) and open the AOT.'
 
 ## Usage
 
-1. Close all Visual Studio instances.
-2. Open an elevated **Windows PowerShell** with the same account you develop with. The script reads your `HKCU` configuration. With Admin By Request, elevation keeps the same account, so this works.
+1. Close every Visual Studio instance.
+2. Open an elevated **Windows PowerShell** as the same account you develop with. The script reads your `HKCU` configuration. With Admin By Request, elevation keeps that same account, so this works.
 3. Do a dry run first, then the real run:
 
    ```powershell
@@ -319,13 +319,13 @@ Write-Host 'Done. Start Visual Studio normally (not elevated) and open the AOT.'
 
 4. Start Visual Studio normally, not elevated, and open the Application Explorer.
 
-If several Visual Studio versions have the extension installed (for example Visual Studio 2022 and 2026), the script lists all extension folders and asks you to pick one:
+If several Visual Studio versions have the extension installed (for example Visual Studio 2022 and 2026), the script stops and lists every extension folder. Pass the one you want:
 
 ```powershell
 .\Complete-FnOToolsSetup.ps1 -ExtensionPath "C:\Program Files\Microsoft Visual Studio\18\Professional\Common7\IDE\Extensions\<folder>"
 ```
 
-The `dynamics://` registration and the MSBuild targets apply to the whole machine, so the last registered extension wins. That matches what the extension does itself.
+The `dynamics://` registration and the MSBuild targets apply to the whole machine, so the last extension you register wins. That is the same behavior as the extension itself.
 
 ## Things to keep in mind
 

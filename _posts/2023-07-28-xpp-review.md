@@ -3,35 +3,35 @@ categories: X++
 tags: X++
 ---
 ## Current State of X++ Programming
-X++ programming has evolved over the years, especially with the introduction of Dynamics 365 (D365). In the past, X++ was more of a "scripting" language, lacking compilation to an intermediate language. This allowed for super-fast programming, where you could write code and directly execute it without prior compilation. However, with AX2012, a change was already hinted at, as the server code needed to be compiled to CIL (Common Intermediate Language) before execution. Even though hotfix-style changes were possible, it wasn't considered a good practice.
+X++ has changed a lot over the years, especially with Dynamics 365 (D365). It used to be closer to a scripting language: it was not compiled to an intermediate language. That made development super fast. You wrote code and ran it immediately, with no compile step. AX 2012 already hinted at what was coming, because server code had to be compiled to CIL (Common Intermediate Language) before it could run. Hotfix-style changes were still possible, but they were not good practice.
 
 ## Downtime
-In the present day, X++ in D365 operates entirely in CIL, causing a noticeable slowdown in programming speed. Every change now requires compilation first. To mitigate the downtime, there are certain mechanisms in place, such as recompiling only the model affected by the change or performing partial compilations for specific model objects.
+Today, X++ in D365 runs entirely as CIL, and development is noticeably slower. Every change has to be compiled first. A few mechanisms keep the wait down, such as recompiling only the model you changed, or compiling individual objects in that model.
 
-However, despite these efforts, the downtime caused by compilation during development remains a significant issue. There's no hotswap of compiled DLLs, resulting in service shutdowns before replacing Model DLLs. This can add precious seconds to minutes of downtime, which can be frustrating for developers.
+Even so, compile time during development is still a real problem. There is no hot-swap of compiled DLLs, so the service has to shut down before the model DLLs can be replaced. That can cost anywhere from a few seconds to several minutes, which is frustrating in the middle of a change.
 
-It's worth noting that leveraging unit tests can dramatically reduce downtime, as they execute faster than waiting for the UI to be available after each compilation.
+Unit tests help a lot here. They finish faster than waiting for the UI to come back after every compilation.
 
 ## Language
-X++ is showing its age when compared to modern programming languages. It seems stuck in the 2000s, lacking some of the convenient features that developers have come to expect. For example:
+Next to modern languages, X++ is showing its age. It still feels stuck in the 2000s, and it lacks conveniences developers now take for granted. For example:
 
-- It doesn't support the convenient [foreach](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/iteration-statements#the-foreach-statement) loop found in C#.
-- Ternary shortcuts or [null coalescing operations](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/null-coalescing-operator), like x ? x : y -> x ?? y, are not available in X++.
-- [Generic type parameters](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/generic-type-parameters), essential for code flexibility, are missing.
-- The powerful [async/await](https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/async-scenarios) capabilities, which streamline asynchronous programming, are absent.
+- It does not support the [foreach](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/iteration-statements#the-foreach-statement) loop that C# has.
+- There is no [null-coalescing operator](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/null-coalescing-operator), so you cannot write `x ?? y` instead of `x ? x : y`.
+- [Generic type parameters](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/generic-type-parameters), which make code more flexible, are missing.
+- [async/await](https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/async-scenarios), which simplifies asynchronous code, is not available.
 
-These limitations make it challenging for developers, especially those familiar with newer languages, to work efficiently with X++.
+These gaps make X++ harder to work with, especially if you are used to a newer language.
 
 ## Debugging
-Currently, Visual Studio 2019 is the primary IDE for X++ development. However, it is a 32-bit software, and when combined with the large debugging symbols required for X++ code, it can lead to frustrating crashes. Although you can now configure the modules to be loaded during debugging, the experience is still far from ideal and often results in constant crashes. To alleviate this, developers often have to delete all breakpoints and restart Visual Studio during ongoing debugging sessions.
+Visual Studio 2019 is still the primary IDE for X++. It is a 32-bit application, and the debugging symbols for X++ are large, so the debugger crashes more often than it should. You can now choose which modules are loaded while debugging, but the experience is still poor and crashes remain common. The usual recovery is to delete every breakpoint and restart Visual Studio in the middle of a session.
 
-Additionally, debugging chain of command classes poses issues, as there is no accessible context of 'this,' and variables belonging to these classes cannot be added to the watch list.
+Debugging Chain of Command classes is awkward as well. There is no usable `this` context, and variables that belong to those classes cannot be added to the watch window.
 
 ## Conclusion
-As a seasoned X++ developer with 13 years of experience, I must admit that the language's limitations and debugging challenges have been quite the journey. Despite the pain, I find myself drawn to the unique capabilities of X++, especially its ORM capabilities using select statements on data objects.
+After 13 years of X++, I have to admit that the limits of the language and the debugging problems have been quite a journey. I still like what X++ does well, especially the ORM: `select` statements on data objects are hard to give up.
 
-Also, expecting new developer to learn this language and it's limitation, is kind of a deterrence for fresh programmers. Why would one want to learn this programming language, when there are better and more convenient languages?
+Asking new developers to learn this language, and to live with its limits, puts people off. Why learn X++ when other languages are more convenient?
 
-However, I can't help but dream of a new language, let's call it X#, which combines the latest features of C# with the strengths of X++. Such a language would undoubtedly bring a new level of convenience and efficiency to X++ development while preserving its special qualities.
+I still catch myself wishing for a successor, let's call it X#, that keeps the strengths of X++ and adds the newer parts of C#. That would make day-to-day work much more pleasant without throwing away what makes X++ useful.
 
-I can only imagine how hard it must be for Microsoft to still maintain and further optimize X++, despite its age and limited operation area.
+I can only imagine how much work it is for Microsoft to keep maintaining and improving X++, given its age and how narrow its field of use is.

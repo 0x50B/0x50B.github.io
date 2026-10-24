@@ -27,7 +27,7 @@ This method is more flexible than traditional deep links because it decouples th
 
 ### Building the URL for the LinkHandler
 
-To use the `LinkHandler` class, you’ll need to construct the URL with the appropriate query parameters. Below is the template format and a real usage example. Note that an appropriate MenuItemAction should be created and secured through a priviliege.
+To use the `LinkHandler` class, you’ll need to construct the URL with the appropriate query parameters. Below is the template format and a real usage example. Note that an appropriate MenuItemAction should be created and secured with a privilege.
 
 #### URL Template
 `&mi=action:LinkHandler&tableName=[TableName]&searchKey=[Field1:Value1];[Field2:Value2];[...]`
@@ -211,5 +211,5 @@ In this example, we search the `ProjTable` for a record where `ProjId` equals `P
 2. **Flexibility**: By using a standardized format, we can expand the logic to support more complex queries in the future without breaking existing URLs.
 3. **Maintainability**: Standardized URLs are easier to maintain as they follow a known convention, reducing the risk of errors.
 
-Standardizing the URL parameters not only aligns with best practices but also makes the solution scalable and easier to integrate with other parts of the system.
-But since this was more of a proof of concept, I decided to just use an easier approach to implement the URL parameter handling.
+Standardizing the URL parameters aligns with a known convention, and it makes the solution easier to extend and to integrate with the rest of the system.
+Because this was only a proof of concept, I stuck with the simpler parameter handling above.
