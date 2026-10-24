@@ -1,90 +1,8 @@
 /*
- * Visual Studio Light by default, Visual Studio Dark when the page theme is
- * dark or the OS prefers dark and the visitor has not forced light.
+ * Visual Studio / Dynamics 365 inspired highlighting for X++ and C#.
  *
- * Dark palette: #1E1E1E background, #D4D4D4 foreground, #569CD6 keywords,
- * #4EC9B0 types, #C586C0 intrinsics, #DCDCAA methods, #CE9178 strings,
- * #6A9955 comments, #9CDCFE identifiers.
- */
-
-.hljs {
-  display: block;
-  overflow-x: auto;
-  padding: 0.75em 0.9em;
-  background: #ffffff;
-  color: #000000;
-}
-
-.hljs-keyword,
-.hljs-selector-tag,
-.hljs-literal {
-  color: #0000ff;
-}
-
-.hljs-built_in,
-.hljs-builtin-name,
-.hljs-meta,
-.hljs-meta .hljs-keyword {
-  color: #0000ff;
-}
-
-.hljs-type,
-.hljs-title.class_,
-.hljs-title.class_.inherited,
-.hljs-class .hljs-title {
-  color: #2b91af;
-}
-
-.hljs-title,
-.hljs-title.function_,
-.hljs-section {
-  color: #795e26;
-}
-
-.hljs-string,
-.hljs-doctag,
-.hljs-regexp {
-  color: #a31515;
-}
-
-.hljs-comment,
-.hljs-quote {
-  color: #008000;
-  font-style: italic;
-}
-
-.hljs-number {
-  color: #098658;
-}
-
-.hljs-variable,
-.hljs-template-variable,
-.hljs-params,
-.hljs-attr,
-.hljs-attribute,
-.hljs-name,
-.hljs-property {
-  color: #001080;
-}
-
-.hljs-symbol,
-.hljs-bullet,
-.hljs-operator {
-  color: #000000;
-}
-
-.hljs-emphasis {
-  font-style: italic;
-}
-
-.hljs-strong {
-  font-weight: bold;
-}
-
-
-/*
- * X++ and C# token colors from the expanded grammar. Keyword weight stays
- * normal. Dark mode overrides for these selectors follow below.
+ * Solid sRGB colors so DarkReader can remap them. Keyword weight stays
+ * normal — the old github.css bold #333 keywords read as body text.
  */
 
 .hljs.language-xpp,
@@ -281,361 +199,108 @@
   color: #098658;
 }
 
+/* Code block container. :has() drops the minima double border. */
+pre:has(> code.hljs) {
+  padding: 0;
+  overflow: auto;
+  border: 1px solid #d8dee4;
+  border-radius: 8px;
+  background: #fbfbfc;
+  margin-top: 0.35em;
+  margin-bottom: 1.15em;
+}
+
 pre > code.hljs {
-  font-family: Consolas, "Cascadia Mono", "Segoe UI Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  display: block;
+  padding: 0.95em 1.05em;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
   line-height: 1.55;
   tab-size: 4;
+  font-family: Consolas, "Cascadia Mono", "Segoe UI Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
-[data-theme="dark"] .hljs,
-[data-theme="dark"] .code-block-wrapper {
-  background: #1e1e1e;
-  color: #d4d4d4;
+pre:has(> code.hljs.language-tsql) {
+  background: #fff;
 }
 
-[data-theme="dark"] .hljs-keyword,
-[data-theme="dark"] .hljs-selector-tag,
-[data-theme="dark"] .hljs-literal,
-[data-theme="dark"] .hljs-operator {
-  color: #569cd6;
+.copy-code-button {
+  display: block;
+  width: fit-content;
+  margin: 0.85em 0 0 auto;
+  padding: 0.18em 0.7em;
+  font-family: inherit;
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: #24292f;
+  background: #f6f8fa;
+  border: 1px solid #d0d7de;
+  border-radius: 6px;
+  cursor: pointer;
 }
 
-[data-theme="dark"] .hljs-built_in,
-[data-theme="dark"] .hljs-builtin-name,
-[data-theme="dark"] .hljs-meta,
-[data-theme="dark"] .hljs-meta .hljs-keyword {
-  color: #c586c0;
+.copy-code-button:hover {
+  background: #eef1f4;
+  border-color: #afb8c1;
 }
 
-[data-theme="dark"] .hljs-type,
-[data-theme="dark"] .hljs-title.class_,
-[data-theme="dark"] .hljs-title.class_.inherited,
-[data-theme="dark"] .hljs-class .hljs-title {
-  color: #4ec9b0;
+.copy-code-button:focus-visible {
+  outline: 2px solid #0969da;
+  outline-offset: 1px;
 }
 
-[data-theme="dark"] .hljs-title,
-[data-theme="dark"] .hljs-title.function_,
-[data-theme="dark"] .hljs-section {
-  color: #dcdcaa;
+/* Header added around the block by copy-code-button.js.
+   Solid light colors so DarkReader can invert them with the rest of the page. */
+.code-block-wrapper {
+  margin: 0.35em 0 1.15em;
+  border: 1px solid #d0d7de;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #f6f8fa;
 }
 
-[data-theme="dark"] .hljs-string,
-[data-theme="dark"] .hljs-doctag,
-[data-theme="dark"] .hljs-regexp {
-  color: #ce9178;
+.code-block-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.28rem 0.65rem;
+  background: #f6f8fa;
+  color: #57606a;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  border-bottom: 1px solid #d0d7de;
 }
 
-[data-theme="dark"] .hljs-comment,
-[data-theme="dark"] .hljs-quote {
-  color: #6a9955;
+.code-block-wrapper pre:has(> code.hljs) {
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  background: #fbfbfc;
 }
 
-[data-theme="dark"] .hljs-number {
-  color: #b5cea8;
+.code-block-header .copy-code-button {
+  display: inline-block;
+  width: auto;
+  margin: 0;
+  padding: 0.08rem 0.45rem;
+  color: #24292f;
+  background: #f6f8fa;
+  border: 1px solid #d0d7de;
+  border-radius: 6px;
 }
 
-[data-theme="dark"] .hljs-variable,
-[data-theme="dark"] .hljs-template-variable,
-[data-theme="dark"] .hljs-params,
-[data-theme="dark"] .hljs-attr,
-[data-theme="dark"] .hljs-attribute,
-[data-theme="dark"] .hljs-name,
-[data-theme="dark"] .hljs-property {
-  color: #9cdcfe;
+.code-block-header .copy-code-button:hover,
+.code-block-header .copy-code-button:focus-visible {
+  background: #eef1f4;
+  border-color: #0969da;
+  color: #0969da;
 }
 
-[data-theme="dark"] .hljs-symbol,
-[data-theme="dark"] .hljs-bullet {
-  color: #d4d4d4;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .hljs,
-  :root:not([data-theme="light"]) .code-block-wrapper {
-    background: #1e1e1e;
-    color: #d4d4d4;
-  }
-
-  :root:not([data-theme="light"]) .hljs-keyword,
-  :root:not([data-theme="light"]) .hljs-selector-tag,
-  :root:not([data-theme="light"]) .hljs-literal,
-  :root:not([data-theme="light"]) .hljs-operator {
-    color: #569cd6;
-  }
-
-  :root:not([data-theme="light"]) .hljs-built_in,
-  :root:not([data-theme="light"]) .hljs-builtin-name,
-  :root:not([data-theme="light"]) .hljs-meta,
-  :root:not([data-theme="light"]) .hljs-meta .hljs-keyword {
-    color: #c586c0;
-  }
-
-  :root:not([data-theme="light"]) .hljs-type,
-  :root:not([data-theme="light"]) .hljs-title.class_,
-  :root:not([data-theme="light"]) .hljs-title.class_.inherited,
-  :root:not([data-theme="light"]) .hljs-class .hljs-title {
-    color: #4ec9b0;
-  }
-
-  :root:not([data-theme="light"]) .hljs-title,
-  :root:not([data-theme="light"]) .hljs-title.function_,
-  :root:not([data-theme="light"]) .hljs-section {
-    color: #dcdcaa;
-  }
-
-  :root:not([data-theme="light"]) .hljs-string,
-  :root:not([data-theme="light"]) .hljs-doctag,
-  :root:not([data-theme="light"]) .hljs-regexp {
-    color: #ce9178;
-  }
-
-  :root:not([data-theme="light"]) .hljs-comment,
-  :root:not([data-theme="light"]) .hljs-quote {
-    color: #6a9955;
-  }
-
-  :root:not([data-theme="light"]) .hljs-number {
-    color: #b5cea8;
-  }
-
-  :root:not([data-theme="light"]) .hljs-variable,
-  :root:not([data-theme="light"]) .hljs-template-variable,
-  :root:not([data-theme="light"]) .hljs-params,
-  :root:not([data-theme="light"]) .hljs-attr,
-  :root:not([data-theme="light"]) .hljs-attribute,
-  :root:not([data-theme="light"]) .hljs-name,
-  :root:not([data-theme="light"]) .hljs-property {
-    color: #9cdcfe;
-  }
-
-  :root:not([data-theme="light"]) .hljs-symbol,
-  :root:not([data-theme="light"]) .hljs-bullet {
-    color: #d4d4d4;
-  }
-}
-
-/* Dark counterparts of the X++ / C# token rules above. These selectors are
-   more specific than the light rules, so an explicit dark theme (and a dark
-   OS preference that was not overridden with light) keeps the same token
-   roles in the Visual Studio Dark palette. */
-[data-theme="dark"] .hljs.language-xpp,
-[data-theme="dark"] .hljs.language-axapta,
-[data-theme="dark"] .hljs.language-x\+\+,
-[data-theme="dark"] .hljs.language-csharp,
-[data-theme="dark"] .hljs.language-cs {
-  color: #d4d4d4;
-  background: #1e1e1e;
-}
-
-[data-theme="dark"] .hljs.language-xpp .hljs-keyword,
-[data-theme="dark"] .hljs.language-axapta .hljs-keyword,
-[data-theme="dark"] .hljs.language-x\+\+ .hljs-keyword,
-[data-theme="dark"] .hljs.language-csharp .hljs-keyword,
-[data-theme="dark"] .hljs.language-cs .hljs-keyword,
-[data-theme="dark"] .hljs.language-csharp .hljs-literal,
-[data-theme="dark"] .hljs.language-cs .hljs-literal {
-  color: #569cd6;
-}
-
-[data-theme="dark"] .hljs.language-xpp .hljs-built_in,
-[data-theme="dark"] .hljs.language-axapta .hljs-built_in,
-[data-theme="dark"] .hljs.language-x\+\+ .hljs-built_in,
-[data-theme="dark"] .hljs.language-csharp .hljs-built_in,
-[data-theme="dark"] .hljs.language-cs .hljs-built_in {
-  color: #569cd6;
-}
-
-[data-theme="dark"] .hljs.language-xpp .hljs-type,
-[data-theme="dark"] .hljs.language-axapta .hljs-type,
-[data-theme="dark"] .hljs.language-x\+\+ .hljs-type,
-[data-theme="dark"] .hljs.language-csharp .hljs-type,
-[data-theme="dark"] .hljs.language-cs .hljs-type,
-[data-theme="dark"] .hljs.language-xpp .hljs-title.class_,
-[data-theme="dark"] .hljs.language-axapta .hljs-title.class_,
-[data-theme="dark"] .hljs.language-x\+\+ .hljs-title.class_,
-[data-theme="dark"] .hljs.language-xpp .hljs-attr,
-[data-theme="dark"] .hljs.language-axapta .hljs-attr,
-[data-theme="dark"] .hljs.language-x\+\+ .hljs-attr {
-  color: #4ec9b0;
-}
-
-[data-theme="dark"] .hljs.language-xpp .hljs-title.function_,
-[data-theme="dark"] .hljs.language-axapta .hljs-title.function_,
-[data-theme="dark"] .hljs.language-x\+\+ .hljs-title.function_,
-[data-theme="dark"] .hljs.language-csharp .hljs-function .hljs-title,
-[data-theme="dark"] .hljs.language-cs .hljs-function .hljs-title {
-  color: #dcdcaa;
-}
-
-[data-theme="dark"] .hljs.language-csharp .hljs-function,
-[data-theme="dark"] .hljs.language-cs .hljs-function {
-  color: #d4d4d4;
-}
-
-[data-theme="dark"] .hljs.language-xpp .hljs-name,
-[data-theme="dark"] .hljs.language-axapta .hljs-name,
-[data-theme="dark"] .hljs.language-x\+\+ .hljs-name,
-[data-theme="dark"] .hljs.language-xpp .hljs-meta,
-[data-theme="dark"] .hljs.language-axapta .hljs-meta,
-[data-theme="dark"] .hljs.language-x\+\+ .hljs-meta,
-[data-theme="dark"] .hljs.language-xpp .hljs-meta .hljs-keyword,
-[data-theme="dark"] .hljs.language-axapta .hljs-meta .hljs-keyword,
-[data-theme="dark"] .hljs.language-x\+\+ .hljs-meta .hljs-keyword,
-[data-theme="dark"] .hljs.language-xpp .hljs-meta .hljs-type,
-[data-theme="dark"] .hljs.language-axapta .hljs-meta .hljs-type,
-[data-theme="dark"] .hljs.language-x\+\+ .hljs-meta .hljs-type,
-[data-theme="dark"] .hljs.language-xpp .hljs-attribute,
-[data-theme="dark"] .hljs.language-axapta .hljs-attribute,
-[data-theme="dark"] .hljs.language-x\+\+ .hljs-attribute,
-[data-theme="dark"] .hljs.language-xpp .hljs-attribute .hljs-title,
-[data-theme="dark"] .hljs.language-axapta .hljs-attribute .hljs-title,
-[data-theme="dark"] .hljs.language-x\+\+ .hljs-attribute .hljs-title,
-[data-theme="dark"] .hljs.language-csharp .hljs-meta,
-[data-theme="dark"] .hljs.language-cs .hljs-meta {
-  color: #c586c0;
-}
-
-[data-theme="dark"] .hljs.language-xpp .hljs-attribute,
-[data-theme="dark"] .hljs.language-axapta .hljs-attribute,
-[data-theme="dark"] .hljs.language-x\+\+ .hljs-attribute {
-  background: rgba(197, 134, 192, 0.14);
-}
-
-[data-theme="dark"] .hljs.language-xpp .hljs-string,
-[data-theme="dark"] .hljs.language-axapta .hljs-string,
-[data-theme="dark"] .hljs.language-x\+\+ .hljs-string,
-[data-theme="dark"] .hljs.language-csharp .hljs-string,
-[data-theme="dark"] .hljs.language-cs .hljs-string,
-[data-theme="dark"] .hljs.language-xpp .hljs-symbol,
-[data-theme="dark"] .hljs.language-axapta .hljs-symbol,
-[data-theme="dark"] .hljs.language-x\+\+ .hljs-symbol,
-[data-theme="dark"] .hljs.language-xpp .hljs-meta .hljs-string,
-[data-theme="dark"] .hljs.language-axapta .hljs-meta .hljs-string,
-[data-theme="dark"] .hljs.language-x\+\+ .hljs-meta .hljs-string {
-  color: #ce9178;
-}
-
-[data-theme="dark"] .hljs.language-xpp .hljs-number,
-[data-theme="dark"] .hljs.language-axapta .hljs-number,
-[data-theme="dark"] .hljs.language-x\+\+ .hljs-number,
-[data-theme="dark"] .hljs.language-xpp .hljs-literal,
-[data-theme="dark"] .hljs.language-axapta .hljs-literal,
-[data-theme="dark"] .hljs.language-x\+\+ .hljs-literal,
-[data-theme="dark"] .hljs.language-csharp .hljs-number,
-[data-theme="dark"] .hljs.language-cs .hljs-number,
-[data-theme="dark"] .hljs.language-xpp .hljs-meta .hljs-number,
-[data-theme="dark"] .hljs.language-axapta .hljs-meta .hljs-number,
-[data-theme="dark"] .hljs.language-x\+\+ .hljs-meta .hljs-number {
-  color: #b5cea8;
-}
-
-[data-theme="dark"] .hljs.language-xpp .hljs-comment,
-[data-theme="dark"] .hljs.language-axapta .hljs-comment,
-[data-theme="dark"] .hljs.language-x\+\+ .hljs-comment,
-[data-theme="dark"] .hljs.language-csharp .hljs-comment,
-[data-theme="dark"] .hljs.language-cs .hljs-comment,
-[data-theme="dark"] .hljs.language-xpp .hljs-doctag,
-[data-theme="dark"] .hljs.language-axapta .hljs-doctag,
-[data-theme="dark"] .hljs.language-x\+\+ .hljs-doctag,
-[data-theme="dark"] .hljs.language-csharp .hljs-doctag,
-[data-theme="dark"] .hljs.language-cs .hljs-doctag {
-  color: #6a9955;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .hljs.language-xpp,
-  :root:not([data-theme="light"]) .hljs.language-axapta,
-  :root:not([data-theme="light"]) .hljs.language-x\+\+,
-  :root:not([data-theme="light"]) .hljs.language-csharp,
-  :root:not([data-theme="light"]) .hljs.language-cs {
-    color: #d4d4d4;
-    background: #1e1e1e;
-  }
-
-  :root:not([data-theme="light"]) .hljs.language-xpp .hljs-keyword,
-  :root:not([data-theme="light"]) .hljs.language-axapta .hljs-keyword,
-  :root:not([data-theme="light"]) .hljs.language-x\+\+ .hljs-keyword,
-  :root:not([data-theme="light"]) .hljs.language-csharp .hljs-keyword,
-  :root:not([data-theme="light"]) .hljs.language-cs .hljs-keyword,
-  :root:not([data-theme="light"]) .hljs.language-csharp .hljs-literal,
-  :root:not([data-theme="light"]) .hljs.language-cs .hljs-literal,
-  :root:not([data-theme="light"]) .hljs.language-xpp .hljs-built_in,
-  :root:not([data-theme="light"]) .hljs.language-axapta .hljs-built_in,
-  :root:not([data-theme="light"]) .hljs.language-x\+\+ .hljs-built_in,
-  :root:not([data-theme="light"]) .hljs.language-csharp .hljs-built_in,
-  :root:not([data-theme="light"]) .hljs.language-cs .hljs-built_in {
-    color: #569cd6;
-  }
-
-  :root:not([data-theme="light"]) .hljs.language-xpp .hljs-type,
-  :root:not([data-theme="light"]) .hljs.language-axapta .hljs-type,
-  :root:not([data-theme="light"]) .hljs.language-x\+\+ .hljs-type,
-  :root:not([data-theme="light"]) .hljs.language-csharp .hljs-type,
-  :root:not([data-theme="light"]) .hljs.language-cs .hljs-type,
-  :root:not([data-theme="light"]) .hljs.language-xpp .hljs-title.class_,
-  :root:not([data-theme="light"]) .hljs.language-axapta .hljs-title.class_,
-  :root:not([data-theme="light"]) .hljs.language-x\+\+ .hljs-title.class_,
-  :root:not([data-theme="light"]) .hljs.language-xpp .hljs-attr,
-  :root:not([data-theme="light"]) .hljs.language-axapta .hljs-attr,
-  :root:not([data-theme="light"]) .hljs.language-x\+\+ .hljs-attr {
-    color: #4ec9b0;
-  }
-
-  :root:not([data-theme="light"]) .hljs.language-xpp .hljs-title.function_,
-  :root:not([data-theme="light"]) .hljs.language-axapta .hljs-title.function_,
-  :root:not([data-theme="light"]) .hljs.language-x\+\+ .hljs-title.function_,
-  :root:not([data-theme="light"]) .hljs.language-csharp .hljs-function .hljs-title,
-  :root:not([data-theme="light"]) .hljs.language-cs .hljs-function .hljs-title {
-    color: #dcdcaa;
-  }
-
-  :root:not([data-theme="light"]) .hljs.language-csharp .hljs-function,
-  :root:not([data-theme="light"]) .hljs.language-cs .hljs-function {
-    color: #d4d4d4;
-  }
-
-  :root:not([data-theme="light"]) .hljs.language-xpp .hljs-name,
-  :root:not([data-theme="light"]) .hljs.language-axapta .hljs-name,
-  :root:not([data-theme="light"]) .hljs.language-x\+\+ .hljs-name,
-  :root:not([data-theme="light"]) .hljs.language-xpp .hljs-meta,
-  :root:not([data-theme="light"]) .hljs.language-axapta .hljs-meta,
-  :root:not([data-theme="light"]) .hljs.language-x\+\+ .hljs-meta,
-  :root:not([data-theme="light"]) .hljs.language-xpp .hljs-attribute,
-  :root:not([data-theme="light"]) .hljs.language-axapta .hljs-attribute,
-  :root:not([data-theme="light"]) .hljs.language-x\+\+ .hljs-attribute,
-  :root:not([data-theme="light"]) .hljs.language-csharp .hljs-meta,
-  :root:not([data-theme="light"]) .hljs.language-cs .hljs-meta {
-    color: #c586c0;
-  }
-
-  :root:not([data-theme="light"]) .hljs.language-xpp .hljs-string,
-  :root:not([data-theme="light"]) .hljs.language-axapta .hljs-string,
-  :root:not([data-theme="light"]) .hljs.language-x\+\+ .hljs-string,
-  :root:not([data-theme="light"]) .hljs.language-csharp .hljs-string,
-  :root:not([data-theme="light"]) .hljs.language-cs .hljs-string,
-  :root:not([data-theme="light"]) .hljs.language-xpp .hljs-symbol,
-  :root:not([data-theme="light"]) .hljs.language-axapta .hljs-symbol,
-  :root:not([data-theme="light"]) .hljs.language-x\+\+ .hljs-symbol {
-    color: #ce9178;
-  }
-
-  :root:not([data-theme="light"]) .hljs.language-xpp .hljs-number,
-  :root:not([data-theme="light"]) .hljs.language-axapta .hljs-number,
-  :root:not([data-theme="light"]) .hljs.language-x\+\+ .hljs-number,
-  :root:not([data-theme="light"]) .hljs.language-xpp .hljs-literal,
-  :root:not([data-theme="light"]) .hljs.language-axapta .hljs-literal,
-  :root:not([data-theme="light"]) .hljs.language-x\+\+ .hljs-literal,
-  :root:not([data-theme="light"]) .hljs.language-csharp .hljs-number,
-  :root:not([data-theme="light"]) .hljs.language-cs .hljs-number {
-    color: #b5cea8;
-  }
-
-  :root:not([data-theme="light"]) .hljs.language-xpp .hljs-comment,
-  :root:not([data-theme="light"]) .hljs.language-axapta .hljs-comment,
-  :root:not([data-theme="light"]) .hljs.language-x\+\+ .hljs-comment,
-  :root:not([data-theme="light"]) .hljs.language-csharp .hljs-comment,
-  :root:not([data-theme="light"]) .hljs.language-cs .hljs-comment {
-    color: #6a9955;
-  }
+.code-block-header .copy-code-button.is-copied {
+  border-color: #1a7f37;
+  color: #1a7f37;
+  background: #f6f8fa;
 }
