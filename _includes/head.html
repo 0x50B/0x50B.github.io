@@ -39,7 +39,10 @@
   <script defer src="{{ "/js/highlightjs/languages/plaintext.min.js" | relative_url }}"></script>
   <script defer src="{{ "/js/highlightjs/languages/powershell.min.js" | relative_url }}"></script>
   <script defer src="{{ "/js/highlightjs/languages/tsql.min.js" | relative_url }}"></script>
-  <script defer src="{{ "/js/highlightjs/languages/axapta.min.js" | relative_url }}"></script>
+  <script defer src="{{ "/js/highlightjs/languages/csharp.min.js" | relative_url }}"></script>
+  <!-- xpp.min.js must load after highlight.min.js so it replaces the bundled X++ stub.
+       "axapta" and "x++" remain aliases of "xpp". -->
+  <script defer src="{{ "/js/highlightjs/languages/xpp.min.js" | relative_url }}"></script>
   <script defer src="{{ "/js/highlightjs/languages/javascript.min.js" | relative_url }}"></script>
   <script defer src="{{ "/js/highlightjs/languages/dos.min.js" | relative_url }}"></script>
   <script defer src="{{ "/js/highlight-init.js" | relative_url }}"></script>

@@ -81,6 +81,212 @@
   font-weight: bold;
 }
 
+
+/*
+ * X++ and C# token colors from the expanded grammar. Keyword weight stays
+ * normal. Dark mode overrides for these selectors follow below.
+ */
+
+.hljs.language-xpp,
+.hljs.language-axapta,
+.hljs.language-x\+\+,
+.hljs.language-csharp,
+.hljs.language-cs {
+  color: #24292e;
+  background: #fbfbfc;
+}
+
+/* Keywords: classic VS blue, not bold. */
+.hljs.language-xpp .hljs-keyword,
+.hljs.language-axapta .hljs-keyword,
+.hljs.language-x\+\+ .hljs-keyword,
+.hljs.language-csharp .hljs-keyword,
+.hljs.language-cs .hljs-keyword {
+  color: #0000ff;
+  font-weight: normal;
+}
+
+/* Primitive types: int, str, real, utcdatetime, boolean, var, void. */
+.hljs.language-xpp .hljs-built_in,
+.hljs.language-axapta .hljs-built_in,
+.hljs.language-x\+\+ .hljs-built_in,
+.hljs.language-csharp .hljs-built_in,
+.hljs.language-cs .hljs-built_in {
+  color: #0070c1;
+  font-weight: normal;
+}
+
+/* Classes, EDTs, enums, and the type before :: */
+.hljs.language-xpp .hljs-type,
+.hljs.language-axapta .hljs-type,
+.hljs.language-x\+\+ .hljs-type,
+.hljs.language-csharp .hljs-type,
+.hljs.language-cs .hljs-type,
+.hljs.language-xpp .hljs-title.class_,
+.hljs.language-axapta .hljs-title.class_,
+.hljs.language-x\+\+ .hljs-title.class_,
+.hljs.language-csharp .hljs-title,
+.hljs.language-cs .hljs-title {
+  color: #2b91af;
+  font-weight: normal;
+}
+
+/* Method declarations and calls. */
+.hljs.language-xpp .hljs-title.function_,
+.hljs.language-axapta .hljs-title.function_,
+.hljs.language-x\+\+ .hljs-title.function_,
+.hljs.language-csharp .hljs-function,
+.hljs.language-cs .hljs-function,
+.hljs.language-csharp .hljs-function .hljs-title,
+.hljs.language-cs .hljs-function .hljs-title {
+  color: #795e26;
+  font-weight: normal;
+}
+
+/* Keep C# signature punctuation with the surrounding code; the name stays olive. */
+.hljs.language-csharp .hljs-function,
+.hljs.language-cs .hljs-function {
+  color: #24292e;
+}
+
+.hljs.language-csharp .hljs-function .hljs-title,
+.hljs.language-cs .hljs-function .hljs-title {
+  color: #795e26;
+}
+
+/* Intrinsics (classStr, fieldNum) and globals (strFmt, conPeek, info). */
+.hljs.language-xpp .hljs-name,
+.hljs.language-axapta .hljs-name,
+.hljs.language-x\+\+ .hljs-name {
+  color: #7a3e9d;
+  font-weight: normal;
+}
+
+/* Attributes: [ExtensionOf(...)], [SubscribesTo(...)]. */
+.hljs.language-xpp .hljs-attribute,
+.hljs.language-axapta .hljs-attribute,
+.hljs.language-x\+\+ .hljs-attribute {
+  color: #6f42c1;
+  background: rgba(111, 66, 193, 0.08);
+  border-radius: 3px;
+  font-weight: normal;
+}
+
+.hljs.language-xpp .hljs-attribute .hljs-title,
+.hljs.language-axapta .hljs-attribute .hljs-title,
+.hljs.language-x\+\+ .hljs-attribute .hljs-title,
+.hljs.language-xpp .hljs-attribute .class_,
+.hljs.language-axapta .hljs-attribute .class_,
+.hljs.language-x\+\+ .hljs-attribute .class_ {
+  color: #6f42c1;
+  font-weight: normal;
+}
+
+.hljs.language-csharp .hljs-meta,
+.hljs.language-cs .hljs-meta {
+  color: #6f42c1;
+  font-weight: normal;
+}
+
+/* Strings, and label ids such as @SYS73815 / @MyLabels:MyLabel. */
+.hljs.language-xpp .hljs-string,
+.hljs.language-axapta .hljs-string,
+.hljs.language-x\+\+ .hljs-string,
+.hljs.language-csharp .hljs-string,
+.hljs.language-cs .hljs-string {
+  color: #a31515;
+  font-weight: normal;
+}
+
+.hljs.language-xpp .hljs-symbol,
+.hljs.language-axapta .hljs-symbol,
+.hljs.language-x\+\+ .hljs-symbol {
+  color: #dd1144;
+  font-weight: normal;
+}
+
+/* Numbers and enum / static literal values (NoYes::Yes, Exception::Error). */
+.hljs.language-xpp .hljs-number,
+.hljs.language-axapta .hljs-number,
+.hljs.language-x\+\+ .hljs-number,
+.hljs.language-xpp .hljs-literal,
+.hljs.language-axapta .hljs-literal,
+.hljs.language-x\+\+ .hljs-literal,
+.hljs.language-csharp .hljs-number,
+.hljs.language-cs .hljs-number {
+  color: #098658;
+  font-weight: normal;
+}
+
+.hljs.language-csharp .hljs-literal,
+.hljs.language-cs .hljs-literal {
+  color: #0000ff;
+  font-weight: normal;
+}
+
+/* Comments and XML doc comments. */
+.hljs.language-xpp .hljs-comment,
+.hljs.language-axapta .hljs-comment,
+.hljs.language-x\+\+ .hljs-comment,
+.hljs.language-csharp .hljs-comment,
+.hljs.language-cs .hljs-comment {
+  color: #008000;
+  font-style: italic;
+  font-weight: normal;
+}
+
+.hljs.language-xpp .hljs-doctag,
+.hljs.language-axapta .hljs-doctag,
+.hljs.language-x\+\+ .hljs-doctag,
+.hljs.language-csharp .hljs-doctag,
+.hljs.language-cs .hljs-doctag {
+  color: #6a737d;
+  font-style: normal;
+  font-weight: 600;
+}
+
+.hljs.language-xpp .hljs-attr,
+.hljs.language-axapta .hljs-attr,
+.hljs.language-x\+\+ .hljs-attr {
+  color: #2b91af;
+  font-weight: normal;
+}
+
+/* #define, #localmacro, #endmacro, #macrolib, and #Macro references. */
+.hljs.language-xpp .hljs-meta,
+.hljs.language-axapta .hljs-meta,
+.hljs.language-x\+\+ .hljs-meta {
+  color: #af00db;
+  font-weight: normal;
+}
+
+.hljs.language-xpp .hljs-meta .hljs-keyword,
+.hljs.language-axapta .hljs-meta .hljs-keyword,
+.hljs.language-x\+\+ .hljs-meta .hljs-keyword,
+.hljs.language-xpp .hljs-meta .hljs-type,
+.hljs.language-axapta .hljs-meta .hljs-type,
+.hljs.language-x\+\+ .hljs-meta .hljs-type {
+  color: #af00db;
+}
+
+.hljs.language-xpp .hljs-meta .hljs-string,
+.hljs.language-axapta .hljs-meta .hljs-string,
+.hljs.language-x\+\+ .hljs-meta .hljs-string {
+  color: #a31515;
+}
+
+.hljs.language-xpp .hljs-meta .hljs-number,
+.hljs.language-axapta .hljs-meta .hljs-number,
+.hljs.language-x\+\+ .hljs-meta .hljs-number {
+  color: #098658;
+}
+
+pre > code.hljs {
+  font-family: Consolas, "Cascadia Mono", "Segoe UI Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  line-height: 1.55;
+  tab-size: 4;
+}
+
 [data-theme="dark"] .hljs,
 [data-theme="dark"] .code-block-wrapper {
   background: #1e1e1e;
@@ -206,5 +412,230 @@
   :root:not([data-theme="light"]) .hljs-symbol,
   :root:not([data-theme="light"]) .hljs-bullet {
     color: #d4d4d4;
+  }
+}
+
+/* Dark counterparts of the X++ / C# token rules above. These selectors are
+   more specific than the light rules, so an explicit dark theme (and a dark
+   OS preference that was not overridden with light) keeps the same token
+   roles in the Visual Studio Dark palette. */
+[data-theme="dark"] .hljs.language-xpp,
+[data-theme="dark"] .hljs.language-axapta,
+[data-theme="dark"] .hljs.language-x\+\+,
+[data-theme="dark"] .hljs.language-csharp,
+[data-theme="dark"] .hljs.language-cs {
+  color: #d4d4d4;
+  background: #1e1e1e;
+}
+
+[data-theme="dark"] .hljs.language-xpp .hljs-keyword,
+[data-theme="dark"] .hljs.language-axapta .hljs-keyword,
+[data-theme="dark"] .hljs.language-x\+\+ .hljs-keyword,
+[data-theme="dark"] .hljs.language-csharp .hljs-keyword,
+[data-theme="dark"] .hljs.language-cs .hljs-keyword,
+[data-theme="dark"] .hljs.language-csharp .hljs-literal,
+[data-theme="dark"] .hljs.language-cs .hljs-literal {
+  color: #569cd6;
+}
+
+[data-theme="dark"] .hljs.language-xpp .hljs-built_in,
+[data-theme="dark"] .hljs.language-axapta .hljs-built_in,
+[data-theme="dark"] .hljs.language-x\+\+ .hljs-built_in,
+[data-theme="dark"] .hljs.language-csharp .hljs-built_in,
+[data-theme="dark"] .hljs.language-cs .hljs-built_in {
+  color: #569cd6;
+}
+
+[data-theme="dark"] .hljs.language-xpp .hljs-type,
+[data-theme="dark"] .hljs.language-axapta .hljs-type,
+[data-theme="dark"] .hljs.language-x\+\+ .hljs-type,
+[data-theme="dark"] .hljs.language-csharp .hljs-type,
+[data-theme="dark"] .hljs.language-cs .hljs-type,
+[data-theme="dark"] .hljs.language-xpp .hljs-title.class_,
+[data-theme="dark"] .hljs.language-axapta .hljs-title.class_,
+[data-theme="dark"] .hljs.language-x\+\+ .hljs-title.class_,
+[data-theme="dark"] .hljs.language-xpp .hljs-attr,
+[data-theme="dark"] .hljs.language-axapta .hljs-attr,
+[data-theme="dark"] .hljs.language-x\+\+ .hljs-attr {
+  color: #4ec9b0;
+}
+
+[data-theme="dark"] .hljs.language-xpp .hljs-title.function_,
+[data-theme="dark"] .hljs.language-axapta .hljs-title.function_,
+[data-theme="dark"] .hljs.language-x\+\+ .hljs-title.function_,
+[data-theme="dark"] .hljs.language-csharp .hljs-function .hljs-title,
+[data-theme="dark"] .hljs.language-cs .hljs-function .hljs-title {
+  color: #dcdcaa;
+}
+
+[data-theme="dark"] .hljs.language-csharp .hljs-function,
+[data-theme="dark"] .hljs.language-cs .hljs-function {
+  color: #d4d4d4;
+}
+
+[data-theme="dark"] .hljs.language-xpp .hljs-name,
+[data-theme="dark"] .hljs.language-axapta .hljs-name,
+[data-theme="dark"] .hljs.language-x\+\+ .hljs-name,
+[data-theme="dark"] .hljs.language-xpp .hljs-meta,
+[data-theme="dark"] .hljs.language-axapta .hljs-meta,
+[data-theme="dark"] .hljs.language-x\+\+ .hljs-meta,
+[data-theme="dark"] .hljs.language-xpp .hljs-meta .hljs-keyword,
+[data-theme="dark"] .hljs.language-axapta .hljs-meta .hljs-keyword,
+[data-theme="dark"] .hljs.language-x\+\+ .hljs-meta .hljs-keyword,
+[data-theme="dark"] .hljs.language-xpp .hljs-meta .hljs-type,
+[data-theme="dark"] .hljs.language-axapta .hljs-meta .hljs-type,
+[data-theme="dark"] .hljs.language-x\+\+ .hljs-meta .hljs-type,
+[data-theme="dark"] .hljs.language-xpp .hljs-attribute,
+[data-theme="dark"] .hljs.language-axapta .hljs-attribute,
+[data-theme="dark"] .hljs.language-x\+\+ .hljs-attribute,
+[data-theme="dark"] .hljs.language-xpp .hljs-attribute .hljs-title,
+[data-theme="dark"] .hljs.language-axapta .hljs-attribute .hljs-title,
+[data-theme="dark"] .hljs.language-x\+\+ .hljs-attribute .hljs-title,
+[data-theme="dark"] .hljs.language-csharp .hljs-meta,
+[data-theme="dark"] .hljs.language-cs .hljs-meta {
+  color: #c586c0;
+}
+
+[data-theme="dark"] .hljs.language-xpp .hljs-attribute,
+[data-theme="dark"] .hljs.language-axapta .hljs-attribute,
+[data-theme="dark"] .hljs.language-x\+\+ .hljs-attribute {
+  background: rgba(197, 134, 192, 0.14);
+}
+
+[data-theme="dark"] .hljs.language-xpp .hljs-string,
+[data-theme="dark"] .hljs.language-axapta .hljs-string,
+[data-theme="dark"] .hljs.language-x\+\+ .hljs-string,
+[data-theme="dark"] .hljs.language-csharp .hljs-string,
+[data-theme="dark"] .hljs.language-cs .hljs-string,
+[data-theme="dark"] .hljs.language-xpp .hljs-symbol,
+[data-theme="dark"] .hljs.language-axapta .hljs-symbol,
+[data-theme="dark"] .hljs.language-x\+\+ .hljs-symbol,
+[data-theme="dark"] .hljs.language-xpp .hljs-meta .hljs-string,
+[data-theme="dark"] .hljs.language-axapta .hljs-meta .hljs-string,
+[data-theme="dark"] .hljs.language-x\+\+ .hljs-meta .hljs-string {
+  color: #ce9178;
+}
+
+[data-theme="dark"] .hljs.language-xpp .hljs-number,
+[data-theme="dark"] .hljs.language-axapta .hljs-number,
+[data-theme="dark"] .hljs.language-x\+\+ .hljs-number,
+[data-theme="dark"] .hljs.language-xpp .hljs-literal,
+[data-theme="dark"] .hljs.language-axapta .hljs-literal,
+[data-theme="dark"] .hljs.language-x\+\+ .hljs-literal,
+[data-theme="dark"] .hljs.language-csharp .hljs-number,
+[data-theme="dark"] .hljs.language-cs .hljs-number,
+[data-theme="dark"] .hljs.language-xpp .hljs-meta .hljs-number,
+[data-theme="dark"] .hljs.language-axapta .hljs-meta .hljs-number,
+[data-theme="dark"] .hljs.language-x\+\+ .hljs-meta .hljs-number {
+  color: #b5cea8;
+}
+
+[data-theme="dark"] .hljs.language-xpp .hljs-comment,
+[data-theme="dark"] .hljs.language-axapta .hljs-comment,
+[data-theme="dark"] .hljs.language-x\+\+ .hljs-comment,
+[data-theme="dark"] .hljs.language-csharp .hljs-comment,
+[data-theme="dark"] .hljs.language-cs .hljs-comment,
+[data-theme="dark"] .hljs.language-xpp .hljs-doctag,
+[data-theme="dark"] .hljs.language-axapta .hljs-doctag,
+[data-theme="dark"] .hljs.language-x\+\+ .hljs-doctag,
+[data-theme="dark"] .hljs.language-csharp .hljs-doctag,
+[data-theme="dark"] .hljs.language-cs .hljs-doctag {
+  color: #6a9955;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .hljs.language-xpp,
+  :root:not([data-theme="light"]) .hljs.language-axapta,
+  :root:not([data-theme="light"]) .hljs.language-x\+\+,
+  :root:not([data-theme="light"]) .hljs.language-csharp,
+  :root:not([data-theme="light"]) .hljs.language-cs {
+    color: #d4d4d4;
+    background: #1e1e1e;
+  }
+
+  :root:not([data-theme="light"]) .hljs.language-xpp .hljs-keyword,
+  :root:not([data-theme="light"]) .hljs.language-axapta .hljs-keyword,
+  :root:not([data-theme="light"]) .hljs.language-x\+\+ .hljs-keyword,
+  :root:not([data-theme="light"]) .hljs.language-csharp .hljs-keyword,
+  :root:not([data-theme="light"]) .hljs.language-cs .hljs-keyword,
+  :root:not([data-theme="light"]) .hljs.language-csharp .hljs-literal,
+  :root:not([data-theme="light"]) .hljs.language-cs .hljs-literal,
+  :root:not([data-theme="light"]) .hljs.language-xpp .hljs-built_in,
+  :root:not([data-theme="light"]) .hljs.language-axapta .hljs-built_in,
+  :root:not([data-theme="light"]) .hljs.language-x\+\+ .hljs-built_in,
+  :root:not([data-theme="light"]) .hljs.language-csharp .hljs-built_in,
+  :root:not([data-theme="light"]) .hljs.language-cs .hljs-built_in {
+    color: #569cd6;
+  }
+
+  :root:not([data-theme="light"]) .hljs.language-xpp .hljs-type,
+  :root:not([data-theme="light"]) .hljs.language-axapta .hljs-type,
+  :root:not([data-theme="light"]) .hljs.language-x\+\+ .hljs-type,
+  :root:not([data-theme="light"]) .hljs.language-csharp .hljs-type,
+  :root:not([data-theme="light"]) .hljs.language-cs .hljs-type,
+  :root:not([data-theme="light"]) .hljs.language-xpp .hljs-title.class_,
+  :root:not([data-theme="light"]) .hljs.language-axapta .hljs-title.class_,
+  :root:not([data-theme="light"]) .hljs.language-x\+\+ .hljs-title.class_,
+  :root:not([data-theme="light"]) .hljs.language-xpp .hljs-attr,
+  :root:not([data-theme="light"]) .hljs.language-axapta .hljs-attr,
+  :root:not([data-theme="light"]) .hljs.language-x\+\+ .hljs-attr {
+    color: #4ec9b0;
+  }
+
+  :root:not([data-theme="light"]) .hljs.language-xpp .hljs-title.function_,
+  :root:not([data-theme="light"]) .hljs.language-axapta .hljs-title.function_,
+  :root:not([data-theme="light"]) .hljs.language-x\+\+ .hljs-title.function_,
+  :root:not([data-theme="light"]) .hljs.language-csharp .hljs-function .hljs-title,
+  :root:not([data-theme="light"]) .hljs.language-cs .hljs-function .hljs-title {
+    color: #dcdcaa;
+  }
+
+  :root:not([data-theme="light"]) .hljs.language-csharp .hljs-function,
+  :root:not([data-theme="light"]) .hljs.language-cs .hljs-function {
+    color: #d4d4d4;
+  }
+
+  :root:not([data-theme="light"]) .hljs.language-xpp .hljs-name,
+  :root:not([data-theme="light"]) .hljs.language-axapta .hljs-name,
+  :root:not([data-theme="light"]) .hljs.language-x\+\+ .hljs-name,
+  :root:not([data-theme="light"]) .hljs.language-xpp .hljs-meta,
+  :root:not([data-theme="light"]) .hljs.language-axapta .hljs-meta,
+  :root:not([data-theme="light"]) .hljs.language-x\+\+ .hljs-meta,
+  :root:not([data-theme="light"]) .hljs.language-xpp .hljs-attribute,
+  :root:not([data-theme="light"]) .hljs.language-axapta .hljs-attribute,
+  :root:not([data-theme="light"]) .hljs.language-x\+\+ .hljs-attribute,
+  :root:not([data-theme="light"]) .hljs.language-csharp .hljs-meta,
+  :root:not([data-theme="light"]) .hljs.language-cs .hljs-meta {
+    color: #c586c0;
+  }
+
+  :root:not([data-theme="light"]) .hljs.language-xpp .hljs-string,
+  :root:not([data-theme="light"]) .hljs.language-axapta .hljs-string,
+  :root:not([data-theme="light"]) .hljs.language-x\+\+ .hljs-string,
+  :root:not([data-theme="light"]) .hljs.language-csharp .hljs-string,
+  :root:not([data-theme="light"]) .hljs.language-cs .hljs-string,
+  :root:not([data-theme="light"]) .hljs.language-xpp .hljs-symbol,
+  :root:not([data-theme="light"]) .hljs.language-axapta .hljs-symbol,
+  :root:not([data-theme="light"]) .hljs.language-x\+\+ .hljs-symbol {
+    color: #ce9178;
+  }
+
+  :root:not([data-theme="light"]) .hljs.language-xpp .hljs-number,
+  :root:not([data-theme="light"]) .hljs.language-axapta .hljs-number,
+  :root:not([data-theme="light"]) .hljs.language-x\+\+ .hljs-number,
+  :root:not([data-theme="light"]) .hljs.language-xpp .hljs-literal,
+  :root:not([data-theme="light"]) .hljs.language-axapta .hljs-literal,
+  :root:not([data-theme="light"]) .hljs.language-x\+\+ .hljs-literal,
+  :root:not([data-theme="light"]) .hljs.language-csharp .hljs-number,
+  :root:not([data-theme="light"]) .hljs.language-cs .hljs-number {
+    color: #b5cea8;
+  }
+
+  :root:not([data-theme="light"]) .hljs.language-xpp .hljs-comment,
+  :root:not([data-theme="light"]) .hljs.language-axapta .hljs-comment,
+  :root:not([data-theme="light"]) .hljs.language-x\+\+ .hljs-comment,
+  :root:not([data-theme="light"]) .hljs.language-csharp .hljs-comment,
+  :root:not([data-theme="light"]) .hljs.language-cs .hljs-comment {
+    color: #6a9955;
   }
 }
