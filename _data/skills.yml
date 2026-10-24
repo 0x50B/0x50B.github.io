@@ -1,19 +1,19 @@
 - skill: Microsoft Dynamics AX 3.0/4.0/2009/2012, D365 Finance and Operations, Supply Chain Management
   since: "2010-08-01"
-  description: "{years} of experience in X++ programming to build custom Dynamics / D365 FSCM processes, interfaces and customizations"
+  description: "{years} of experience in X++ programming to build custom Dynamics / D365 FSCM processes, interfaces, and customizations"
 - skill: C#/.NET Development
   since: "2010-08-01"
-  description: "{years} of experience in C# development versions 4.0 - 10.0"
+  description: "{years} of experience in C# development, versions 4.0 through 10.0"
 - skill: Database Design, Development and Reporting
   since: "2010-08-01"
-  description: "{years} of experience in database/schema design, SQL development, troubleshooting locking and blocking issues, data analysis, custom reporting with SSRS."
+  description: "{years} of experience in database and schema design, SQL development, troubleshooting locking and blocking issues, data analysis, and custom reporting with SSRS."
 - skill: Web programming
-  description: "2+ years of experience in programming web and mobile solutions with HTML and JS, React and Typescript"
+  description: "2+ years of experience building web and mobile solutions with HTML, JavaScript, React, and TypeScript"
 - skill: Reverse engineering
-  description: "Ability to reverse engineer existing code and external (compiled) libraries to find problems and adapt/craft solutions"
+  description: "Ability to reverse-engineer existing code and external (compiled) libraries, find problems, and adapt or craft a solution"
 - skill: Agentic Coding, AI Harness & Tool Engineering
   since: "2025-10-01"
-  description: "{years} of experience in agentic coding with AI coding agents and harnesses such as GitHub Copilot, OpenAI Codex, pi and omp, and in building harness extensions and tools, including MCP servers that give coding agents access to D365 F&O metadata, X++ code, labels, builds and Visual Studio automation"
+  description: "{years} of experience in agentic coding with AI coding agents and harnesses such as GitHub Copilot, OpenAI Codex, pi, and omp, and in building harness extensions and tools, including MCP servers that give coding agents access to D365 F&O metadata, X++ code, labels, builds, and Visual Studio automation"
 
 - skill: Tools and Technologies
   list:
@@ -29,7 +29,7 @@
     - OData, REST, SOAP
     - Postman
     - PowerShell, CMD
-    - Powerplatform
+    - Power Platform
     - SQL Server Management Studio (SSMS)
     - SQL Server Reporting Services (SSRS)
     - Visual Studio

@@ -7,7 +7,7 @@ tags: X++
 
 ![context helper](/img/posts/contexthelper.png)
 
-When extending Microsoft's standard code in Dynamics 365, passing contextual data down the call stack can sometimes be a challenge. While Chain of Command (CoC) makes it possible to extend standard logic, there are cases where private or non-extensible methods interrupt the flow. Previously, the **ContextHelper** class provided a way to manage this (see previous blog post post: [Chain of Command - contextual helper class](https://raphaelbucher.ch/x++/2023/04/24/context-helper.html)) but now I have create a more robust framework to replace it.
+When extending Microsoft's standard code in Dynamics 365, passing contextual data down the call stack can be a challenge. Chain of Command (CoC) lets you extend standard logic, but private or non-extensible methods sometimes sit in the way. The earlier **ContextHelper** class was one way to deal with that (see the previous post: [Chain of Command - contextual helper class](https://raphaelbucher.ch/x++/2023/04/24/context-helper.html)). I have since replaced it with a more robust framework.
 
 ### Introducing the New Context Helper Framework
 
@@ -159,11 +159,11 @@ public abstract class IContextContract_BET implements System.IDisposable
 
 ### Example: Timesheet Cost Price Modification
 
-Let’s now apply the new framework to the same timesheet cost price scenario. You want to extend the `TSTimesheetTrans.setCostPrice` method to allow zero cost price during a specific workflow.
+Let’s apply the new framework to the same timesheet cost price scenario. Extend `TSTimesheetTrans.setCostPrice` so the cost price can stay at zero during a specific workflow.
 
 #### Step 1: Create the Contract Class
 
-Define a contract class that will hold the custom context (e.g., whether to allow zero cost price):
+Define a contract class that holds the custom context (for example, whether a cost price of zero is allowed):
 
 ```xpp
 [ContextContractFactoryAttribute_BET(classStr(TSTimesheetLineValidateSubmitContract_BET))]

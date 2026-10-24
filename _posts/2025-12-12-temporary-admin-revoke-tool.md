@@ -5,26 +5,26 @@ date:   2025-12-12 14:00:00 +0100
 tags: [X++]
 ---
 
-Testing security roles and permissions in Dynamics 365 Finance & Operations can often be a tedious process for developers and administrators. Since we usually operate with the **System Administrator** role, verifying that a specific button is disabled or a form is read-only for a standard user requires either logging in as a test user or asking a colleague to verify.
+Testing security roles and permissions in Dynamics 365 Finance & Operations is tedious when you are signed in as **System Administrator**. Checking that a button is disabled, or that a form is read-only, for a normal user means logging in as a test user or asking a colleague to look.
 
-To streamline this, I created a utility class `SysTemporaryAdminRevoke_BET`. This tool allows you to temporarily revoke your own Admin rights or, optionally, impersonate the security context of another specific user without switching accounts.
+`SysTemporaryAdminRevoke_BET` shortens that loop. It temporarily revokes your own admin rights or, if you want, applies another user's security roles to your session without switching accounts.
 
 ## How it works
 
-The logic relies on temporarily modifying the `SecurityUserRole` table within a running session. Here is the flow:
+The class temporarily changes rows in `SecurityUserRole` for the running session. The flow is:
 
-1.  **Launch:** You run the class. (append to URL: mi=SysClassRunner&cls=SysTemporaryAdminRevoke_BET)
-2.  **Configuration:** A dialog asks if you want to mimic a specific user (optional).
+1.  **Launch:** Run the class by appending `mi=SysClassRunner&cls=SysTemporaryAdminRevoke_BET` to the URL.
+2.  **Configuration:** A dialog asks whether you want to mimic a specific user. That part is optional.
 3.  **Revocation:**
-    * If a user ID is provided, your current roles are swapped with that user's roles.
+    * If you enter a user ID, your current roles are swapped for that user's roles.
     * The **System Administrator** role is removed from your user.
-4.  **Pause:** A dialog box (`SysBoxForm`) appears. **As long as this box is open, your admin rights are suspended.**
-5.  **Testing:** While the box is open, you can spawn new sessions (browser tabs) to test the application with the restricted rights.
-6.  **Restoration:** Closing the dialog box automatically restores your System Administrator role and reverts any role swaps.
+4.  **Pause:** A `SysBoxForm` dialog opens. **While it stays open, your admin rights are suspended.**
+5.  **Testing:** With the dialog still open, open new browser tabs and test the application with the restricted rights.
+6.  **Restoration:** Closing the dialog restores the System Administrator role and undoes the role swap.
 
 ## The Code
 
-Below is the X++ code for the class. It uses `unchecked(Uncheck::TableSecurityPermission)` to allow the modification of system security tables even while the rights are being adjusted.
+Below is the X++ class. It uses `unchecked(Uncheck::TableSecurityPermission)` so it can still update the security tables while the rights are being changed.
 
 ```xpp
 internal final class SysTemporaryAdminRevoke_BET
@@ -242,6 +242,6 @@ internal final class SysTemporaryAdminRevoke_BET
 
 ## Warnings and Considerations
 
-* **Non-Production Use Only:** While this code is robust, manipulating security roles at runtime involves direct table writes. This should be used strictly in Dev/Test environments.
-* **Session State:** When the `waitForUser()` dialog is open, your current session loses Admin rights immediately and as long as the Box dialog is not closed.
-* **Crash Recovery:** If the client crashes or runs into a time out while the dialog is open, you might be left without Admin rights. In a Tier 1 (Dev) environment, you can restore this via SQL or by using the Admin Provisioning Tool.
+* **Non-production use only:** The code is robust, but it still writes security tables directly. Use it only in dev and test environments.
+* **Session state:** As soon as the `waitForUser()` dialog is open, the current session loses admin rights, and they stay revoked until the dialog is closed.
+* **Crash recovery:** If the client crashes or hits a timeout while the dialog is open, you can be left without admin rights. On a Tier 1 (dev) environment, restore them with SQL or the Admin Provisioning Tool.

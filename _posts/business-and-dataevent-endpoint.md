@@ -1,7 +1,7 @@
-## Business- and Dataevent Endpoint
+## Business and Data Event Endpoint
 
-There is a standard HTTP endpoint (/Classes/BusinessEventsHttpAdapter) provided by Microsoft in DFO that is supposed to be used in combination with the azure key vault.
-Now, the azure key vault is probably used because the endpoint is not protected with the usual OAuth authentication, 
-instead you are supposed to enter the complete URL in the key vault and, most probably, Microsoft assumes you would append an API-key of some sorts to the URL. Kind of like a webhook.
+Microsoft ships a standard HTTP endpoint in D365 F&O, `/Classes/BusinessEventsHttpAdapter`, that is meant to be used together with Azure Key Vault.
 
-What if you need to communicate with a OAuth HTTPS protected endpoint? Fret not, that is what this blog post is all about.
+The key vault is probably involved because the endpoint is not protected with the usual OAuth authentication. You store the full URL in the key vault, and Microsoft most likely expects you to append some kind of API key to that URL, much like a webhook.
+
+What if the endpoint you need to call is an HTTPS endpoint protected with OAuth? Fret not: that is what this post is about.

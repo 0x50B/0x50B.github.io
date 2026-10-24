@@ -5,9 +5,9 @@ tags: [X++]
 ---
 
 ## How to get the record from a lookup dialog in X++
-Sometimes, when you build a lookup, you might have to further use the selected record of a lookup. For instance, a returned lookup value might not be unique and you need to further process what the user really selected.
-For this, i created an extension for the SysTableLookup class which registers an event handler to the lookups form closing. When the user selects a value from the lookup, the selected record of the root datasource will be passed on to the delegate.
-For the use in form extensions, you may also just set what form method you would like to notify of what record has been selected, because in form extensions you are not allowed to register an eventhandler.
+Sometimes the value a lookup returns is not enough. It may not be unique, and you need the record the user actually selected.
+I extended `SysTableLookup` so it subscribes to the lookup form's closing event. When the user picks a value, the selected record of the root data source is passed to a delegate.
+Form extensions cannot register an event handler, so you can instead name the form method that should be called with the selected record.
 
 
 ```xpp
@@ -47,8 +47,8 @@ final class SysTableLookupClass_BEC_Extension
 }
 ```
 
-The handler will be instantiated in your form or form extension and will be passed on the SysTableLookup class.
-This will act as a bridge between your form or form extension, and the SysTableLookup class.
+Create the handler on your form, or form extension, and pass it to `SysTableLookup`.
+It is the bridge between the form and `SysTableLookup`.
 
 ```xpp
 public class SysTableLookupHandler_BEC
@@ -87,7 +87,7 @@ public class SysTableLookupHandler_BEC
 }
 ```
 
-Inside the lookup method of your control, you use the SysTableLookup class as you normally would, but now you may set the SysTableLookupHandler to be able to get notified of what record the user selected:
+In the control's lookup method, use `SysTableLookup` as usual, and set the handler so you are told which record the user selected:
 
 ```xpp
 SysTableLookup sysTableLookup_BEC = SysTableLookup::newParameters(tableNum(Table), _formStringControl);
@@ -114,7 +114,7 @@ sysTableLookup_BEC.addLookupfield(fieldNum(Table, Field2));
 sysTableLookup_BEC.performFormLookup();
 ```
 
-In your form extension class
+In your form extension class:
 ```xpp
 public void sysTableLookupHandler_onLookupRecordSelected_BEC(Common _common)
 {
@@ -123,7 +123,7 @@ public void sysTableLookupHandler_onLookupRecordSelected_BEC(Common _common)
         return;
     }
 
-    // do what ever
+    // do whatever you need with the selected record
 }  
 ```
 

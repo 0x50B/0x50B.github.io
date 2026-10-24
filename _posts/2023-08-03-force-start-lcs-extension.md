@@ -2,32 +2,31 @@
 categories: Environment
 tags: Environment
 ---
-## Force start cloud hosted LCS machine - Chromium extension
-In X++ development for D365 F&O/SCM, cloud-hosted environments are often preferred over on-premise setups. 
-As a developer, I usually have access to the Azure Portal with a contributor role, allowing me to conveniently start and stop the machines I work with through the interface.
+## Force start cloud-hosted LCS machine - Chromium extension
+For X++ development on D365 F&O/SCM, cloud-hosted environments are often preferred over on-premises setups.
+As a developer, I usually have Contributor access in the Azure portal, so I can start and stop the machines I work on from there.
 
-However, some customers are cautious about granting access to the Azure Portal, even with limited privileges to the VM portal. 
-To save costs, we implement automatic shutdowns for developer machines when they are not in use. As a result, every morning, I manually start the machines I need for my development tasks.
+Some customers are careful about granting Azure portal access, even when it is limited to the VM blade.
+To save cost, developer machines shut down automatically when they are not in use. Every morning I then start the machines I need by hand.
 
-When I lack access to the Azure Portal, I can only start the machines using [lcs.dynamics.com](https://lcs.dynamics.com). 
-Unfortunately, this website doesn't keep track of the machine's current state. It only remembers the last state change triggered via the website itself. 
-This leads to discrepancies when automatic shutdowns or state changes occur through other means, such as shutting down on Windows or stopping on the Azure Portal.
+Without Azure portal access, the only way to start them is [lcs.dynamics.com](https://lcs.dynamics.com).
+That site does not track the machine's real state. It only remembers the last state change that was triggered on the site itself.
+The display drifts as soon as the machine is shut down another way, for example from Windows or from the Azure portal.
 
-Consequently, the machine's status displayed on [lcs.dynamics.com](https://lcs.dynamics.com) may not accurately reflect reality. 
-For example, LCS might show the machine as 'deployed' even when it's stopped. To remedy this, we must first initiate a 'stop' action on LCS, which takes up to 3 minutes to complete. 
-Subsequently, we can start the machine via the 'start' option, which adds another 3 minutes to the process.
+The status on [lcs.dynamics.com](https://lcs.dynamics.com) can therefore be wrong.
+LCS may still show the machine as "deployed" when it is already stopped. The workaround is to run Stop in LCS first, which takes up to three minutes, and only then run Start, which takes another three minutes.
 
-To address this inconvenience, I have created an extension for Chromium-based browsers (such as Chrome and Edge) called:
+To skip that, I built an extension for Chromium-based browsers (Chrome and Edge) called:
 <p>
   <a href="https://chromewebstore.google.com/detail/force-start-lcs-machine/knmfphnfkikpkafbonegkdmaciekgcpm" style="font-size: 30px; padding: 10px; border-radius: 5px;" target="_blank"><img height="30px" style="margin-right: 10px;" src="/img/posts/force-start-logo.jpg"/>Force start LCS machine</a>
 </p>
 ![force start preview](/img/posts/force-start-preview.jpg)
 
-When activated, this extension introduces a new button that attempts to 'force start' the machine, overriding any previously remembered state on LCS.
+When you turn it on, the extension adds a button that force-starts the machine and ignores the state LCS last remembered.
 
-This useful extension saves time and ensures smoother workflow management for cloud-hosted LCS machines, making it a valuable tool for X++ developers or consultants working in such environments.
+It saves the extra stop-then-start round trip, which helps anyone who works with cloud-hosted LCS machines.
 
-## conentScript.js
+## contentScript.js
 ```js
 function clickButton() {
     const button = document.querySelector('[data-dyn-controlname="StartDeployment"]');
