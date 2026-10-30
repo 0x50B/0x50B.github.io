@@ -79,7 +79,7 @@ I ran the classes one after the other, each in its own test run:
 
 | | A: without attribute | B: with `SysTestCaseDataDependency` |
 |---|---|---|
-| Duration of the whole run | about 2 minutes, mostly orchestration overhead | still running after 30 minutes, no result |
+| Duration of the whole run | about 2 minutes, mostly orchestration overhead | no result within the 60-minute client timeout; the environment kept running the operation afterwards |
 | Duration per test | about 1 second | - |
 | Company during the test | `DAT` | the dependency company |
 | Environment afterwards | back to `Running` | stays in `ExternalOrchestration` |
