@@ -38,7 +38,7 @@
   });
 </script>
 
-<link href="https://fonts.googleapis.com/css?family=Lora:400,700|Open+Sans:400,300,800,700" rel="stylesheet" type="text/css">
+<link href="{{ "/css/fonts/resume-fonts.css" | relative_url }}" rel="stylesheet" type="text/css">
 <link href="/css/resume.css" rel="stylesheet" type="text/css">
 
 {%- if resume.contact.phone -%}<meta itemprop="telephone" content="{{ resume.contact.phone }}"/>{%- endif -%}
@@ -46,9 +46,7 @@
 
 <header class="page-header">
   <!-- Avatar -->
-  {%- if site.gravatar_hash -%}
-    <img src="https://www.gravatar.com/avatar/{{ site.gravatar_hash }}?size=240" alt="my photo" class="avatar no-print" itemprop="image">
-  {%- endif -%}
+  <img src="{{ "/img/avatar.png" | relative_url }}" alt="my photo" class="avatar no-print" itemprop="image">
   <!-- Name and Suffix -->
   <div class="header-title">
     <span class="header-name" itemprop="name">{{ resume.header.name }}</span>
